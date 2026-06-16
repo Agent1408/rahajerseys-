@@ -171,6 +171,8 @@
     .btn-whatsapp { background:#25d366; color:white; padding:.85rem 1.75rem; border-radius:8px; font-weight:700; font-size:.95rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem; transition:background .2s,transform .15s; cursor:pointer; border:none; font-family:'Inter',sans-serif; }
     .btn-whatsapp:hover { background:#1ebe5c; transform:translateY(-1px); }
     .form-note { font-size:.78rem; color:var(--text-muted); }
+    .form-step { animation: fadeSlide .25s ease; }
+    @keyframes fadeSlide { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
 
     /* ── WHY US ── */
     #why { background:var(--white); }
@@ -654,78 +656,223 @@
 
     <div class="order-form">
       <div class="form-grid">
+
+        <!-- Name -->
         <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="e.g. Brian Mutua" />
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" placeholder="e.g. Brian Mutua" />
         </div>
+        <!-- Phone -->
         <div class="form-group">
-          <label for="phone">Phone / WhatsApp</label>
-          <input type="tel" id="phone" placeholder="07XX XXX XXX" />
+          <label for="f-phone">Phone / WhatsApp</label>
+          <input type="tel" id="f-phone" placeholder="07XX XXX XXX" />
         </div>
-        <div class="form-group">
-          <label for="type">Jersey Type</label>
-          <select id="type">
-            <option value="" disabled selected>Choose one...</option>
-            <option>Club Jersey (Home / Away / Third / GK)</option>
-            <option>World Cup 2026 Jersey</option>
-            <option>Retro / Old Season Jersey</option>
-            <option>Limited Edition Jersey</option>
+
+        <!-- Jersey Category -->
+        <div class="form-group full">
+          <label for="f-category">What type of jersey?</label>
+          <select id="f-category" onchange="onCategoryChange()">
+            <option value="" disabled selected>Choose category...</option>
+            <option value="club">⚽ Club Jersey (26/27 Pre-order)</option>
+            <option value="wc2026">🌍 World Cup 2026</option>
+            <option value="retro">📻 Retro / Old Season</option>
+            <option value="limited">💎 Limited Edition</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="version">Version</label>
-          <select id="version">
-            <option value="" disabled selected>Choose one...</option>
-            <option>Fan Version – KSh 900</option>
-            <option>Pro Version – KSh 1,000</option>
-            <option>Retro Version – KSh 1,300</option>
-            <option>Limited Edition – KSh 2,000</option>
+
+        <!-- CLUB: League selector -->
+        <div class="form-group full form-step" id="step-league" style="display:none;">
+          <label for="f-league">Select League</label>
+          <select id="f-league" onchange="onLeagueChange()">
+            <option value="" disabled selected>Choose league...</option>
+            <option value="epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+            <option value="laliga">🇪🇸 La Liga</option>
+            <option value="bundesliga">🇩🇪 Bundesliga</option>
+            <option value="seriea">🇮🇹 Serie A</option>
+            <option value="ligue1">🇫🇷 Ligue 1</option>
+            <option value="mls">🇺🇸 MLS</option>
+            <option value="ucl">🏆 Champions League Clubs</option>
+            <option value="other-club">🌍 Other / Not Listed</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="kit">Kit</label>
-          <select id="kit">
-            <option value="" disabled selected>Kit type...</option>
+
+        <!-- CLUB: Club selector (populated by JS) -->
+        <div class="form-group full form-step" id="step-club" style="display:none;">
+          <label for="f-club">Select Club</label>
+          <select id="f-club">
+            <option value="" disabled selected>Choose club...</option>
+          </select>
+        </div>
+
+        <!-- CLUB: other club text -->
+        <div class="form-group full form-step" id="step-club-other" style="display:none;">
+          <label for="f-club-other">Type your club name</label>
+          <input type="text" id="f-club-other" placeholder="e.g. Gor Mahia, Kaizer Chiefs..." />
+        </div>
+
+        <!-- WORLD CUP: Country selector -->
+        <div class="form-group full form-step" id="step-country" style="display:none;">
+          <label for="f-country">Select Country</label>
+          <select id="f-country" onchange="onCountryChange()">
+            <option value="" disabled selected>Choose country...</option>
+            <optgroup label="Africa">
+              <option>🇰🇪 Kenya</option>
+              <option>🇳🇬 Nigeria</option>
+              <option>🇲🇦 Morocco</option>
+              <option>🇨🇲 Cameroon</option>
+              <option>🇿🇦 South Africa</option>
+              <option>🇸🇳 Senegal</option>
+              <option>🇪🇬 Egypt</option>
+              <option>🇬🇭 Ghana</option>
+              <option>🇹🇳 Tunisia</option>
+              <option>🇨🇮 Ivory Coast</option>
+              <option>🇺🇬 Uganda</option>
+              <option>🇹🇿 Tanzania</option>
+            </optgroup>
+            <optgroup label="Europe">
+              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
+              <option>🇫🇷 France</option>
+              <option>🇪🇸 Spain</option>
+              <option>🇩🇪 Germany</option>
+              <option>🇵🇹 Portugal</option>
+              <option>🇮🇹 Italy</option>
+              <option>🇳🇱 Netherlands</option>
+              <option>🇧🇪 Belgium</option>
+              <option>🇵🇱 Poland</option>
+              <option>🇨🇭 Switzerland</option>
+              <option>🇭🇷 Croatia</option>
+              <option>🇩🇰 Denmark</option>
+              <option>🇸🇪 Sweden</option>
+              <option>🇦🇹 Austria</option>
+              <option>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</option>
+              <option>🇷🇸 Serbia</option>
+              <option>🇺🇦 Ukraine</option>
+              <option>🇹🇷 Turkey</option>
+            </optgroup>
+            <optgroup label="South America">
+              <option>🇧🇷 Brazil</option>
+              <option>🇦🇷 Argentina</option>
+              <option>🇺🇾 Uruguay</option>
+              <option>🇨🇴 Colombia</option>
+              <option>🇨🇱 Chile</option>
+              <option>🇪🇨 Ecuador</option>
+              <option>🇵🇾 Paraguay</option>
+              <option>🇵🇪 Peru</option>
+              <option>🇻🇪 Venezuela</option>
+              <option>🇧🇴 Bolivia</option>
+            </optgroup>
+            <optgroup label="North &amp; Central America">
+              <option>🇺🇸 USA</option>
+              <option>🇲🇽 Mexico</option>
+              <option>🇨🇦 Canada</option>
+              <option>🇨🇷 Costa Rica</option>
+              <option>🇯🇲 Jamaica</option>
+              <option>🇵🇦 Panama</option>
+              <option>🇭🇳 Honduras</option>
+            </optgroup>
+            <optgroup label="Asia &amp; Others">
+              <option>🇯🇵 Japan</option>
+              <option>🇰🇷 South Korea</option>
+              <option>🇸🇦 Saudi Arabia</option>
+              <option>🇦🇺 Australia</option>
+              <option>🇮🇷 Iran</option>
+              <option>🇶🇦 Qatar</option>
+              <option>🇨🇳 China</option>
+            </optgroup>
+            <option value="other-country">Other country (type below)</option>
+          </select>
+        </div>
+        <div class="form-group full form-step" id="step-country-other" style="display:none;">
+          <label for="f-country-other">Type your country</label>
+          <input type="text" id="f-country-other" placeholder="e.g. Algeria, Zimbabwe..." />
+        </div>
+
+        <!-- RETRO: team + year -->
+        <div class="form-group form-step" id="step-retro-team" style="display:none;">
+          <label for="f-retro-team">Team Name</label>
+          <input type="text" id="f-retro-team" placeholder="e.g. Brazil, Arsenal..." />
+        </div>
+        <div class="form-group form-step" id="step-retro-year" style="display:none;">
+          <label for="f-retro-year">Season / Year</label>
+          <input type="text" id="f-retro-year" placeholder="e.g. 1998, 2005/06..." />
+        </div>
+
+        <!-- LIMITED: description -->
+        <div class="form-group full form-step" id="step-limited" style="display:none;">
+          <label for="f-limited">Describe the jersey</label>
+          <input type="text" id="f-limited" placeholder="e.g. Man United Lunar New Year 2025..." />
+        </div>
+
+        <!-- Kit type -->
+        <div class="form-group form-step" id="step-kit" style="display:none;">
+          <label for="f-kit">Kit Type</label>
+          <select id="f-kit">
+            <option value="" disabled selected>Choose...</option>
             <option>Home</option>
             <option>Away</option>
             <option>Third</option>
             <option>Goalkeeper</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="size">Size</label>
-          <select id="size">
-            <option value="" disabled selected>Pick size...</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-            <option>XXL</option>
+
+        <!-- Version -->
+        <div class="form-group form-step" id="step-version" style="display:none;">
+          <label for="f-version">Version</label>
+          <select id="f-version">
+            <option value="" disabled selected>Choose...</option>
+            <option value="Fan – KSh 900">Fan – KSh 900</option>
+            <option value="Pro – KSh 1,000">Pro – KSh 1,000</option>
+            <option value="Retro – KSh 1,300">Retro – KSh 1,300</option>
+            <option value="Limited Edition – KSh 2,000">Limited Edition – KSh 2,000</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="pieces">Pieces</label>
-          <select id="pieces">
+
+        <!-- Size -->
+        <div class="form-group form-step" id="step-size" style="display:none;">
+          <label for="f-size">Size <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;">Size Guide ↑</a></label>
+          <select id="f-size">
+            <option value="" disabled selected>Pick size...</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+
+        <!-- Pieces -->
+        <div class="form-group form-step" id="step-pieces" style="display:none;">
+          <label for="f-pieces">Pieces</label>
+          <select id="f-pieces">
             <option value="" disabled selected>How many?</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option>1</option><option>2</option><option>3</option>
             <option>4+ (Discount applies!)</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="print">Printing?</label>
-          <select id="print">
-            <option value="" disabled selected>Add printing?</option>
-            <option>Yes – add KSh 300</option>
-            <option>No thanks</option>
+
+        <!-- Printing -->
+        <div class="form-group full form-step" id="step-print" style="display:none;">
+          <label for="f-print">Add Name &amp; Number Printing? (+KSh 300)</label>
+          <select id="f-print" onchange="onPrintChange()">
+            <option value="" disabled selected>Choose...</option>
+            <option value="yes">Yes – add KSh 300</option>
+            <option value="no">No thanks</option>
           </select>
         </div>
-        <div class="form-group full">
-          <label for="details">Jersey Details (Team, Year if Retro, Print Name/Number)</label>
-          <textarea id="details" placeholder="e.g. Arsenal Home 24/25, print: Saka 7"></textarea>
+
+        <!-- Printing details (shown only if yes) -->
+        <div class="form-group form-step" id="step-print-name" style="display:none;">
+          <label for="f-print-name">Name to Print</label>
+          <input type="text" id="f-print-name" placeholder="e.g. SAKA" />
         </div>
+        <div class="form-group form-step" id="step-print-number" style="display:none;">
+          <label for="f-print-number">Number to Print</label>
+          <input type="text" id="f-print-number" placeholder="e.g. 7" />
+        </div>
+
+        <!-- Extra notes -->
+        <div class="form-group full form-step" id="step-notes" style="display:none;">
+          <label for="f-notes">Any extra notes? (optional)</label>
+          <textarea id="f-notes" placeholder="e.g. specific badge, long sleeve, gift wrap..."></textarea>
+        </div>
+
       </div>
       <div class="form-submit">
         <button class="btn-whatsapp" onclick="openWhatsApp()">💬 Send Order on WhatsApp</button>
@@ -768,48 +915,171 @@
 <a href="https://wa.me/254710611244" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
 <script>
-  /* Gallery filter */
+  /* ── CLUB DATA ── */
+  const CLUBS = {
+    epl: ['Arsenal','Aston Villa','Bournemouth','Brentford','Brighton','Chelsea','Crystal Palace','Everton','Fulham','Ipswich Town','Leicester City','Liverpool','Manchester City','Manchester United','Newcastle United','Nottingham Forest','Southampton','Tottenham Hotspur','West Ham United','Wolverhampton'],
+    laliga: ['Athletic Bilbao','Atletico Madrid','Barcelona','Celta Vigo','Getafe','Girona','Las Palmas','Leganes','Mallorca','Osasuna','Rayo Vallecano','Real Betis','Real Madrid','Real Sociedad','Real Valladolid','Sevilla','Valencia','Villarreal'],
+    bundesliga: ['Augsburg','Bayer Leverkusen','Bayern Munich','Borussia Dortmund','Borussia Monchengladbach','Eintracht Frankfurt','Freiburg','Heidenheim','Hoffenheim','Holstein Kiel','Mainz','RB Leipzig','Schalke','Stuttgart','Union Berlin','Werder Bremen','Wolfsburg'],
+    seriea: ['AC Milan','Atalanta','Bologna','Cagliari','Como','Empoli','Fiorentina','Genoa','Inter Milan','Juventus','Lazio','Lecce','Monza','Napoli','Parma','Roma','Torino','Udinese','Venezia','Verona'],
+    ligue1: ['Angers','Auxerre','Brest','Lens','Lille','Lyon','Marseille','Monaco','Montpellier','Nantes','Nice','Paris Saint-Germain','Reims','Rennes','Saint-Etienne','Strasbourg','Toulouse'],
+    mls: ['Atlanta United','Austin FC','Charlotte FC','Chicago Fire','Colorado Rapids','Columbus Crew','DC United','FC Cincinnati','FC Dallas','Houston Dynamo','Inter Miami','LA Galaxy','LAFC','Minnesota United','Nashville SC','New England Revolution','New York City FC','New York Red Bulls','Orlando City','Philadelphia Union','Portland Timbers','Real Salt Lake','San Jose Earthquakes','Seattle Sounders','Sporting KC','St. Louis City','Toronto FC','Vancouver Whitecaps'],
+    ucl: ['Arsenal','Atletico Madrid','Barcelona','Bayern Munich','Benfica','Borussia Dortmund','Celtic','Chelsea','Club Brugge','Inter Milan','Juventus','Liverpool','Manchester City','Paris Saint-Germain','Porto','PSV Eindhoven','RB Leipzig','Real Madrid','Shakhtar Donetsk','Sporting CP']
+  };
+
+  /* ── SHOW / HIDE HELPER ── */
+  function show(id) { document.getElementById(id).style.display = ''; }
+  function hide(id) { document.getElementById(id).style.display = 'none'; }
+  function val(id)  { return document.getElementById(id).value; }
+
+  /* Hide all dynamic steps */
+  function hideAllSteps() {
+    ['step-league','step-club','step-club-other','step-country','step-country-other',
+     'step-retro-team','step-retro-year','step-limited',
+     'step-kit','step-version','step-size','step-pieces',
+     'step-print','step-print-name','step-print-number','step-notes'
+    ].forEach(id => hide(id));
+  }
+
+  /* ── CATEGORY CHANGE ── */
+  function onCategoryChange() {
+    hideAllSteps();
+    const cat = val('f-category');
+    if (cat === 'club') {
+      show('step-league');
+    } else if (cat === 'wc2026') {
+      show('step-country');
+      showCommonSteps();
+    } else if (cat === 'retro') {
+      show('step-retro-team');
+      show('step-retro-year');
+      showCommonSteps();
+    } else if (cat === 'limited') {
+      show('step-limited');
+      showCommonSteps();
+    }
+  }
+
+  /* ── LEAGUE CHANGE ── */
+  function onLeagueChange() {
+    hide('step-club'); hide('step-club-other');
+    const league = val('f-league');
+    if (league === 'other-club') {
+      show('step-club-other');
+      showCommonSteps();
+    } else {
+      const clubs = CLUBS[league] || [];
+      const sel = document.getElementById('f-club');
+      sel.innerHTML = '<option value="" disabled selected>Choose club...</option>';
+      clubs.forEach(c => {
+        const o = document.createElement('option');
+        o.value = o.textContent = c;
+        sel.appendChild(o);
+      });
+      show('step-club');
+      showCommonSteps();
+    }
+  }
+
+  /* ── COUNTRY CHANGE ── */
+  function onCountryChange() {
+    if (val('f-country') === 'other-country') {
+      show('step-country-other');
+    } else {
+      hide('step-country-other');
+    }
+  }
+
+  /* Show kit / version / size / pieces / print / notes */
+  function showCommonSteps() {
+    ['step-kit','step-version','step-size','step-pieces','step-print','step-notes'].forEach(show);
+  }
+
+  /* ── PRINT CHANGE ── */
+  function onPrintChange() {
+    if (val('f-print') === 'yes') {
+      show('step-print-name');
+      show('step-print-number');
+    } else {
+      hide('step-print-name');
+      hide('step-print-number');
+    }
+  }
+
+  /* ── GALLERY FILTER ── */
   function filterGallery(cat, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.gallery-item').forEach(item => {
-      if (cat === 'all' || item.dataset.cat === cat) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
     });
   }
 
-  /* Pre-fill order form from gallery click */
+  /* ── GALLERY → PRE-FILL FORM ── */
   function orderJersey(details) {
-    document.getElementById('details').value = details;
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   }
 
-  /* Build WhatsApp message from form and open */
+  /* ── BUILD WHATSAPP MESSAGE ── */
   function openWhatsApp() {
-    const name    = document.getElementById('name').value.trim();
-    const phone   = document.getElementById('phone').value.trim();
-    const type    = document.getElementById('type').value;
-    const version = document.getElementById('version').value;
-    const kit     = document.getElementById('kit').value;
-    const size    = document.getElementById('size').value;
-    const pieces  = document.getElementById('pieces').value;
-    const print   = document.getElementById('print').value;
-    const details = document.getElementById('details').value.trim();
+    const e = {
+      ball:  '\u26BD', person:'\uD83D\uDC64', phone:'\uD83D\uDCF1',
+      shirt: '\uD83D\uDC55', ruler:'\uD83D\uDCCF', num:'\uD83D\uDD22',
+      art:   '\uD83C\uDFA8', note: '\uD83D\uDCDD', pray:'\uD83D\uDE4F',
+      globe: '\uD83C\uDF0D', tag:  '\uD83C\uDFF7\uFE0F', gem:'\uD83D\uDCAB'
+    };
 
-    let msg = '⚽ *NEW ORDER – RAHA JERSEYS*\n\n';
-    if (name)    msg += `👤 Name: ${name}\n`;
-    if (phone)   msg += `📱 Contact: ${phone}\n`;
-    if (type)    msg += `🏷️ Type: ${type}\n`;
-    if (version) msg += `💎 Version: ${version}\n`;
-    if (kit)     msg += `👕 Kit: ${kit}\n`;
-    if (size)    msg += `📏 Size: ${size}\n`;
-    if (pieces)  msg += `🔢 Pieces: ${pieces}\n`;
-    if (print)   msg += `🎨 Printing: ${print}\n`;
-    if (details) msg += `\n📝 Details:\n${details}\n`;
-    msg += '\nPlease confirm my order. Asante! 🙏';
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const cat   = val('f-category');
+
+    /* Build jersey description based on category */
+    let jerseyDesc = '';
+    if (cat === 'club') {
+      const league = val('f-league');
+      const club   = league === 'other-club'
+                     ? document.getElementById('f-club-other').value.trim()
+                     : val('f-club');
+      const leagueNames = {epl:'Premier League',laliga:'La Liga',bundesliga:'Bundesliga',seriea:'Serie A',ligue1:'Ligue 1',mls:'MLS',ucl:'Champions League','other-club':'Other League'};
+      jerseyDesc = (leagueNames[league] || league) + ' - ' + club + ' (26/27 Pre-order)';
+    } else if (cat === 'wc2026') {
+      const country = val('f-country') === 'other-country'
+                      ? document.getElementById('f-country-other').value.trim()
+                      : val('f-country');
+      jerseyDesc = 'World Cup 2026 - ' + country;
+    } else if (cat === 'retro') {
+      const team = document.getElementById('f-retro-team').value.trim();
+      const year = document.getElementById('f-retro-year').value.trim();
+      jerseyDesc = 'Retro - ' + team + ' ' + year;
+    } else if (cat === 'limited') {
+      jerseyDesc = 'Limited Edition - ' + document.getElementById('f-limited').value.trim();
+    }
+
+    const kit     = val('f-kit');
+    const version = val('f-version');
+    const size    = val('f-size');
+    const pieces  = val('f-pieces');
+    const print   = val('f-print');
+    const pName   = document.getElementById('f-print-name').value.trim();
+    const pNum    = document.getElementById('f-print-number').value.trim();
+    const notes   = document.getElementById('f-notes').value.trim();
+
+    let msg = e.ball + ' *NEW ORDER - RAHA JERSEYS*\n\n';
+    if (name)       msg += e.person + ' Name: '    + name       + '\n';
+    if (phone)      msg += e.phone  + ' Contact: ' + phone      + '\n';
+    if (jerseyDesc) msg += e.globe  + ' Jersey: '  + jerseyDesc + '\n';
+    if (kit)        msg += e.shirt  + ' Kit: '     + kit        + '\n';
+    if (version)    msg += e.gem    + ' Version: ' + version    + '\n';
+    if (size)       msg += e.ruler  + ' Size: '    + size       + '\n';
+    if (pieces)     msg += e.num    + ' Pieces: '  + pieces     + '\n';
+    if (print === 'yes') {
+      msg += e.art + ' Printing: YES (+KSh 300)\n';
+      if (pName)  msg += '   \u270F\uFE0F Name: '   + pName + '\n';
+      if (pNum)   msg += '   \uD83D\uDD22 Number: ' + pNum  + '\n';
+    } else if (print === 'no') {
+      msg += e.art + ' Printing: No\n';
+    }
+    if (notes) msg += '\n' + e.note + ' Notes: ' + notes + '\n';
+    msg += '\nPlease confirm my order. Asante! ' + e.pray;
 
     window.open('https://wa.me/254710611244?text=' + encodeURIComponent(msg), '_blank');
   }
