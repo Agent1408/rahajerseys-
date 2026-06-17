@@ -98,6 +98,10 @@
     .cat-name { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; line-height:1; }
     .cat-desc { font-size:.8rem; opacity:.8; margin-top:.25rem; }
     .coming-soon-tag { display:inline-block; background:rgba(255,255,255,.2); font-size:.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-top:auto; width:fit-content; }
+    .preorder-banner { background:linear-gradient(90deg,var(--pitch),var(--green)); color:white; border-radius:var(--radius); padding:.75rem 1.25rem; font-size:.875rem; margin-bottom:1rem; }
+    .league-tabs { margin-top:.5rem; overflow-x:auto; flex-wrap:nowrap !important; padding-bottom:.25rem; }
+    .league-tabs::-webkit-scrollbar { height:3px; }
+    .league-tabs::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 
     /* ── GALLERY ── */
     #gallery { background:var(--white); }
@@ -302,168 +306,253 @@
   <div class="container">
     <p class="section-label">Fresh Stock</p>
     <h2 class="section-title">JERSEY GALLERY</h2>
-    <p class="section-sub">Browse real kit designs. Tap any jersey to place an order.</p>
+    <p class="section-sub">Browse our kits. Tap any jersey to jump straight to the order form.</p>
 
+    <!-- MAIN TABS -->
     <div class="gallery-tabs">
-      <button class="tab-btn active" onclick="filterGallery('wc2026',this)">🌍 World Cup 2026</button>
-      <button class="tab-btn" onclick="filterGallery('club',this)">🏆 Club Jerseys</button>
-      <button class="tab-btn" onclick="filterGallery('retro',this)">📻 Retro</button>
-      <button class="tab-btn" onclick="filterGallery('all',this)">All Kits</button>
+      <button class="tab-btn active" onclick="switchMainTab('season2627', this)">⚡ 26/27 Pre-Order</button>
+      <button class="tab-btn" onclick="switchMainTab('wc2026', this)">🌍 World Cup 2026</button>
+      <button class="tab-btn" onclick="switchMainTab('retro', this)">📻 Retro</button>
     </div>
 
-    <div class="gallery-grid">
+    <!-- ══ 26/27 SEASON PANEL ══ -->
+    <div id="panel-season2627">
+      <div class="preorder-banner">
+        ⚡ <strong>26/27 Pre-Order is OPEN</strong> — secure your kit before stock runs out!
+      </div>
+      <!-- League sub-tabs -->
+      <div class="gallery-tabs league-tabs">
+        <button class="tab-btn active" onclick="switchLeague('epl', this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+        <button class="tab-btn" onclick="switchLeague('laliga', this)">🇪🇸 La Liga</button>
+        <button class="tab-btn" onclick="switchLeague('bundesliga', this)">🇩🇪 Bundesliga</button>
+        <button class="tab-btn" onclick="switchLeague('seriea', this)">🇮🇹 Serie A</button>
+        <button class="tab-btn" onclick="switchLeague('ligue1', this)">🇫🇷 Ligue 1</button>
+        <button class="tab-btn" onclick="switchLeague('mls', this)">🇺🇸 MLS</button>
+      </div>
 
-      <!-- WORLD CUP 2026 -->
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Brazil – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://images.topfootball.shop/catalog/product/cache/fce11fb6a98a2b5ac0bfb5e17c7fac19/b/r/brazil_2026_home.jpg" alt="Brazil World Cup 2026 Home Jersey" onerror="this.src='https://placehold.co/400x533/145a32/ffffff?text=Brazil+2026'"/>
-        <div class="gallery-label">
-          <div class="team">🇧🇷 Brazil</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- EPL -->
+      <div class="gallery-grid league-panel" id="league-epl">
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Manchester City')">
+          <img class="gallery-img" src="images/man-city-2627.jpg" alt="Manchester City 26/27" onerror="this.src='https://placehold.co/400x533/6ac3e7/1a1a1a?text=Man+City+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵 Manchester City</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Arsenal')">
+          <img class="gallery-img" src="images/arsenal-2627.jpg" alt="Arsenal 26/27" onerror="this.src='https://placehold.co/400x533/EF0107/ffffff?text=Arsenal+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Arsenal</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Liverpool')">
+          <img class="gallery-img" src="images/liverpool-2627.jpg" alt="Liverpool 26/27" onerror="this.src='https://placehold.co/400x533/C8102E/ffffff?text=Liverpool+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Liverpool</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Chelsea')">
+          <img class="gallery-img" src="images/chelsea-2627.jpg" alt="Chelsea 26/27" onerror="this.src='https://placehold.co/400x533/034694/ffffff?text=Chelsea+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵 Chelsea</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Manchester United')">
+          <img class="gallery-img" src="images/man-united-2627.jpg" alt="Man United 26/27" onerror="this.src='https://placehold.co/400x533/DA291C/ffffff?text=Man+Utd+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Manchester United</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
 
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Argentina – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/argentina_2026_home.jpg" alt="Argentina World Cup 2026 Jersey" onerror="this.src='https://placehold.co/400x533/1a5276/ffffff?text=Argentina+2026'"/>
-        <div class="gallery-label">
-          <div class="team">🇦🇷 Argentina</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- LA LIGA -->
+      <div class="gallery-grid league-panel" id="league-laliga" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Real Madrid')">
+          <img class="gallery-img" src="images/real-madrid-2627.jpg" alt="Real Madrid 26/27" onerror="this.src='https://placehold.co/400x533/FEBE10/1a1a1a?text=Real+Madrid+26%2F27'"/>
+          <div class="gallery-label"><div class="team">⚪ Real Madrid</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Barcelona')">
+          <img class="gallery-img" src="images/barcelona-2627.jpg" alt="Barcelona 26/27" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴🔵 Barcelona</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Atletico Madrid')">
+          <img class="gallery-img" src="images/atletico-2627.jpg" alt="Atletico Madrid 26/27" onerror="this.src='https://placehold.co/400x533/CB3524/ffffff?text=Atletico+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴⚪ Atletico Madrid</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Villarreal')">
+          <img class="gallery-img" src="images/villarreal-2627.jpg" alt="Villarreal 26/27" onerror="this.src='https://placehold.co/400x533/FFD700/1a1a1a?text=Villarreal+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🟡 Villarreal</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Athletic Bilbao')">
+          <img class="gallery-img" src="images/athletic-bilbao-2627.jpg" alt="Athletic Bilbao 26/27" onerror="this.src='https://placehold.co/400x533/EE2523/ffffff?text=Bilbao+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴⚪ Athletic Bilbao</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
 
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('England – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://images.footballfashion.net/england_2026_wc_home.jpg" alt="England World Cup 2026 Jersey" onerror="this.src='https://placehold.co/400x533/c0392b/ffffff?text=England+2026'"/>
-        <div class="gallery-label">
-          <div class="team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- BUNDESLIGA -->
+      <div class="gallery-grid league-panel" id="league-bundesliga" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Bayern Munich')">
+          <img class="gallery-img" src="images/bayern-2627.jpg" alt="Bayern Munich 26/27" onerror="this.src='https://placehold.co/400x533/DC052D/ffffff?text=Bayern+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Bayern Munich</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Bayer Leverkusen')">
+          <img class="gallery-img" src="images/leverkusen-2627.jpg" alt="Bayer Leverkusen 26/27" onerror="this.src='https://placehold.co/400x533/E32219/ffffff?text=Leverkusen+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Bayer Leverkusen</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Borussia Dortmund')">
+          <img class="gallery-img" src="images/dortmund-2627.jpg" alt="Borussia Dortmund 26/27" onerror="this.src='https://placehold.co/400x533/FDE100/1a1a1a?text=Dortmund+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🟡 Borussia Dortmund</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','RB Leipzig')">
+          <img class="gallery-img" src="images/rb-leipzig-2627.jpg" alt="RB Leipzig 26/27" onerror="this.src='https://placehold.co/400x533/DD0741/ffffff?text=Leipzig+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴⚪ RB Leipzig</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Stuttgart')">
+          <img class="gallery-img" src="images/stuttgart-2627.jpg" alt="Stuttgart 26/27" onerror="this.src='https://placehold.co/400x533/E32219/ffffff?text=Stuttgart+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Stuttgart</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
 
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('France – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://placehold.co/400x533/1a3a6e/ffffff?text=🇫🇷+France+2026" alt="France World Cup 2026 Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇫🇷 France</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- SERIE A -->
+      <div class="gallery-grid league-panel" id="league-seriea" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Inter Milan')">
+          <img class="gallery-img" src="images/inter-milan-2627.jpg" alt="Inter Milan 26/27" onerror="this.src='https://placehold.co/400x533/010E80/ffffff?text=Inter+Milan+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵⚫ Inter Milan</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','AC Milan')">
+          <img class="gallery-img" src="images/ac-milan-2627.jpg" alt="AC Milan 26/27" onerror="this.src='https://placehold.co/400x533/FB090B/ffffff?text=AC+Milan+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴⚫ AC Milan</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Juventus')">
+          <img class="gallery-img" src="images/juventus-2627.jpg" alt="Juventus 26/27" onerror="this.src='https://placehold.co/400x533/1a1a1a/ffffff?text=Juventus+26%2F27'"/>
+          <div class="gallery-label"><div class="team">⚫⚪ Juventus</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Napoli')">
+          <img class="gallery-img" src="images/napoli-2627.jpg" alt="Napoli 26/27" onerror="this.src='https://placehold.co/400x533/12A0D7/ffffff?text=Napoli+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵 Napoli</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Atalanta')">
+          <img class="gallery-img" src="images/atalanta-2627.jpg" alt="Atalanta 26/27" onerror="this.src='https://placehold.co/400x533/1C4698/ffffff?text=Atalanta+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵⚫ Atalanta</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
 
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Spain – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://placehold.co/400x533/c0392b/ffffff?text=🇪🇸+Spain+2026" alt="Spain World Cup 2026 Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇪🇸 Spain</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- LIGUE 1 -->
+      <div class="gallery-grid league-panel" id="league-ligue1" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Paris Saint-Germain')">
+          <img class="gallery-img" src="images/psg-2627.jpg" alt="PSG 26/27" onerror="this.src='https://placehold.co/400x533/004170/ffffff?text=PSG+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵🔴 PSG</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Monaco')">
+          <img class="gallery-img" src="images/monaco-2627.jpg" alt="Monaco 26/27" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Monaco+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴⚪ Monaco</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Marseille')">
+          <img class="gallery-img" src="images/marseille-2627.jpg" alt="Marseille 26/27" onerror="this.src='https://placehold.co/400x533/009CDE/ffffff?text=Marseille+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵⚪ Marseille</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Lyon')">
+          <img class="gallery-img" src="images/lyon-2627.jpg" alt="Lyon 26/27" onerror="this.src='https://placehold.co/400x533/CC0000/ffffff?text=Lyon+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴🔵 Lyon</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Lille')">
+          <img class="gallery-img" src="images/lille-2627.jpg" alt="Lille 26/27" onerror="this.src='https://placehold.co/400x533/D00027/ffffff?text=Lille+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔴 Lille</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
 
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Germany – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://placehold.co/400x533/2c3e50/ffffff?text=🇩🇪+Germany+2026" alt="Germany World Cup 2026 Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇩🇪 Germany</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
+      <!-- MLS -->
+      <div class="gallery-grid league-panel" id="league-mls" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','mls','Inter Miami')">
+          <img class="gallery-img" src="images/inter-miami-2627.jpg" alt="Inter Miami 26/27" onerror="this.src='https://placehold.co/400x533/F7B5CD/1a1a1a?text=Inter+Miami+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🩷 Inter Miami</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','LA Galaxy')">
+          <img class="gallery-img" src="images/la-galaxy-2627.jpg" alt="LA Galaxy 26/27" onerror="this.src='https://placehold.co/400x533/00245D/ffffff?text=LA+Galaxy+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵 LA Galaxy</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','LAFC')">
+          <img class="gallery-img" src="images/lafc-2627.jpg" alt="LAFC 26/27" onerror="this.src='https://placehold.co/400x533/1a1a1a/C39E6D?text=LAFC+26%2F27'"/>
+          <div class="gallery-label"><div class="team">⚫🟡 LAFC</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','Seattle Sounders')">
+          <img class="gallery-img" src="images/seattle-2627.jpg" alt="Seattle Sounders 26/27" onerror="this.src='https://placehold.co/400x533/5D9732/ffffff?text=Seattle+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🟢 Seattle Sounders</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','New York City FC')">
+          <img class="gallery-img" src="images/nycfc-2627.jpg" alt="NYCFC 26/27" onerror="this.src='https://placehold.co/400x533/6CACE4/1a1a1a?text=NYCFC+26%2F27'"/>
+          <div class="gallery-label"><div class="team">🔵 New York City FC</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 900 KSh</div></div>
         </div>
       </div>
-
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Portugal – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://placehold.co/400x533/8e0000/ffffff?text=🇵🇹+Portugal+2026" alt="Portugal World Cup 2026 Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇵🇹 Portugal</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="wc2026" onclick="orderJersey('Morocco – World Cup 2026 Home')">
-        <img class="gallery-img" src="https://placehold.co/400x533/c0392b/ffffff?text=🇲🇦+Morocco+2026" alt="Morocco World Cup 2026 Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇲🇦 Morocco</div>
-          <div class="kit-type">World Cup 2026 · Home</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <!-- CLUB JERSEYS -->
-      <div class="gallery-item" data-cat="club" onclick="orderJersey('Manchester City – Home 25/26')">
-        <img class="gallery-img" src="https://placehold.co/400x533/6ac3e7/1a1a1a?text=Man+City+25%2F26" alt="Man City Home Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🔵 Manchester City</div>
-          <div class="kit-type">Home 25/26</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="club" onclick="orderJersey('Arsenal – Home 25/26')">
-        <img class="gallery-img" src="https://placehold.co/400x533/c0392b/ffffff?text=Arsenal+25%2F26" alt="Arsenal Home Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🔴 Arsenal</div>
-          <div class="kit-type">Home 25/26</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="club" onclick="orderJersey('Real Madrid – Home 25/26')">
-        <img class="gallery-img" src="https://placehold.co/400x533/f5f5f5/1a1a1a?text=Real+Madrid+25%2F26" alt="Real Madrid Home Jersey"/>
-        <div class="gallery-label">
-          <div class="team">⚪ Real Madrid</div>
-          <div class="kit-type">Home 25/26</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="club" onclick="orderJersey('Barcelona – Home 25/26')">
-        <img class="gallery-img" src="https://placehold.co/400x533/a0073a/ffffff?text=Barcelona+25%2F26" alt="Barcelona Home Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🔴🔵 Barcelona</div>
-          <div class="kit-type">Home 25/26</div>
-          <div class="gallery-price">From 900 KSh</div>
-        </div>
-      </div>
-
-      <!-- RETRO -->
-      <div class="gallery-item" data-cat="retro" onclick="orderJersey('Brazil 1970 Retro Home – specify: Brazil 1970')">
-        <img class="gallery-img" src="https://placehold.co/400x533/f5c518/145a32?text=Brazil+Retro+1970" alt="Brazil 1970 Retro Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇧🇷 Brazil 1970</div>
-          <div class="kit-type">Retro · Classic</div>
-          <div class="gallery-price">1,300 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="retro" onclick="orderJersey('Argentina 1986 Retro Home – specify: Argentina 1986')">
-        <img class="gallery-img" src="https://placehold.co/400x533/4d9de0/ffffff?text=Argentina+Retro+1986" alt="Argentina 1986 Retro Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇦🇷 Argentina 1986</div>
-          <div class="kit-type">Retro · Maradona Era</div>
-          <div class="gallery-price">1,300 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="retro" onclick="orderJersey('France 1998 Retro Home – specify: France 1998')">
-        <img class="gallery-img" src="https://placehold.co/400x533/1a3a6e/ffffff?text=France+Retro+1998" alt="France 1998 World Cup Winner Retro Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🇫🇷 France 1998</div>
-          <div class="kit-type">Retro · World Cup Winners</div>
-          <div class="gallery-price">1,300 KSh</div>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-cat="retro" onclick="orderJersey('Man United 1999 Retro Home – specify: Man United 1999')">
-        <img class="gallery-img" src="https://placehold.co/400x533/c0392b/f5c518?text=Man+Utd+Retro+1999" alt="Man United 1999 Treble Retro Jersey"/>
-        <div class="gallery-label">
-          <div class="team">🔴 Man United 1999</div>
-          <div class="kit-type">Retro · Treble Season</div>
-          <div class="gallery-price">1,300 KSh</div>
-        </div>
-      </div>
-
     </div>
 
-    <p style="margin-top:1.25rem;font-size:.85rem;color:var(--text-muted);">
-      💬 Don't see your team? <a href="#contact" style="color:var(--green);font-weight:600;">Message us</a> — we stock 1,000+ teams. Stock moves fast!
+    <!-- ══ WORLD CUP 2026 PANEL ══ -->
+    <div id="panel-wc2026" style="display:none">
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Brazil')">
+          <img class="gallery-img" src="images/brazil-2026.jpg" alt="Brazil WC 2026" onerror="this.src='https://placehold.co/400x533/009C3B/ffffff?text=Brazil+2026'"/>
+          <div class="gallery-label"><div class="team">🇧🇷 Brazil</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Argentina')">
+          <img class="gallery-img" src="images/argentina-2026.jpg" alt="Argentina WC 2026" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+2026'"/>
+          <div class="gallery-label"><div class="team">🇦🇷 Argentina</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','England')">
+          <img class="gallery-img" src="images/england-2026.jpg" alt="England WC 2026" onerror="this.src='https://placehold.co/400x533/CF081F/ffffff?text=England+2026'"/>
+          <div class="gallery-label"><div class="team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','France')">
+          <img class="gallery-img" src="images/france-2026.jpg" alt="France WC 2026" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+2026'"/>
+          <div class="gallery-label"><div class="team">🇫🇷 France</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Spain')">
+          <img class="gallery-img" src="images/spain-2026.jpg" alt="Spain WC 2026" onerror="this.src='https://placehold.co/400x533/AA151B/ffffff?text=Spain+2026'"/>
+          <div class="gallery-label"><div class="team">🇪🇸 Spain</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Germany')">
+          <img class="gallery-img" src="images/germany-2026.jpg" alt="Germany WC 2026" onerror="this.src='https://placehold.co/400x533/1a1a1a/ffffff?text=Germany+2026'"/>
+          <div class="gallery-label"><div class="team">🇩🇪 Germany</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Portugal')">
+          <img class="gallery-img" src="images/portugal-2026.jpg" alt="Portugal WC 2026" onerror="this.src='https://placehold.co/400x533/006600/ffffff?text=Portugal+2026'"/>
+          <div class="gallery-label"><div class="team">🇵🇹 Portugal</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')">
+          <img class="gallery-img" src="images/morocco-2026.jpg" alt="Morocco WC 2026" onerror="this.src='https://placehold.co/400x533/C1272D/ffffff?text=Morocco+2026'"/>
+          <div class="gallery-label"><div class="team">🇲🇦 Morocco</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Nigeria')">
+          <img class="gallery-img" src="images/nigeria-2026.jpg" alt="Nigeria WC 2026" onerror="this.src='https://placehold.co/400x533/008751/ffffff?text=Nigeria+2026'"/>
+          <div class="gallery-label"><div class="team">🇳🇬 Nigeria</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Cameroon')">
+          <img class="gallery-img" src="images/cameroon-2026.jpg" alt="Cameroon WC 2026" onerror="this.src='https://placehold.co/400x533/007A5E/ffffff?text=Cameroon+2026'"/>
+          <div class="gallery-label"><div class="team">🇨🇲 Cameroon</div><div class="kit-type">World Cup 2026</div><div class="gallery-price">From 900 KSh</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RETRO PANEL ══ -->
+    <div id="panel-retro" style="display:none">
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="prefillOrder('retro','','Brazil 1970')">
+          <img class="gallery-img" src="images/brazil-retro-1970.jpg" alt="Brazil 1970" onerror="this.src='https://placehold.co/400x533/F4C430/009C3B?text=Brazil+1970'"/>
+          <div class="gallery-label"><div class="team">🇧🇷 Brazil 1970</div><div class="kit-type">Retro · Classic</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')">
+          <img class="gallery-img" src="images/argentina-retro-1986.jpg" alt="Argentina 1986" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/>
+          <div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">Retro · Maradona Era</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','France 1998')">
+          <img class="gallery-img" src="images/france-retro-1998.jpg" alt="France 1998" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+1998'"/>
+          <div class="gallery-label"><div class="team">🇫🇷 France 1998</div><div class="kit-type">Retro · World Cup Winners</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Manchester United 1999')">
+          <img class="gallery-img" src="images/man-united-retro-1999.jpg" alt="Man United 1999" onerror="this.src='https://placehold.co/400x533/DA291C/FFE500?text=Man+Utd+1999'"/>
+          <div class="gallery-label"><div class="team">🔴 Man United 1999</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','AC Milan 2003')">
+          <img class="gallery-img" src="images/ac-milan-retro-2003.jpg" alt="AC Milan 2003" onerror="this.src='https://placehold.co/400x533/FB090B/1a1a1a?text=AC+Milan+2003'"/>
+          <div class="gallery-label"><div class="team">🔴⚫ AC Milan 2003</div><div class="kit-type">Retro · UCL Winners</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Barcelona 2009')">
+          <img class="gallery-img" src="images/barcelona-retro-2009.jpg" alt="Barcelona 2009" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+2009'"/>
+          <div class="gallery-label"><div class="team">🔴🔵 Barcelona 2009</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);">
+      💬 Don't see your team? <a href="#contact" style="color:var(--green);font-weight:600;">Message us</a> — we stock 1,000+ teams. Stock moves fast! ⚡
     </p>
   </div>
 </section>
@@ -1005,17 +1094,60 @@
     }
   }
 
-  /* ── GALLERY FILTER ── */
-  function filterGallery(cat, btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  /* ── GALLERY: MAIN TAB SWITCH ── */
+  function switchMainTab(panel, btn) {
+    // deactivate all main tabs
+    btn.closest('.gallery-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+    // hide all panels
+    ['panel-season2627','panel-wc2026','panel-retro'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
     });
+    document.getElementById('panel-' + panel).style.display = '';
   }
 
-  /* ── GALLERY → PRE-FILL FORM ── */
-  function orderJersey(details) {
+  /* ── GALLERY: LEAGUE SUB-TAB ── */
+  function switchLeague(league, btn) {
+    btn.closest('.league-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.league-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('league-' + league).style.display = '';
+  }
+
+  /* ── GALLERY → PRE-FILL ORDER FORM ── */
+  function prefillOrder(cat, league, team) {
+    // Set category
+    const catSel = document.getElementById('f-category');
+    catSel.value = cat;
+    onCategoryChange();
+
+    if (cat === 'club' && league) {
+      setTimeout(() => {
+        document.getElementById('f-league').value = league;
+        onLeagueChange();
+        setTimeout(() => {
+          const clubSel = document.getElementById('f-club');
+          if (clubSel) clubSel.value = team;
+        }, 50);
+      }, 50);
+    } else if (cat === 'wc2026') {
+      setTimeout(() => {
+        const countrySel = document.getElementById('f-country');
+        // find matching option
+        Array.from(countrySel.options).forEach(o => {
+          if (o.text.includes(team)) countrySel.value = o.value;
+        });
+      }, 50);
+    } else if (cat === 'retro') {
+      const parts = team.split(' ');
+      const year  = parts[parts.length - 1];
+      const tname = parts.slice(0, -1).join(' ');
+      setTimeout(() => {
+        document.getElementById('f-retro-team').value = tname;
+        document.getElementById('f-retro-year').value = year;
+      }, 50);
+    }
+
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   }
 
