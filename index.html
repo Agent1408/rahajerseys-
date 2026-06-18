@@ -1194,10 +1194,1281 @@
     }
 
     const e = {
-      ball:  '\u26BD', person:'\uD83D\uDC64', phone:'\uD83D\uDCF1',
-      shirt: '\uD83D\uDC55', ruler:'\uD83D\uDCCF', num:'\uD83D\uDD22',
-      art:   '\uD83C\uDFA8', note: '\uD83D\uDCDD', pray:'\uD83D\uDE4F',
-      globe: '\uD83C\uDF0D', gem:  '\uD83D\uDCAB', pencil:'\u270F\uFE0F'
+      ball:   '⚽',
+      person: '👤',
+      phone:  '📱',
+      shirt:  '👕',
+      ruler:  '📏',
+      num:    '🔢',
+      art:    '🎨',
+      note:   '📝',
+      pray:   '🙏',
+      globe:  '🌍',
+      gem:    '💎',
+      pencil: '✏️'
+    };
+
+    const fullPhone = dialRaw + ' ' + phoneNum;
+
+    let jerseyDesc = '';
+    if (cat === 'club') {
+      const league = val('f-league');
+      const club = league === 'other-club'
+        ? document.getElementById('f-club-other').value.trim()
+        : val('f-club');
+      const leagueNames = {epl:'Premier League',laliga:'La Liga',bundesliga:'Bundesliga',seriea:'Serie A',ligue1:'Ligue 1',mls:'MLS',ucl:'Champions League','other-club':'Other League'};
+      jerseyDesc = (leagueNames[league]||league) + ' - ' + club + ' (26/27 Pre-order)';
+    } else if (cat === 'wc2026') {
+      const rawCountry = val('f-country') === 'other-country'
+        ? document.getElementById('f-country-other').value.trim()
+        : val('f-country');
+      jerseyDesc = 'World Cup 2026 - ' + cleanText(rawCountry);
+    } else if (cat === 'retro') {
+      jerseyDesc = 'Retro - ' + document.getElementById('f-retro-team').value.trim() + ' ' + document.getElementById('f-retro-year').value.trim();
+    } else if (cat === 'limited') {
+      jerseyDesc = 'Limited Edition - ' + document.getElementById('f-limited').value.trim();
+    }
+
+    const kit     = val('f-kit');
+    const version = val('f-version');
+    const size    = val('f-size');
+    const pieces  = val('f-pieces');
+    const print   = val('f-print');
+    const pName   = document.getElementById('f-print-name').value.trim();
+    const pNum    = document.getElementById('f-print-number').value.trim();
+    const notes   = document.getElementById('f-notes').value.trim();
+
+    let msg = e.ball + ' *NEW ORDER - RAHA JERSEYS*\n\n';
+    msg += e.person  + ' Name: '    + name        + '\n';
+    msg += e.phone   + ' Contact: ' + fullPhone   + '\n';
+    msg += e.globe   + ' Jersey: '  + jerseyDesc  + '\n';
+    if (kit)     msg += e.shirt  + ' Kit: '     + kit     + '\n';
+    if (version) msg += e.gem    + ' Version: ' + version + '\n';
+    if (size)    msg += e.ruler  + ' Size: '    + size    + '\n';
+    if (pieces)  msg += e.num    + ' Pieces: '  + pieces  + '\n';
+    if (print === 'yes') {
+      msg += e.art + ' Printing: YES (+KSh 300)\n';
+      if (pName) msg += '   ' + e.pencil + ' Name: '   + pName + '\n';
+      if (pNum)  msg += '   ' + e.num    + ' Number: ' + pNum  + '\n';
+    } else {
+      msg += e.art + ' Printing: No\n';
+    }
+    if (notes) msg += '\n' + e.note + ' Notes: ' + notes + '\n';
+    msg += '\nPlease confirm my order. Asante! ' + e.pray;
+
+    window.open('https://wa.me/254710611244?text=' + encodeURIComponent(msg), '_blank');
+  }
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raha Jerseys ⚽ | Premium Football Kits Kenya</title>
+  <meta name="description" content="Top-tier football jerseys at pocket-friendly prices. Club, Retro, World Cup 2026 & Limited Edition kits. Fast delivery across Kenya. Order on WhatsApp!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #1a7a3c;
+      --green-dark: #0f5228;
+      --green-light: #d4edda;
+      --pitch: #0d5c2e;
+      --accent: #f5c518;
+      --white: #ffffff;
+      --off-white: #f8f9f6;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #dde5d8;
+      --radius: 12px;
+      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--pitch);
+      padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--accent); letter-spacing: 2px; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent) !important; color: var(--text) !important; padding: .4rem 1rem; border-radius: 6px; font-weight: 700 !important; }
+    .nav-cta:hover { background: #e0b400 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--pitch);
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3C/g%3E%3C/svg%3E");
+      color: var(--white); padding: 5rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before { content:'⚽'; position:absolute; font-size:18rem; opacity:.04; top:-3rem; right:-3rem; line-height:1; pointer-events:none; }
+    .hero-badge { display:inline-block; background:rgba(245,197,24,.15); border:1px solid rgba(245,197,24,.4); color:var(--accent); font-size:.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:.35rem 1rem; border-radius:50px; margin-bottom:1.25rem; }
+    .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3.5rem,10vw,7rem); letter-spacing:4px; line-height:.95; margin-bottom:1rem; }
+    .hero h1 span { color:var(--accent); }
+    .hero p { font-size:1.05rem; color:rgba(255,255,255,.75); max-width:480px; margin:0 auto 2rem; }
+    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .btn-primary { background:var(--accent); color:var(--text); padding:.85rem 2rem; border-radius:8px; font-weight:700; font-size:1rem; text-decoration:none; transition:transform .15s,background .15s; display:inline-flex; align-items:center; gap:.5rem; }
+    .btn-primary:hover { background:#e0b400; transform:translateY(-1px); }
+    .btn-secondary { border:1.5px solid rgba(255,255,255,.35); color:white; padding:.85rem 2rem; border-radius:8px; font-weight:600; font-size:1rem; text-decoration:none; transition:border-color .15s,background .15s; }
+    .btn-secondary:hover { border-color:white; background:rgba(255,255,255,.08); }
+    .hero-stats { display:flex; justify-content:center; gap:2.5rem; margin-top:3rem; flex-wrap:wrap; }
+    .hero-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--accent); letter-spacing:2px; line-height:1; }
+    .hero-stat .lbl { font-size:.75rem; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:1px; }
+
+    /* ── SHARED ── */
+    section { padding:4rem 1.5rem; }
+    .container { max-width:1040px; margin:0 auto; }
+    .section-label { font-size:.72rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--green); margin-bottom:.5rem; }
+    .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,5vw,3rem); letter-spacing:2px; line-height:1; margin-bottom:.75rem; }
+    .section-sub { color:var(--text-muted); font-size:.95rem; max-width:520px; margin-bottom:2.5rem; }
+
+    /* ── PRICING ── */
+    #pricing { background:var(--white); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; }
+    .price-card { border:1.5px solid var(--border); border-radius:var(--radius); padding:1.5rem; background:var(--off-white); position:relative; transition:border-color .2s,transform .2s; }
+    .price-card:hover { border-color:var(--green); transform:translateY(-3px); }
+    .price-card.featured { border-color:var(--accent); background:var(--white); box-shadow:var(--shadow); }
+    .featured-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--accent); color:var(--text); font-size:.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 12px; border-radius:50px; white-space:nowrap; }
+    .price-card .jersey-type { font-weight:700; font-size:1rem; margin-bottom:.25rem; }
+    .price-card .jersey-desc { font-size:.8rem; color:var(--text-muted); margin-bottom:1rem; min-height:2.4rem; }
+    .price-card .price { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--green-dark); letter-spacing:1px; line-height:1; }
+    .price-card .price span { font-family:'Inter',sans-serif; font-size:.85rem; font-weight:500; color:var(--text-muted); }
+    .print-note { margin-top:1.5rem; background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.875rem; color:var(--green-dark); }
+    .print-note strong { font-weight:700; }
+
+    /* ── CATEGORIES ── */
+    #jerseys { background:var(--off-white); }
+    .cats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .cat-card { border-radius:var(--radius); padding:1.75rem 1.5rem; color:white; text-decoration:none; display:flex; flex-direction:column; gap:.5rem; position:relative; overflow:hidden; transition:transform .2s; min-height:160px; }
+    .cat-card:hover { transform:translateY(-3px); }
+    .cat-card::after { content:attr(data-emoji); position:absolute; right:1rem; bottom:.5rem; font-size:3.5rem; opacity:.25; }
+    .cat-card.club    { background:linear-gradient(135deg,#1a5276,#2980b9); }
+    .cat-card.world   { background:linear-gradient(135deg,#145a32,#27ae60); }
+    .cat-card.retro   { background:linear-gradient(135deg,#6e2f0a,#c0392b); }
+    .cat-card.limited { background:linear-gradient(135deg,#4a235a,#8e44ad); }
+    .cat-label { font-size:.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
+    .cat-name { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; line-height:1; }
+    .cat-desc { font-size:.8rem; opacity:.8; margin-top:.25rem; }
+    .coming-soon-tag { display:inline-block; background:rgba(255,255,255,.2); font-size:.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-top:auto; width:fit-content; }
+    .preorder-banner { background:linear-gradient(90deg,var(--pitch),var(--green)); color:white; border-radius:var(--radius); padding:.75rem 1.25rem; font-size:.875rem; margin-bottom:1rem; }
+    .league-tabs { margin-top:.5rem; overflow-x:auto; flex-wrap:nowrap !important; padding-bottom:.25rem; }
+    .league-tabs::-webkit-scrollbar { height:3px; }
+    .league-tabs::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+    /* ── GALLERY ── */
+    #gallery { background:var(--white); }
+    .gallery-tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+    .tab-btn { background:transparent; border:1.5px solid var(--border); border-radius:50px; padding:.4rem 1.1rem; font-size:.82rem; font-weight:600; cursor:pointer; color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .2s; }
+    .tab-btn.active, .tab-btn:hover { background:var(--pitch); border-color:var(--pitch); color:white; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; }
+    .gallery-item { border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--off-white); cursor:pointer; transition:transform .2s,box-shadow .2s; }
+    .gallery-item:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.12); }
+    .gallery-img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; }
+    .gallery-label { padding:.6rem .75rem; }
+    .gallery-label .team { font-weight:700; font-size:.85rem; }
+    .gallery-label .kit-type { font-size:.75rem; color:var(--text-muted); }
+    .gallery-label .gallery-price { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; color:var(--green-dark); letter-spacing:1px; margin-top:.2rem; }
+    .gallery-item[data-cat="wc2026"] { display:block; }
+    .gallery-item[data-cat="club"]   { display:none; }
+    .gallery-item[data-cat="retro"]  { display:none; }
+
+    /* ── SIZE GUIDE ── */
+    #size-guide { background:var(--off-white); }
+    .size-table-wrap { overflow-x:auto; border-radius:var(--radius); border:1px solid var(--border); background:var(--white); }
+    table.sizes { width:100%; border-collapse:collapse; font-size:.875rem; }
+    table.sizes th { background:var(--pitch); color:white; padding:.75rem 1rem; text-align:left; font-weight:600; letter-spacing:.5px; }
+    table.sizes td { padding:.65rem 1rem; border-bottom:1px solid var(--border); }
+    table.sizes tr:last-child td { border-bottom:none; }
+    table.sizes tr:nth-child(even) td { background:#f5f8f4; }
+    table.sizes td:first-child { font-weight:700; color:var(--green-dark); }
+    .size-note { margin-top:1rem; background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.85rem; color:var(--green-dark); }
+    .size-tips { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1.5rem; }
+    .size-tip { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; }
+    .size-tip h4 { font-size:.9rem; font-weight:700; margin-bottom:.4rem; }
+    .size-tip p { font-size:.82rem; color:var(--text-muted); }
+
+    /* ── REVIEWS ── */
+    #reviews { background:var(--pitch); color:white; }
+    #reviews .section-label { color:var(--accent); }
+    #reviews .section-title { color:white; }
+    #reviews .section-sub { color:rgba(255,255,255,.65); }
+    .reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    .review-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:1.5rem; }
+    .review-stars { color:var(--accent); font-size:1rem; margin-bottom:.75rem; letter-spacing:2px; }
+    .review-text { font-size:.9rem; color:rgba(255,255,255,.85); line-height:1.65; margin-bottom:1rem; font-style:italic; }
+    .review-author { display:flex; align-items:center; gap:.75rem; }
+    .review-avatar { width:38px; height:38px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; color:white; flex-shrink:0; }
+    .review-name { font-weight:700; font-size:.88rem; }
+    .review-kit { font-size:.75rem; color:rgba(255,255,255,.5); }
+    .reviews-summary { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+    .big-rating { font-family:'Bebas Neue',sans-serif; font-size:4rem; color:var(--accent); letter-spacing:2px; line-height:1; }
+    .rating-detail { font-size:.82rem; color:rgba(255,255,255,.55); }
+    .rating-stars-big { color:var(--accent); font-size:1.4rem; letter-spacing:3px; display:block; margin-bottom:.3rem; }
+
+    /* ── HOW TO ORDER ── */
+    #order { background:var(--white); }
+    .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; }
+    .step { display:flex; flex-direction:column; gap:.6rem; }
+    .step-num { width:40px; height:40px; border-radius:50%; background:var(--green); color:white; font-family:'Bebas Neue',sans-serif; font-size:1.3rem; display:flex; align-items:center; justify-content:center; letter-spacing:1px; }
+    .step h3 { font-size:1rem; font-weight:700; }
+    .step p { font-size:.875rem; color:var(--text-muted); }
+
+    /* ── CONTACT/ORDER FORM ── */
+    #contact { background:var(--off-white); }
+    .order-form { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; max-width:680px; box-shadow:var(--shadow); }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group.full { grid-column:1/-1; }
+    label { font-size:.8rem; font-weight:600; color:var(--text-muted); letter-spacing:.5px; }
+    select, input[type="text"], input[type="tel"], textarea { background:var(--off-white); border:1.5px solid var(--border); border-radius:8px; color:var(--text); padding:.65rem .9rem; font-size:.9rem; font-family:'Inter',sans-serif; width:100%; outline:none; transition:border-color .2s; }
+    select:focus, input:focus, textarea:focus { border-color:var(--green); }
+    textarea { resize:vertical; min-height:90px; }
+    .form-submit { margin-top:1.25rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+    .btn-whatsapp { background:#25d366; color:white; padding:.85rem 1.75rem; border-radius:8px; font-weight:700; font-size:.95rem; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem; transition:background .2s,transform .15s; cursor:pointer; border:none; font-family:'Inter',sans-serif; }
+    .btn-whatsapp:hover { background:#1ebe5c; transform:translateY(-1px); }
+    .form-note { font-size:.78rem; color:var(--text-muted); }
+    .form-step { animation: fadeSlide .25s ease; }
+    @keyframes fadeSlide { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── WHY US ── */
+    #why { background:var(--white); }
+    .perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .perk { background:var(--off-white); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
+    .perk-icon { font-size:2rem; margin-bottom:.75rem; display:block; }
+    .perk h3 { font-size:.95rem; font-weight:700; margin-bottom:.3rem; }
+    .perk p { font-size:.82rem; color:var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer { background:#0a3d20; color:rgba(255,255,255,.65); text-align:center; padding:2rem 1.5rem; font-size:.82rem; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:var(--accent); letter-spacing:3px; display:block; margin-bottom:.5rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+    .footer-contacts { display:flex; justify-content:center; gap:1.5rem; margin:.75rem 0; flex-wrap:wrap; }
+
+    /* ── FLOATING WA ── */
+    .wa-float { position:fixed; bottom:1.5rem; right:1.5rem; background:#25d366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 4px 20px rgba(37,211,102,.45); text-decoration:none; z-index:200; transition:transform .2s; }
+    .wa-float:hover { transform:scale(1.1); }
+
+    /* ── MOBILE ── */
+    @media (max-width:640px) {
+      .nav-links { display:none; }
+      .form-grid { grid-template-columns:1fr; }
+      .hero { padding:3.5rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RAHA ⚽</a>
+  <ul class="nav-links">
+    <li><a href="#pricing">Prices</a></li>
+    <li><a href="#jerseys">Jerseys</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#size-guide">Size Guide</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">⚡ World Cup 2026 Kits Now In Stock</div>
+  <h1>RAHA<br /><span>JERSEYS</span></h1>
+  <p>Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">📲 Order Now</a>
+    <a href="#gallery" class="btn-secondary">View Gallery</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">4</div><div class="lbl">Kit Types</div></div>
+    <div class="hero-stat"><div class="num">1K+</div><div class="lbl">Teams Available</div></div>
+    <div class="hero-stat"><div class="num">1,000</div><div class="lbl">From KSh</div></div>
+    <div class="hero-stat"><div class="num">🚚</div><div class="lbl">Fast Delivery</div></div>
+  </div>
+</header>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <p class="section-label">Pocket-Friendly</p>
+    <h2 class="section-title">PRICES &amp; VERSIONS</h2>
+    <p class="section-sub">All jerseys are premium quality. Choose from Pro, Retro, or Limited Edition.</p>
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <div class="featured-badge">⭐ Best Seller</div>
+        <div class="jersey-type">Pro Version</div>
+        <div class="jersey-desc">Match-grade premium quality</div>
+        <div class="price">1,000 <span>KSh</span></div>
+      </div>
+      <div class="price-card">
+        <div class="jersey-type">Retro Version</div>
+        <div class="jersey-desc">Classic &amp; old season drops</div>
+        <div class="price">1,300 <span>KSh</span></div>
+      </div>
+      <div class="price-card">
+        <div class="jersey-type">Limited Edition</div>
+        <div class="jersey-desc">Special &amp; rare releases</div>
+        <div class="price">2,000 <span>KSh</span></div>
+      </div>
+    </div>
+    <div class="print-note"><strong>Want your name &amp; number printed?</strong> Add KSh 300 for printing. Bulk orders of 4+ pieces get a discount! 🎉</div>
+  </div>
+</section>
+
+<!-- JERSEY CATEGORIES -->
+<section id="jerseys">
+  <div class="container">
+    <p class="section-label">What We Stock</p>
+    <h2 class="section-title">CHOOSE YOUR KIT</h2>
+    <p class="section-sub">From the latest club kits to classic retros — we've got your team covered.</p>
+    <div class="cats-grid">
+      <a href="#contact" class="cat-card club" data-emoji="🏆">
+        <span class="cat-label">All Leagues</span>
+        <span class="cat-name">CLUB JERSEYS</span>
+        <span class="cat-desc">Home · Away</span>
+        <span class="coming-soon-tag">26/27 Pre-order Open</span>
+      </a>
+      <a href="#contact" class="cat-card world" data-emoji="🌍">
+        <span class="cat-label">International</span>
+        <span class="cat-name">WORLD CUP 2026</span>
+        <span class="cat-desc">Rep your nation on the biggest stage</span>
+      </a>
+      <a href="#contact" class="cat-card retro" data-emoji="📻">
+        <span class="cat-label">Classics</span>
+        <span class="cat-name">RETRO JERSEYS</span>
+        <span class="cat-desc">Old season &amp; iconic kits — specify the year!</span>
+      </a>
+      <a href="#contact" class="cat-card limited" data-emoji="💎">
+        <span class="cat-label">Rare Drops</span>
+        <span class="cat-name">LIMITED EDITION</span>
+        <span class="cat-desc">Special collabs &amp; exclusive releases</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">Fresh Stock</p>
+    <h2 class="section-title">JERSEY GALLERY</h2>
+    <p class="section-sub">Browse our kits. Tap any jersey to jump straight to the order form.</p>
+
+    <!-- MAIN TABS -->
+    <div class="gallery-tabs" id="main-tabs">
+      <button class="tab-btn active" onclick="switchMainTab('season2627',this)">⚡ 26/27 Pre-Order</button>
+      <button class="tab-btn" onclick="switchMainTab('wc2026',this)">🌍 World Cup 2026</button>
+      <button class="tab-btn" onclick="switchMainTab('other-countries',this)">🌐 Other Countries</button>
+      <button class="tab-btn" onclick="switchMainTab('retro',this)">📻 Retro</button>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         26/27 SEASON PANEL
+    ═══════════════════════════════════ -->
+    <div id="panel-season2627">
+      <div class="preorder-banner">⚡ <strong>26/27 Pre-Order is OPEN</strong> — secure your kit before stock runs out!</div>
+      <div class="gallery-tabs league-tabs">
+        <button class="tab-btn active" onclick="switchLeague('epl',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+        <button class="tab-btn" onclick="switchLeague('laliga',this)">🇪🇸 La Liga</button>
+        <button class="tab-btn" onclick="switchLeague('bundesliga',this)">🇩🇪 Bundesliga</button>
+        <button class="tab-btn" onclick="switchLeague('seriea',this)">🇮🇹 Serie A</button>
+        <button class="tab-btn" onclick="switchLeague('ligue1',this)">🇫🇷 Ligue 1</button>
+        <button class="tab-btn" onclick="switchLeague('mls',this)">🇺🇸 MLS</button>
+      </div>
+
+      <!-- EPL -->
+      <div class="gallery-grid league-panel" id="league-epl">
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Manchester City')"><img class="gallery-img" src="images/man-city-2627.jpg" alt="Man City 26/27" onerror="this.src='https://placehold.co/400x533/6ac3e7/1a1a1a?text=Man+City+26%2F27'"/><div class="gallery-label"><div class="team">🔵 Manchester City</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Arsenal')"><img class="gallery-img" src="images/arsenal-2627.jpg" alt="Arsenal 26/27" onerror="this.src='https://placehold.co/400x533/EF0107/ffffff?text=Arsenal+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Arsenal</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Liverpool')"><img class="gallery-img" src="images/liverpool-2627.jpg" alt="Liverpool 26/27" onerror="this.src='https://placehold.co/400x533/C8102E/ffffff?text=Liverpool+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Liverpool</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Chelsea')"><img class="gallery-img" src="images/chelsea-2627.jpg" alt="Chelsea 26/27" onerror="this.src='https://placehold.co/400x533/034694/ffffff?text=Chelsea+26%2F27'"/><div class="gallery-label"><div class="team">🔵 Chelsea</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','epl','Manchester United')"><img class="gallery-img" src="images/man-united-2627.jpg" alt="Man Utd 26/27" onerror="this.src='https://placehold.co/400x533/DA291C/ffffff?text=Man+Utd+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Manchester United</div><div class="kit-type">Premier League · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- LA LIGA -->
+      <div class="gallery-grid league-panel" id="league-laliga" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Real Madrid')"><img class="gallery-img" src="images/real-madrid-2627.jpg" alt="Real Madrid 26/27" onerror="this.src='https://placehold.co/400x533/FEBE10/1a1a1a?text=Real+Madrid+26%2F27'"/><div class="gallery-label"><div class="team">⚪ Real Madrid</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Barcelona')"><img class="gallery-img" src="images/barcelona-2627.jpg" alt="Barcelona 26/27" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+26%2F27'"/><div class="gallery-label"><div class="team">🔴🔵 Barcelona</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Atletico Madrid')"><img class="gallery-img" src="images/atletico-2627.jpg" alt="Atletico 26/27" onerror="this.src='https://placehold.co/400x533/CB3524/ffffff?text=Atletico+26%2F27'"/><div class="gallery-label"><div class="team">🔴⚪ Atletico Madrid</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Villarreal')"><img class="gallery-img" src="images/villarreal-2627.jpg" alt="Villarreal 26/27" onerror="this.src='https://placehold.co/400x533/FFD700/1a1a1a?text=Villarreal+26%2F27'"/><div class="gallery-label"><div class="team">🟡 Villarreal</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','laliga','Athletic Bilbao')"><img class="gallery-img" src="images/athletic-bilbao-2627.jpg" alt="Athletic Bilbao 26/27" onerror="this.src='https://placehold.co/400x533/EE2523/ffffff?text=Bilbao+26%2F27'"/><div class="gallery-label"><div class="team">🔴⚪ Athletic Bilbao</div><div class="kit-type">La Liga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- BUNDESLIGA -->
+      <div class="gallery-grid league-panel" id="league-bundesliga" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Bayern Munich')"><img class="gallery-img" src="images/bayern-2627.jpg" alt="Bayern 26/27" onerror="this.src='https://placehold.co/400x533/DC052D/ffffff?text=Bayern+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Bayern Munich</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Bayer Leverkusen')"><img class="gallery-img" src="images/leverkusen-2627.jpg" alt="Leverkusen 26/27" onerror="this.src='https://placehold.co/400x533/E32219/ffffff?text=Leverkusen+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Bayer Leverkusen</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Borussia Dortmund')"><img class="gallery-img" src="images/dortmund-2627.jpg" alt="Dortmund 26/27" onerror="this.src='https://placehold.co/400x533/FDE100/1a1a1a?text=Dortmund+26%2F27'"/><div class="gallery-label"><div class="team">🟡 Borussia Dortmund</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','RB Leipzig')"><img class="gallery-img" src="images/rb-leipzig-2627.jpg" alt="Leipzig 26/27" onerror="this.src='https://placehold.co/400x533/DD0741/ffffff?text=Leipzig+26%2F27'"/><div class="gallery-label"><div class="team">🔴⚪ RB Leipzig</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','bundesliga','Stuttgart')"><img class="gallery-img" src="images/stuttgart-2627.jpg" alt="Stuttgart 26/27" onerror="this.src='https://placehold.co/400x533/E32219/ffffff?text=Stuttgart+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Stuttgart</div><div class="kit-type">Bundesliga · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- SERIE A -->
+      <div class="gallery-grid league-panel" id="league-seriea" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Inter Milan')"><img class="gallery-img" src="images/inter-milan-2627.jpg" alt="Inter 26/27" onerror="this.src='https://placehold.co/400x533/010E80/ffffff?text=Inter+26%2F27'"/><div class="gallery-label"><div class="team">🔵⚫ Inter Milan</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','AC Milan')"><img class="gallery-img" src="images/ac-milan-2627.jpg" alt="AC Milan 26/27" onerror="this.src='https://placehold.co/400x533/FB090B/1a1a1a?text=AC+Milan+26%2F27'"/><div class="gallery-label"><div class="team">🔴⚫ AC Milan</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Juventus')"><img class="gallery-img" src="images/juventus-2627.jpg" alt="Juventus 26/27" onerror="this.src='https://placehold.co/400x533/1a1a1a/ffffff?text=Juventus+26%2F27'"/><div class="gallery-label"><div class="team">⚫⚪ Juventus</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Napoli')"><img class="gallery-img" src="images/napoli-2627.jpg" alt="Napoli 26/27" onerror="this.src='https://placehold.co/400x533/12A0D7/ffffff?text=Napoli+26%2F27'"/><div class="gallery-label"><div class="team">🔵 Napoli</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','seriea','Atalanta')"><img class="gallery-img" src="images/atalanta-2627.jpg" alt="Atalanta 26/27" onerror="this.src='https://placehold.co/400x533/1C4698/ffffff?text=Atalanta+26%2F27'"/><div class="gallery-label"><div class="team">🔵⚫ Atalanta</div><div class="kit-type">Serie A · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- LIGUE 1 -->
+      <div class="gallery-grid league-panel" id="league-ligue1" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Paris Saint-Germain')"><img class="gallery-img" src="images/psg-2627.jpg" alt="PSG 26/27" onerror="this.src='https://placehold.co/400x533/004170/ffffff?text=PSG+26%2F27'"/><div class="gallery-label"><div class="team">🔵🔴 PSG</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Monaco')"><img class="gallery-img" src="images/monaco-2627.jpg" alt="Monaco 26/27" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Monaco+26%2F27'"/><div class="gallery-label"><div class="team">🔴⚪ Monaco</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Marseille')"><img class="gallery-img" src="images/marseille-2627.jpg" alt="Marseille 26/27" onerror="this.src='https://placehold.co/400x533/009CDE/ffffff?text=Marseille+26%2F27'"/><div class="gallery-label"><div class="team">🔵⚪ Marseille</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Lyon')"><img class="gallery-img" src="images/lyon-2627.jpg" alt="Lyon 26/27" onerror="this.src='https://placehold.co/400x533/CC0000/ffffff?text=Lyon+26%2F27'"/><div class="gallery-label"><div class="team">🔴🔵 Lyon</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','ligue1','Lille')"><img class="gallery-img" src="images/lille-2627.jpg" alt="Lille 26/27" onerror="this.src='https://placehold.co/400x533/D00027/ffffff?text=Lille+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Lille</div><div class="kit-type">Ligue 1 · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- MLS -->
+      <div class="gallery-grid league-panel" id="league-mls" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('club','mls','Inter Miami')"><img class="gallery-img" src="images/inter-miami-2627.jpg" alt="Inter Miami 26/27" onerror="this.src='https://placehold.co/400x533/F7B5CD/1a1a1a?text=Inter+Miami+26%2F27'"/><div class="gallery-label"><div class="team">🩷 Inter Miami</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','LA Galaxy')"><img class="gallery-img" src="images/la-galaxy-2627.jpg" alt="LA Galaxy 26/27" onerror="this.src='https://placehold.co/400x533/00245D/ffffff?text=LA+Galaxy+26%2F27'"/><div class="gallery-label"><div class="team">🔵 LA Galaxy</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','LAFC')"><img class="gallery-img" src="images/lafc-2627.jpg" alt="LAFC 26/27" onerror="this.src='https://placehold.co/400x533/1a1a1a/C39E6D?text=LAFC+26%2F27'"/><div class="gallery-label"><div class="team">⚫🟡 LAFC</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','Seattle Sounders')"><img class="gallery-img" src="images/seattle-2627.jpg" alt="Seattle 26/27" onerror="this.src='https://placehold.co/400x533/5D9732/ffffff?text=Seattle+26%2F27'"/><div class="gallery-label"><div class="team">🟢 Seattle Sounders</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('club','mls','New York City FC')"><img class="gallery-img" src="images/nycfc-2627.jpg" alt="NYCFC 26/27" onerror="this.src='https://placehold.co/400x533/6CACE4/1a1a1a?text=NYCFC+26%2F27'"/><div class="gallery-label"><div class="team">🔵 New York City FC</div><div class="kit-type">MLS · 26/27</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         WORLD CUP 2026 PANEL
+    ═══════════════════════════════════ -->
+    <div id="panel-wc2026" style="display:none">
+      <!-- Home / Away toggle -->
+      <div class="kit-toggle">
+        <button class="kit-toggle-btn active" onclick="switchKit('wc2026','home',this)">👕 Home</button>
+        <button class="kit-toggle-btn" onclick="switchKit('wc2026','away',this)">👕 Away</button>
+      </div>
+
+      <!-- HOME kits -->
+      <div class="gallery-grid" id="wc2026-home">
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Algeria')"><img class="gallery-img" src="images/algeria-home-2026.jpg" alt="Algeria Home" onerror="this.src='https://placehold.co/400x533/006233/ffffff?text=Algeria+Home'"/><div class="gallery-label"><div class="team">🇩🇿 Algeria</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Argentina')"><img class="gallery-img" src="images/argentina-home-2026.jpg" alt="Argentina Home" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+Home'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Belgium')"><img class="gallery-img" src="images/belgium-home-2026.jpg" alt="Belgium Home" onerror="this.src='https://placehold.co/400x533/EF0107/1a1a1a?text=Belgium+Home'"/><div class="gallery-label"><div class="team">🇧🇪 Belgium</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Brazil')"><img class="gallery-img" src="images/brazil-home-2026.jpg" alt="Brazil Home" onerror="this.src='https://placehold.co/400x533/009C3B/ffffff?text=Brazil+Home'"/><div class="gallery-label"><div class="team">🇧🇷 Brazil</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Canada')"><img class="gallery-img" src="images/canada-home-2026.jpg" alt="Canada Home" onerror="this.src='https://placehold.co/400x533/FF0000/ffffff?text=Canada+Home'"/><div class="gallery-label"><div class="team">🇨🇦 Canada</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Cape Verde')"><img class="gallery-img" src="images/cape-verde-home-2026.jpg" alt="Cape Verde Home" onerror="this.src='https://placehold.co/400x533/003893/ffffff?text=Cape+Verde+Home'"/><div class="gallery-label"><div class="team">🇨🇻 Cape Verde</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Colombia')"><img class="gallery-img" src="images/colombia-home-2026.jpg" alt="Colombia Home" onerror="this.src='https://placehold.co/400x533/FCD116/1a1a1a?text=Colombia+Home'"/><div class="gallery-label"><div class="team">🇨🇴 Colombia</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','DR Congo')"><img class="gallery-img" src="images/dr-congo-home-2026.jpg" alt="DR Congo Home" onerror="this.src='https://placehold.co/400x533/007FFF/ffffff?text=DR+Congo+Home'"/><div class="gallery-label"><div class="team">🇨🇩 DR Congo</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','England')"><img class="gallery-img" src="images/england-home-2026.jpg" alt="England Home" onerror="this.src='https://placehold.co/400x533/CF081F/ffffff?text=England+Home'"/><div class="gallery-label"><div class="team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','France')"><img class="gallery-img" src="images/france-home-2026.jpg" alt="France Home" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+Home'"/><div class="gallery-label"><div class="team">🇫🇷 France</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Germany')"><img class="gallery-img" src="images/germany-home-2026.jpg" alt="Germany Home" onerror="this.src='https://placehold.co/400x533/1a1a1a/ffffff?text=Germany+Home'"/><div class="gallery-label"><div class="team">🇩🇪 Germany</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Ghana')"><img class="gallery-img" src="images/ghana-home-2026.jpg" alt="Ghana Home" onerror="this.src='https://placehold.co/400x533/f5f5f5/1a1a1a?text=Ghana+Home'"/><div class="gallery-label"><div class="team">🇬🇭 Ghana</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Ivory Coast')"><img class="gallery-img" src="images/ivory-coast-home-2026.jpg" alt="Ivory Coast Home" onerror="this.src='https://placehold.co/400x533/F77F00/ffffff?text=Ivory+Coast+Home'"/><div class="gallery-label"><div class="team">🇨🇮 Ivory Coast</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Japan')"><img class="gallery-img" src="images/japan-home-2026.jpg" alt="Japan Home" onerror="this.src='https://placehold.co/400x533/000080/ffffff?text=Japan+Home'"/><div class="gallery-label"><div class="team">🇯🇵 Japan</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Mexico')"><img class="gallery-img" src="images/mexico-home-2026.jpg" alt="Mexico Home" onerror="this.src='https://placehold.co/400x533/006847/ffffff?text=Mexico+Home'"/><div class="gallery-label"><div class="team">🇲🇽 Mexico</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')"><img class="gallery-img" src="images/morocco-home-2026.jpg" alt="Morocco Home" onerror="this.src='https://placehold.co/400x533/C1272D/ffffff?text=Morocco+Home'"/><div class="gallery-label"><div class="team">🇲🇦 Morocco</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Netherlands')"><img class="gallery-img" src="images/netherlands-home-2026.jpg" alt="Netherlands Home" onerror="this.src='https://placehold.co/400x533/FF6600/ffffff?text=Netherlands+Home'"/><div class="gallery-label"><div class="team">🇳🇱 Netherlands</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Portugal')"><img class="gallery-img" src="images/portugal-home-2026.jpg" alt="Portugal Home" onerror="this.src='https://placehold.co/400x533/006600/ffffff?text=Portugal+Home'"/><div class="gallery-label"><div class="team">🇵🇹 Portugal</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Senegal')"><img class="gallery-img" src="images/senegal-home-2026.jpg" alt="Senegal Home" onerror="this.src='https://placehold.co/400x533/00853F/ffffff?text=Senegal+Home'"/><div class="gallery-label"><div class="team">🇸🇳 Senegal</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Africa')"><img class="gallery-img" src="images/south-africa-home-2026.jpg" alt="South Africa Home" onerror="this.src='https://placehold.co/400x533/007A4D/ffffff?text=S.Africa+Home'"/><div class="gallery-label"><div class="team">🇿🇦 South Africa</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Korea')"><img class="gallery-img" src="images/south-korea-home-2026.jpg" alt="South Korea Home" onerror="this.src='https://placehold.co/400x533/C60C30/ffffff?text=S.Korea+Home'"/><div class="gallery-label"><div class="team">🇰🇷 South Korea</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Spain')"><img class="gallery-img" src="images/spain-home-2026.jpg" alt="Spain Home" onerror="this.src='https://placehold.co/400x533/AA151B/ffffff?text=Spain+Home'"/><div class="gallery-label"><div class="team">🇪🇸 Spain</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','United States')"><img class="gallery-img" src="images/usa-home-2026.jpg" alt="USA Home" onerror="this.src='https://placehold.co/400x533/002868/ffffff?text=USA+Home'"/><div class="gallery-label"><div class="team">🇺🇸 United States</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+
+      <!-- AWAY kits -->
+      <div class="gallery-grid" id="wc2026-away" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Algeria')"><img class="gallery-img" src="images/algeria-away-2026.jpg" alt="Algeria Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/006233?text=Algeria+Away'"/><div class="gallery-label"><div class="team">🇩🇿 Algeria</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Argentina')"><img class="gallery-img" src="images/argentina-away-2026.jpg" alt="Argentina Away" onerror="this.src='https://placehold.co/400x533/1a1a1a/74ACDF?text=Argentina+Away'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Belgium')"><img class="gallery-img" src="images/belgium-away-2026.jpg" alt="Belgium Away" onerror="this.src='https://placehold.co/400x533/1a1a1a/EF0107?text=Belgium+Away'"/><div class="gallery-label"><div class="team">🇧🇪 Belgium</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Brazil')"><img class="gallery-img" src="images/brazil-away-2026.jpg" alt="Brazil Away" onerror="this.src='https://placehold.co/400x533/003087/ffffff?text=Brazil+Away'"/><div class="gallery-label"><div class="team">🇧🇷 Brazil</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Canada')"><img class="gallery-img" src="images/canada-away-2026.jpg" alt="Canada Away" onerror="this.src='https://placehold.co/400x533/1a1a1a/FF0000?text=Canada+Away'"/><div class="gallery-label"><div class="team">🇨🇦 Canada</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Cape Verde')"><img class="gallery-img" src="images/cape-verde-away-2026.jpg" alt="Cape Verde Away" onerror="this.src='https://placehold.co/400x533/CF2027/ffffff?text=Cape+Verde+Away'"/><div class="gallery-label"><div class="team">🇨🇻 Cape Verde</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Colombia')"><img class="gallery-img" src="images/colombia-away-2026.jpg" alt="Colombia Away" onerror="this.src='https://placehold.co/400x533/003087/ffffff?text=Colombia+Away'"/><div class="gallery-label"><div class="team">🇨🇴 Colombia</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','DR Congo')"><img class="gallery-img" src="images/dr-congo-away-2026.jpg" alt="DR Congo Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=DR+Congo+Away'"/><div class="gallery-label"><div class="team">🇨🇩 DR Congo</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','England')"><img class="gallery-img" src="images/england-away-2026.jpg" alt="England Away" onerror="this.src='https://placehold.co/400x533/002868/ffffff?text=England+Away'"/><div class="gallery-label"><div class="team">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','France')"><img class="gallery-img" src="images/france-away-2026.jpg" alt="France Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/002395?text=France+Away'"/><div class="gallery-label"><div class="team">🇫🇷 France</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Germany')"><img class="gallery-img" src="images/germany-away-2026.jpg" alt="Germany Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/1a1a1a?text=Germany+Away'"/><div class="gallery-label"><div class="team">🇩🇪 Germany</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Ghana')"><img class="gallery-img" src="images/ghana-away-2026.jpg" alt="Ghana Away" onerror="this.src='https://placehold.co/400x533/006B3F/ffffff?text=Ghana+Away'"/><div class="gallery-label"><div class="team">🇬🇭 Ghana</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Ivory Coast')"><img class="gallery-img" src="images/ivory-coast-away-2026.jpg" alt="Ivory Coast Away" onerror="this.src='https://placehold.co/400x533/009A44/ffffff?text=Ivory+Coast+Away'"/><div class="gallery-label"><div class="team">🇨🇮 Ivory Coast</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Japan')"><img class="gallery-img" src="images/japan-away-2026.jpg" alt="Japan Away" onerror="this.src='https://placehold.co/400x533/BC002D/ffffff?text=Japan+Away'"/><div class="gallery-label"><div class="team">🇯🇵 Japan</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Mexico')"><img class="gallery-img" src="images/mexico-away-2026.jpg" alt="Mexico Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Mexico+Away'"/><div class="gallery-label"><div class="team">🇲🇽 Mexico</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')"><img class="gallery-img" src="images/morocco-away-2026.jpg" alt="Morocco Away" onerror="this.src='https://placehold.co/400x533/006233/ffffff?text=Morocco+Away'"/><div class="gallery-label"><div class="team">🇲🇦 Morocco</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Netherlands')"><img class="gallery-img" src="images/netherlands-away-2026.jpg" alt="Netherlands Away" onerror="this.src='https://placehold.co/400x533/003087/FF6600?text=Netherlands+Away'"/><div class="gallery-label"><div class="team">🇳🇱 Netherlands</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Portugal')"><img class="gallery-img" src="images/portugal-away-2026.jpg" alt="Portugal Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Portugal+Away'"/><div class="gallery-label"><div class="team">🇵🇹 Portugal</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Senegal')"><img class="gallery-img" src="images/senegal-away-2026.jpg" alt="Senegal Away" onerror="this.src='https://placehold.co/400x533/FCD116/00853F?text=Senegal+Away'"/><div class="gallery-label"><div class="team">🇸🇳 Senegal</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Africa')"><img class="gallery-img" src="images/south-africa-away-2026.jpg" alt="South Africa Away" onerror="this.src='https://placehold.co/400x533/FFB81C/007A4D?text=S.Africa+Away'"/><div class="gallery-label"><div class="team">🇿🇦 South Africa</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Korea')"><img class="gallery-img" src="images/south-korea-away-2026.jpg" alt="South Korea Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/C60C30?text=S.Korea+Away'"/><div class="gallery-label"><div class="team">🇰🇷 South Korea</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Spain')"><img class="gallery-img" src="images/spain-away-2026.jpg" alt="Spain Away" onerror="this.src='https://placehold.co/400x533/003087/ffffff?text=Spain+Away'"/><div class="gallery-label"><div class="team">🇪🇸 Spain</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','United States')"><img class="gallery-img" src="images/usa-away-2026.jpg" alt="USA Away" onerror="this.src='https://placehold.co/400x533/BF0A30/ffffff?text=USA+Away'"/><div class="gallery-label"><div class="team">🇺🇸 United States</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         OTHER COUNTRIES PANEL
+    ═══════════════════════════════════ -->
+    <div id="panel-other-countries" style="display:none">
+      <div class="preorder-banner" style="background:linear-gradient(90deg,#4a235a,#8e44ad);">
+        🌐 <strong>Other Countries</strong> — home &amp; away kits available, even if not in World Cup 2026
+      </div>
+      <div class="kit-toggle">
+        <button class="kit-toggle-btn active" onclick="switchKit('other','home',this)">👕 Home</button>
+        <button class="kit-toggle-btn" onclick="switchKit('other','away',this)">👕 Away</button>
+      </div>
+      <div class="gallery-grid" id="other-home">
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Cameroon')"><img class="gallery-img" src="images/cameroon-home-2026.jpg" alt="Cameroon Home" onerror="this.src='https://placehold.co/400x533/007A5E/ffffff?text=Cameroon+Home'"/><div class="gallery-label"><div class="team">🇨🇲 Cameroon</div><div class="kit-type">International · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Jamaica')"><img class="gallery-img" src="images/jamaica-home-2026.jpg" alt="Jamaica Home" onerror="this.src='https://placehold.co/400x533/000000/FED100?text=Jamaica+Home'"/><div class="gallery-label"><div class="team">🇯🇲 Jamaica</div><div class="kit-type">International · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Nigeria')"><img class="gallery-img" src="images/nigeria-home-2026.jpg" alt="Nigeria Home" onerror="this.src='https://placehold.co/400x533/008751/ffffff?text=Nigeria+Home'"/><div class="gallery-label"><div class="team">🇳🇬 Nigeria</div><div class="kit-type">International · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+      <div class="gallery-grid" id="other-away" style="display:none">
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Cameroon')"><img class="gallery-img" src="images/cameroon-away-2026.jpg" alt="Cameroon Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Cameroon+Away'"/><div class="gallery-label"><div class="team">🇨🇲 Cameroon</div><div class="kit-type">International · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Jamaica')"><img class="gallery-img" src="images/jamaica-away-2026.jpg" alt="Jamaica Away" onerror="this.src='https://placehold.co/400x533/FED100/000000?text=Jamaica+Away'"/><div class="gallery-label"><div class="team">🇯🇲 Jamaica</div><div class="kit-type">International · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('wc2026','','Nigeria')"><img class="gallery-img" src="images/nigeria-away-2026.jpg" alt="Nigeria Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/008751?text=Nigeria+Away'"/><div class="gallery-label"><div class="team">🇳🇬 Nigeria</div><div class="kit-type">International · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         RETRO PANEL
+    ═══════════════════════════════════ -->
+    <div id="panel-retro" style="display:none">
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="prefillOrder('retro','','Brazil 1970')"><img class="gallery-img" src="images/brazil-retro-1970.jpg" alt="Brazil 1970" onerror="this.src='https://placehold.co/400x533/F4C430/009C3B?text=Brazil+1970'"/><div class="gallery-label"><div class="team">🇧🇷 Brazil 1970</div><div class="kit-type">Retro · Classic</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')"><img class="gallery-img" src="images/argentina-retro-1986.jpg" alt="Argentina 1986" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">Retro · Maradona Era</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','France 1998')"><img class="gallery-img" src="images/france-retro-1998.jpg" alt="France 1998" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+1998'"/><div class="gallery-label"><div class="team">🇫🇷 France 1998</div><div class="kit-type">Retro · World Cup Winners</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Manchester United 1999')"><img class="gallery-img" src="images/man-united-retro-1999.jpg" alt="Man United 1999" onerror="this.src='https://placehold.co/400x533/DA291C/FFE500?text=Man+Utd+1999'"/><div class="gallery-label"><div class="team">🔴 Man United 1999</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','AC Milan 2003')"><img class="gallery-img" src="images/ac-milan-retro-2003.jpg" alt="AC Milan 2003" onerror="this.src='https://placehold.co/400x533/FB090B/1a1a1a?text=AC+Milan+2003'"/><div class="gallery-label"><div class="team">🔴⚫ AC Milan 2003</div><div class="kit-type">Retro · UCL Winners</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Barcelona 2009')"><img class="gallery-img" src="images/barcelona-retro-2009.jpg" alt="Barcelona 2009" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+2009'"/><div class="gallery-label"><div class="team">🔴🔵 Barcelona 2009</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div></div>
+      </div>
+    </div>
+
+    <p style="margin-top:1.5rem;font-size:.85rem;color:var(--text-muted);">
+      💬 Don't see your team? <a href="#contact" style="color:var(--green);font-weight:600;">Message us</a> — we stock 1,000+ teams. Stock moves fast! ⚡
+    </p>
+  </div>
+</section>
+
+<!-- SIZE GUIDE -->
+<section id="size-guide">
+  <div class="container">
+    <p class="section-label">Get the Right Fit</p>
+    <h2 class="section-title">SIZE GUIDE</h2>
+    <p class="section-sub">Use your chest measurement to find your perfect jersey size. Sizes run true to standard football fit.</p>
+
+    <div class="size-table-wrap">
+      <table class="sizes">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest (cm)</th>
+            <th>Chest (inches)</th>
+            <th>Length (cm)</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>84 – 88</td><td>33 – 35"</td><td>68</td><td>Slim/petite build, youth adults</td></tr>
+          <tr><td>S</td><td>88 – 94</td><td>35 – 37"</td><td>71</td><td>Slim to average build</td></tr>
+          <tr><td>M</td><td>94 – 100</td><td>37 – 39"</td><td>74</td><td>Average build — most popular size</td></tr>
+          <tr><td>L</td><td>100 – 106</td><td>39 – 42"</td><td>76</td><td>Broader chest, relaxed fit on medium build</td></tr>
+          <tr><td>XL</td><td>106 – 114</td><td>42 – 45"</td><td>79</td><td>Larger build or prefer a loose fit</td></tr>
+          <tr><td>XXL</td><td>114 – 122</td><td>45 – 48"</td><td>82</td><td>Big &amp; tall, very relaxed fit</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="size-note">
+      📏 <strong>How to measure your chest:</strong> Wrap a tape measure around the fullest part of your chest, just under your arms. Keep it level and add 2–4 cm for a comfortable jersey fit.
+    </div>
+
+    <div class="size-tips">
+      <div class="size-tip">
+        <h4>🏋️ Athletic Build</h4>
+        <p>If you have broad shoulders or a muscular chest, size up one — e.g. if your chest says M, go for L for a comfortable fit through the shoulders.</p>
+      </div>
+      <div class="size-tip">
+        <h4>👕 Slim Fit vs Relaxed</h4>
+        <p>Our jerseys have a standard football fit. For a body-hugging look, stay true to your measurement. For a looser, casual wear feel, size up one.</p>
+      </div>
+      <div class="size-tip">
+        <h4>👦 Buying for a Child?</h4>
+        <p>We recommend XS or S for teenagers. For younger kids, message us on WhatsApp and we'll help you find the right fit based on their age and height.</p>
+      </div>
+      <div class="size-tip">
+        <h4>❓ Not Sure?</h4>
+        <p>Just WhatsApp us your height, weight or chest size and we'll recommend the right size. Getting it right first time saves everyone time! 😊</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <p class="section-label">Real Customers</p>
+    <h2 class="section-title">WHAT PEOPLE SAY</h2>
+    <p class="section-sub">Trusted by football lovers across Kenya.</p>
+
+    <div class="reviews-summary">
+      <div class="big-rating">4.9</div>
+      <div>
+        <span class="rating-stars-big">★★★★★</span>
+        <div style="font-size:.88rem;color:rgba(255,255,255,.7);">Based on 200+ happy customers</div>
+        <div class="rating-detail" style="margin-top:.3rem;">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered an Arsenal Pro jersey on Monday and it arrived by Wednesday. Quality is unreal for the price — stitching is tight, colours are vivid. Already ordered two more for my brothers!"</p>
+        <div class="review-author">
+          <div class="review-avatar">BM</div>
+          <div>
+            <div class="review-name">Brian M.</div>
+            <div class="review-kit">Arsenal Home · Pro Version</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Got the Argentina 2026 World Cup jersey with printing — Messi 10 on the back. Looks absolutely official. My friends keep asking me where I got it. Raha Jerseys is the real deal!"</p>
+        <div class="review-author">
+          <div class="review-avatar">SW</div>
+          <div>
+            <div class="review-name">Sharon W.</div>
+            <div class="review-kit">Argentina WC 2026 · Pro + Printing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered 6 jerseys for our 5-aside team and got a great bulk discount. All arrived on time, all the right sizes. Communication on WhatsApp was super fast. Will definitely reorder!"</p>
+        <div class="review-author">
+          <div class="review-avatar">JO</div>
+          <div>
+            <div class="review-name">James O.</div>
+            <div class="review-kit">Bulk Order · 6 Jerseys</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I was skeptical at first but the retro Man United 1999 jersey I got is absolutely beautiful. The fabric quality and badge embroidery are top notch. Very happy customer!"</p>
+        <div class="review-author">
+          <div class="review-avatar">DK</div>
+          <div>
+            <div class="review-name">Dennis K.</div>
+            <div class="review-kit">Man United 1999 · Retro</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Needed a Morocco World Cup 2026 jersey for the opening game. Contacted Raha on Tuesday, had it by Thursday. Size guide was accurate too — M fit perfectly. Sawa kabisa!"</p>
+        <div class="review-author">
+          <div class="review-avatar">FK</div>
+          <div>
+            <div class="review-name">Fatuma K.</div>
+            <div class="review-kit">Morocco WC 2026 · Pro Version</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Best jersey shop in Kenya hands down. Been buying from Raha for 2 years — always quality, always on time. The Pro version feels just like a match-worn kit. Keep it up guys! 🔥"</p>
+        <div class="review-author">
+          <div class="review-avatar">TM</div>
+          <div>
+            <div class="review-name">Tony M.</div>
+            <div class="review-kit">Multiple orders · Loyal customer</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section id="order">
+  <div class="container">
+    <p class="section-label">It's Easy</p>
+    <h2 class="section-title">HOW TO ORDER</h2>
+    <p class="section-sub">Get your kit in 4 simple steps.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Pick Your Jersey</h3>
+        <p>Choose your team, kit type (Club, Retro, World Cup or Limited), and the version (Pro/Retro/Limited).</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Select Your Size</h3>
+        <p>Check the size guide above. We carry XS to XXL. Not sure? Just message us!</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Add Printing (Optional)</h3>
+        <p>Want your name &amp; number? Add KSh 300 and let us know what to print.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Confirm &amp; Pay</h3>
+        <p>We confirm your order on WhatsApp, agree on delivery, and get it to you fast! 🚚</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Let's Go</p>
+    <h2 class="section-title">PLACE YOUR ORDER</h2>
+    <p class="section-sub">Fill in the details and we'll confirm your order via WhatsApp. Fast &amp; easy.</p>
+
+    <div class="order-form">
+      <div class="form-grid">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="f-name">Your Name <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="e.g. Brian Mutua" />
+          <span class="error-msg" id="err-name">Please enter your name</span>
+        </div>
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="f-phone-num">Phone / WhatsApp <span class="req">*</span></label>
+          <div class="phone-row">
+            <select id="f-dial" class="phone-code">
+              <option value="+254">🇰🇪 +254</option>
+              <option value="+255">🇹🇿 +255</option>
+              <option value="+256">🇺🇬 +256</option>
+              <option value="+250">🇷🇼 +250</option>
+              <option value="+251">🇪🇹 +251</option>
+              <option value="+233">🇬🇭 +233</option>
+              <option value="+234">🇳🇬 +234</option>
+              <option value="+237">🇨🇲 +237</option>
+              <option value="+27">🇿🇦 +27</option>
+              <option value="+221">🇸🇳 +221</option>
+              <option value="+20">🇪🇬 +20</option>
+              <option value="+212">🇲🇦 +212</option>
+              <option value="+225">🇨🇮 +225</option>
+              <option value="+243">🇨🇩 +243</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+39">🇮🇹 +39</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+351">🇵🇹 +351</option>
+              <option value="+31">🇳🇱 +31</option>
+              <option value="+32">🇧🇪 +32</option>
+              <option value="+48">🇵🇱 +48</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+1-CA">🇨🇦 +1</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+82">🇰🇷 +82</option>
+              <option value="+971">🇦🇪 +971</option>
+            </select>
+            <input type="tel" id="f-phone-num" class="phone-num" placeholder="07XX XXX XXX" />
+          </div>
+          <span class="error-msg" id="err-phone">Please enter a valid phone number (at least 7 digits)</span>
+        </div>
+
+        <!-- Jersey Category -->
+        <div class="form-group full">
+          <label for="f-category">What type of jersey? <span class="req">*</span></label>
+          <select id="f-category" onchange="onCategoryChange()">
+            <option value="" disabled selected>Choose category...</option>
+            <option value="club">⚽ Club Jersey (26/27 Pre-order)</option>
+            <option value="wc2026">🌍 World Cup 2026</option>
+            <option value="retro">📻 Retro / Old Season</option>
+            <option value="limited">💎 Limited Edition</option>
+          </select>
+        </div>
+
+        <!-- CLUB: League selector -->
+        <div class="form-group full form-step" id="step-league" style="display:none;">
+          <label for="f-league">Select League <span class="req">*</span></label>
+          <select id="f-league" onchange="onLeagueChange()">
+            <option value="" disabled selected>Choose league...</option>
+            <option value="epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+            <option value="laliga">🇪🇸 La Liga</option>
+            <option value="bundesliga">🇩🇪 Bundesliga</option>
+            <option value="seriea">🇮🇹 Serie A</option>
+            <option value="ligue1">🇫🇷 Ligue 1</option>
+            <option value="mls">🇺🇸 MLS</option>
+            <option value="ucl">🏆 Champions League Clubs</option>
+            <option value="other-club">🌍 Other / Not Listed</option>
+          </select>
+        </div>
+
+        <!-- CLUB: Club selector (populated by JS) -->
+        <div class="form-group full form-step" id="step-club" style="display:none;">
+          <label for="f-club">Select Club <span class="req">*</span></label>
+          <select id="f-club">
+            <option value="" disabled selected>Choose club...</option>
+          </select>
+        </div>
+
+        <!-- CLUB: other club text -->
+        <div class="form-group full form-step" id="step-club-other" style="display:none;">
+          <label for="f-club-other">Type your club name</label>
+          <input type="text" id="f-club-other" placeholder="e.g. Gor Mahia, Kaizer Chiefs..." />
+        </div>
+
+        <!-- WORLD CUP: Country selector -->
+        <div class="form-group full form-step" id="step-country" style="display:none;">
+          <label for="f-country">Select Country <span class="req">*</span></label>
+          <select id="f-country" onchange="onCountryChange()">
+            <option value="" disabled selected>Choose country...</option>
+            <optgroup label="Africa">
+              <option>🇰🇪 Kenya</option>
+              <option>🇳🇬 Nigeria</option>
+              <option>🇲🇦 Morocco</option>
+              <option>🇨🇲 Cameroon</option>
+              <option>🇿🇦 South Africa</option>
+              <option>🇸🇳 Senegal</option>
+              <option>🇪🇬 Egypt</option>
+              <option>🇬🇭 Ghana</option>
+              <option>🇹🇳 Tunisia</option>
+              <option>🇨🇮 Ivory Coast</option>
+              <option>🇺🇬 Uganda</option>
+              <option>🇹🇿 Tanzania</option>
+            </optgroup>
+            <optgroup label="Europe">
+              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
+              <option>🇫🇷 France</option>
+              <option>🇪🇸 Spain</option>
+              <option>🇩🇪 Germany</option>
+              <option>🇵🇹 Portugal</option>
+              <option>🇳🇱 Netherlands</option>
+              <option>🇧🇪 Belgium</option>
+              <option>🇵🇱 Poland</option>
+              <option>🇨🇭 Switzerland</option>
+              <option>🇭🇷 Croatia</option>
+              <option>🇩🇰 Denmark</option>
+              <option>🇸🇪 Sweden</option>
+              <option>🇦🇹 Austria</option>
+              <option>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</option>
+              <option>🇷🇸 Serbia</option>
+              <option>🇺🇦 Ukraine</option>
+              <option>🇹🇷 Turkey</option>
+            </optgroup>
+            <optgroup label="South America">
+              <option>🇧🇷 Brazil</option>
+              <option>🇦🇷 Argentina</option>
+              <option>🇺🇾 Uruguay</option>
+              <option>🇨🇴 Colombia</option>
+              <option>🇨🇱 Chile</option>
+              <option>🇪🇨 Ecuador</option>
+              <option>🇵🇾 Paraguay</option>
+              <option>🇵🇪 Peru</option>
+              <option>🇻🇪 Venezuela</option>
+              <option>🇧🇴 Bolivia</option>
+            </optgroup>
+            <optgroup label="North &amp; Central America">
+              <option>🇺🇸 USA</option>
+              <option>🇲🇽 Mexico</option>
+              <option>🇨🇦 Canada</option>
+              <option>🇨🇷 Costa Rica</option>
+              <option>🇯🇲 Jamaica</option>
+              <option>🇵🇦 Panama</option>
+              <option>🇭🇳 Honduras</option>
+            </optgroup>
+            <optgroup label="Asia &amp; Others">
+              <option>🇯🇵 Japan</option>
+              <option>🇰🇷 South Korea</option>
+              <option>🇸🇦 Saudi Arabia</option>
+              <option>🇦🇺 Australia</option>
+              <option>🇮🇷 Iran</option>
+              <option>🇶🇦 Qatar</option>
+              <option>🇨🇳 China</option>
+            </optgroup>
+            <option value="other-country">Other country (type below)</option>
+          </select>
+        </div>
+        <div class="form-group full form-step" id="step-country-other" style="display:none;">
+          <label for="f-country-other">Type your country</label>
+          <input type="text" id="f-country-other" placeholder="e.g. Algeria, Zimbabwe..." />
+        </div>
+
+        <!-- RETRO: team + year -->
+        <div class="form-group form-step" id="step-retro-team" style="display:none;">
+          <label for="f-retro-team">Team Name</label>
+          <input type="text" id="f-retro-team" placeholder="e.g. Brazil, Arsenal..." />
+        </div>
+        <div class="form-group form-step" id="step-retro-year" style="display:none;">
+          <label for="f-retro-year">Season / Year</label>
+          <input type="text" id="f-retro-year" placeholder="e.g. 1998, 2005/06..." />
+        </div>
+
+        <!-- LIMITED: description -->
+        <div class="form-group full form-step" id="step-limited" style="display:none;">
+          <label for="f-limited">Describe the jersey</label>
+          <input type="text" id="f-limited" placeholder="e.g. Man United Lunar New Year 2025..." />
+        </div>
+
+        <!-- Kit type -->
+        <div class="form-group form-step" id="step-kit" style="display:none;">
+          <label for="f-kit">Kit Type <span class="req">*</span></label>
+          <select id="f-kit">
+            <option value="" disabled selected>Choose...</option>
+            <option>Home</option>
+            <option>Away</option>
+          </select>
+        </div>
+
+        <!-- Version -->
+        <div class="form-group form-step" id="step-version" style="display:none;">
+          <label for="f-version">Version <span class="req">*</span></label>
+          <select id="f-version">
+            <option value="" disabled selected>Choose...</option>
+            <option value="Pro – KSh 1,000">Pro – KSh 1,000</option>
+            <option value="Retro – KSh 1,300">Retro – KSh 1,300</option>
+            <option value="Limited Edition – KSh 2,000">Limited Edition – KSh 2,000</option>
+          </select>
+        </div>
+
+        <!-- Size -->
+        <div class="form-group form-step" id="step-size" style="display:none;">
+          <label for="f-size">Size <span class="req">*</span> <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;">Size Guide ↑</a></label>
+          <select id="f-size">
+            <option value="" disabled selected>Pick size...</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+
+        <!-- Pieces -->
+        <div class="form-group form-step" id="step-pieces" style="display:none;">
+          <label for="f-pieces">Pieces <span class="req">*</span></label>
+          <select id="f-pieces">
+            <option value="" disabled selected>How many?</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4+ (Discount applies!)</option>
+          </select>
+        </div>
+
+        <!-- Printing -->
+        <div class="form-group full form-step" id="step-print" style="display:none;">
+          <label for="f-print">Add Name &amp; Number Printing? (+KSh 300) <span class="req">*</span></label>
+          <select id="f-print" onchange="onPrintChange()">
+            <option value="" disabled selected>Choose...</option>
+            <option value="yes">Yes – add KSh 300</option>
+            <option value="no">No thanks</option>
+          </select>
+        </div>
+
+        <!-- Printing details (shown only if yes) -->
+        <div class="form-group form-step" id="step-print-name" style="display:none;">
+          <label for="f-print-name">Name to Print</label>
+          <input type="text" id="f-print-name" placeholder="e.g. SAKA" />
+        </div>
+        <div class="form-group form-step" id="step-print-number" style="display:none;">
+          <label for="f-print-number">Number to Print</label>
+          <input type="text" id="f-print-number" placeholder="e.g. 7" />
+        </div>
+
+        <!-- Extra notes -->
+        <div class="form-group full form-step" id="step-notes" style="display:none;">
+          <label for="f-notes">Any extra notes? (optional)</label>
+          <textarea id="f-notes" placeholder="e.g. specific badge, long sleeve, gift wrap..."></textarea>
+        </div>
+
+      </div>
+      <div class="form-submit">
+        <button class="btn-whatsapp" onclick="openWhatsApp()">💬 Send Order on WhatsApp</button>
+        <span class="form-note">We'll confirm &amp; sort delivery 🚚</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <p class="section-label">Why Raha</p>
+    <h2 class="section-title">HAPPY POCKET, HAPPY CUSTOMER</h2>
+    <p class="section-sub">Here's what makes us different.</p>
+    <div class="perks">
+      <div class="perk"><span class="perk-icon">✅</span><h3>Top-Tier Quality</h3><p>Premium materials that look and feel great on every version.</p></div>
+      <div class="perk"><span class="perk-icon">💰</span><h3>Unbeatable Prices</h3><p>Starting from just KSh 1,000. Bulk orders of 4+ get a sweet discount.</p></div>
+      <div class="perk"><span class="perk-icon">🏆</span><h3>Massive Variety</h3><p>Club, international, retro, limited edition — whatever your team, we have it.</p></div>
+      <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
+      <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name and number for just KSh 300. Make it yours.</p></div>
+      <div class="perk"><span class="perk-icon">📲</span><h3>Easy Ordering</h3><p>Just WhatsApp us — fast, personal, friendly. No complicated checkout.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">RAHA JERSEYS ⚽</span>
+  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
+  <div class="footer-contacts">
+    <a href="tel:+254710611244">📞 0710 611 244</a>
+    <a href="tel:+254119485338">📞 0119 485 338</a>
+    <a href="https://wa.me/254710611244" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+  </div>
+  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
+</footer>
+
+<!-- FLOATING WA BUTTON -->
+<a href="https://wa.me/254710611244" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+  /* ── CLUB DATA ── */
+  const CLUBS = {
+    epl: ['Arsenal','Aston Villa','Bournemouth','Brentford','Brighton','Chelsea','Crystal Palace','Everton','Fulham','Ipswich Town','Leicester City','Liverpool','Manchester City','Manchester United','Newcastle United','Nottingham Forest','Southampton','Tottenham Hotspur','West Ham United','Wolverhampton'],
+    laliga: ['Athletic Bilbao','Atletico Madrid','Barcelona','Celta Vigo','Getafe','Girona','Las Palmas','Leganes','Mallorca','Osasuna','Rayo Vallecano','Real Betis','Real Madrid','Real Sociedad','Real Valladolid','Sevilla','Valencia','Villarreal'],
+    bundesliga: ['Augsburg','Bayer Leverkusen','Bayern Munich','Borussia Dortmund','Borussia Monchengladbach','Eintracht Frankfurt','Freiburg','Heidenheim','Hoffenheim','Holstein Kiel','Mainz','RB Leipzig','Schalke','Stuttgart','Union Berlin','Werder Bremen','Wolfsburg'],
+    seriea: ['AC Milan','Atalanta','Bologna','Cagliari','Como','Empoli','Fiorentina','Genoa','Inter Milan','Juventus','Lazio','Lecce','Monza','Napoli','Parma','Roma','Torino','Udinese','Venezia','Verona'],
+    ligue1: ['Angers','Auxerre','Brest','Lens','Lille','Lyon','Marseille','Monaco','Montpellier','Nantes','Nice','Paris Saint-Germain','Reims','Rennes','Saint-Etienne','Strasbourg','Toulouse'],
+    mls: ['Atlanta United','Austin FC','Charlotte FC','Chicago Fire','Colorado Rapids','Columbus Crew','DC United','FC Cincinnati','FC Dallas','Houston Dynamo','Inter Miami','LA Galaxy','LAFC','Minnesota United','Nashville SC','New England Revolution','New York City FC','New York Red Bulls','Orlando City','Philadelphia Union','Portland Timbers','Real Salt Lake','San Jose Earthquakes','Seattle Sounders','Sporting KC','St. Louis City','Toronto FC','Vancouver Whitecaps'],
+    ucl: ['Arsenal','Atletico Madrid','Barcelona','Bayern Munich','Benfica','Borussia Dortmund','Celtic','Chelsea','Club Brugge','Inter Milan','Juventus','Liverpool','Manchester City','Paris Saint-Germain','Porto','PSV Eindhoven','RB Leipzig','Real Madrid','Shakhtar Donetsk','Sporting CP']
+  };
+
+  /* ── SHOW / HIDE HELPER ── */
+  function show(id) { document.getElementById(id).style.display = ''; }
+  function hide(id) { document.getElementById(id).style.display = 'none'; }
+  function val(id)  { return document.getElementById(id).value; }
+
+  /* Hide all dynamic steps */
+  function hideAllSteps() {
+    ['step-league','step-club','step-club-other','step-country','step-country-other',
+     'step-retro-team','step-retro-year','step-limited',
+     'step-kit','step-version','step-size','step-pieces',
+     'step-print','step-print-name','step-print-number','step-notes'
+    ].forEach(id => hide(id));
+  }
+
+  /* ── CATEGORY CHANGE ── */
+  function onCategoryChange() {
+    hideAllSteps();
+    const cat = val('f-category');
+    if (cat === 'club') {
+      show('step-league');
+    } else if (cat === 'wc2026') {
+      show('step-country');
+      showCommonSteps();
+    } else if (cat === 'retro') {
+      show('step-retro-team');
+      show('step-retro-year');
+      showCommonSteps();
+    } else if (cat === 'limited') {
+      show('step-limited');
+      showCommonSteps();
+    }
+  }
+
+  /* ── LEAGUE CHANGE ── */
+  function onLeagueChange() {
+    hide('step-club'); hide('step-club-other');
+    const league = val('f-league');
+    if (league === 'other-club') {
+      show('step-club-other');
+      showCommonSteps();
+    } else {
+      const clubs = CLUBS[league] || [];
+      const sel = document.getElementById('f-club');
+      sel.innerHTML = '<option value="" disabled selected>Choose club...</option>';
+      clubs.forEach(c => {
+        const o = document.createElement('option');
+        o.value = o.textContent = c;
+        sel.appendChild(o);
+      });
+      show('step-club');
+      showCommonSteps();
+    }
+  }
+
+  /* ── COUNTRY CHANGE ── */
+  function onCountryChange() {
+    if (val('f-country') === 'other-country') {
+      show('step-country-other');
+    } else {
+      hide('step-country-other');
+    }
+  }
+
+  /* Show kit / version / size / pieces / print / notes */
+  function showCommonSteps() {
+    ['step-kit','step-version','step-size','step-pieces','step-print','step-notes'].forEach(show);
+  }
+
+  /* ── PRINT CHANGE ── */
+  function onPrintChange() {
+    if (val('f-print') === 'yes') {
+      show('step-print-name');
+      show('step-print-number');
+    } else {
+      hide('step-print-name');
+      hide('step-print-number');
+    }
+  }
+
+  /* ── GALLERY: MAIN TAB SWITCH ── */
+  function switchMainTab(panel, btn) {
+    btn.closest('.gallery-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['panel-season2627','panel-wc2026','panel-other-countries','panel-retro'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+    document.getElementById('panel-' + panel).style.display = '';
+  }
+
+  /* ── GALLERY: LEAGUE SUB-TAB ── */
+  function switchLeague(league, btn) {
+    btn.closest('.league-tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.league-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('league-' + league).style.display = '';
+  }
+
+  /* ── GALLERY: HOME / AWAY KIT TOGGLE ── */
+  function switchKit(panel, kit, btn) {
+    btn.closest('.kit-toggle').querySelectorAll('.kit-toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (panel === 'wc2026') {
+      document.getElementById('wc2026-home').style.display = kit === 'home' ? '' : 'none';
+      document.getElementById('wc2026-away').style.display = kit === 'away' ? '' : 'none';
+    } else if (panel === 'other') {
+      document.getElementById('other-home').style.display = kit === 'home' ? '' : 'none';
+      document.getElementById('other-away').style.display = kit === 'away' ? '' : 'none';
+    }
+  }
+
+  /* ── GALLERY → PRE-FILL ORDER FORM ── */
+  function prefillOrder(cat, league, team) {
+    const catSel = document.getElementById('f-category');
+    catSel.value = cat;
+    onCategoryChange();
+
+    if (cat === 'club' && league) {
+      setTimeout(() => {
+        document.getElementById('f-league').value = league;
+        onLeagueChange();
+        setTimeout(() => {
+          const clubSel = document.getElementById('f-club');
+          if (clubSel) clubSel.value = team;
+        }, 50);
+      }, 50);
+    } else if (cat === 'wc2026') {
+      setTimeout(() => {
+        const countrySel = document.getElementById('f-country');
+        Array.from(countrySel.options).forEach(o => {
+          if (o.text.includes(team)) countrySel.value = o.value;
+        });
+      }, 50);
+    } else if (cat === 'retro') {
+      const parts = team.split(' ');
+      const year  = parts[parts.length - 1];
+      const tname = parts.slice(0, -1).join(' ');
+      setTimeout(() => {
+        document.getElementById('f-retro-team').value = tname;
+        document.getElementById('f-retro-year').value = year;
+      }, 50);
+    }
+
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ── BUILD WHATSAPP MESSAGE ── */
+  function cleanText(str) {
+    return str.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '').replace(/[^\u0000-\u00FF\u0100-\u024F\u0250-\u02AF\u1E00-\u1EFF\u2000-\u206F\u20A0-\u20CF\u2100-\u214F\u2150-\u218F\u2C60-\u2C7F\u0020-\u007E\u00A0-\u00FF]/g, '').trim();
+  }
+
+  function setError(id, errId, show) {
+    const el = document.getElementById(id);
+    const er = document.getElementById(errId);
+    if (el) el.classList.toggle('field-error', show);
+    if (er) er.classList.toggle('show', show);
+    return show;
+  }
+
+  function openWhatsApp() {
+    let hasError = false;
+
+    const name = document.getElementById('f-name').value.trim();
+    if (!name) hasError = setError('f-name','err-name',true) || true;
+    else setError('f-name','err-name',false);
+
+    const dialRaw = document.getElementById('f-dial').value.replace('-CA','');
+    const phoneNum = document.getElementById('f-phone-num').value.trim().replace(/\D/g,'');
+    const phoneValid = phoneNum.length >= 7;
+    if (!phoneValid) hasError = setError('f-phone-num','err-phone',true) || true;
+    else setError('f-phone-num','err-phone',false);
+
+    const cat = val('f-category');
+    if (!cat) { hasError = true; document.getElementById('f-category').classList.add('field-error'); }
+    else document.getElementById('f-category').classList.remove('field-error');
+
+    if (cat === 'club') {
+      const league = val('f-league');
+      if (!league) { hasError = true; document.getElementById('f-league').classList.add('field-error'); }
+      else document.getElementById('f-league').classList.remove('field-error');
+      if (league && league !== 'other-club') {
+        const club = val('f-club');
+        if (!club) { hasError = true; document.getElementById('f-club').classList.add('field-error'); }
+        else document.getElementById('f-club').classList.remove('field-error');
+      }
+    }
+    if (cat === 'wc2026') {
+      const country = val('f-country');
+      if (!country) { hasError = true; document.getElementById('f-country').classList.add('field-error'); }
+      else document.getElementById('f-country').classList.remove('field-error');
+    }
+    if (cat === 'retro') {
+      const rt = document.getElementById('f-retro-team').value.trim();
+      const ry = document.getElementById('f-retro-year').value.trim();
+      if (!rt) { hasError = true; document.getElementById('f-retro-team').classList.add('field-error'); }
+      else document.getElementById('f-retro-team').classList.remove('field-error');
+      if (!ry) { hasError = true; document.getElementById('f-retro-year').classList.add('field-error'); }
+      else document.getElementById('f-retro-year').classList.remove('field-error');
+    }
+
+    ['f-kit','f-version','f-size','f-pieces','f-print'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetParent !== null) {
+        if (!el.value) { hasError = true; el.classList.add('field-error'); }
+        else el.classList.remove('field-error');
+      }
+    });
+
+    if (hasError) {
+      document.querySelector('.field-error').scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    const e = {
+      ball:   '⚽',
+      person: '👤',
+      phone:  '📱',
+      shirt:  '👕',
+      ruler:  '📏',
+      num:    '🔢',
+      art:    '🎨',
+      note:   '📝',
+      pray:   '🙏',
+      globe:  '🌍',
+      gem:    '💎',
+      pencil: '✏️'
     };
 
     const fullPhone = dialRaw + ' ' + phoneNum;
