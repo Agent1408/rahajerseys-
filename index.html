@@ -1267,31 +1267,62 @@
     if (notes) msg += '\n' + e.note + ' Notes: ' + notes + '\n';
     msg += '\nPlease confirm my order. Asante! ' + e.pray;
 
-    // Copy to clipboard and open WhatsApp - avoids emoji encoding issues
+    // Copy message to clipboard
     try {
       await navigator.clipboard.writeText(msg);
-    } catch(e) {
-      // fallback: use textarea
+    } catch(err) {
       const ta = document.createElement('textarea');
       ta.value = msg;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
       document.body.appendChild(ta);
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
     }
-    // Show the message to user too
-    const waUrl = 'https://wa.me/254710611244';
-    const popup = document.createElement('div');
-    popup.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;';
-    popup.innerHTML = '<div style="background:white;border-radius:16px;padding:1.5rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;">' +
-      '<h3 style="font-family:Bebas Neue,sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:.75rem;color:#0d5c2e;">ORDER READY!</h3>' +
-      '<p style="font-size:.85rem;color:#555;margin-bottom:1rem;">Your order message has been <strong>copied to clipboard</strong>. Tap the button below to open WhatsApp, then <strong>paste and send</strong>.</p>' +
-      '<pre style="background:#f5f5f5;border-radius:8px;padding:1rem;font-size:.78rem;white-space:pre-wrap;word-break:break-word;margin-bottom:1rem;border:1px solid #ddd;">' + msg.replace(/</g,'&lt;') + '</pre>' +
-      '<div style="display:flex;gap:.75rem;flex-wrap:wrap;">' +
-      '<a href="' + waUrl + '" target="_blank" style="background:#25d366;color:white;padding:.75rem 1.25rem;border-radius:8px;font-weight:700;text-decoration:none;font-size:.9rem;display:inline-flex;align-items:center;gap:.4rem;">Open WhatsApp</a>' +
-      '<button onclick="this.closest('div[style*=fixed]').remove()" style="background:#eee;border:none;padding:.75rem 1.25rem;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem;">Close</button>' +
-      '</div></div>';
-    document.body.appendChild(popup);
+
+    // Show popup with message preview + WhatsApp button
+    const overlay = document.createElement('div');
+    overlay.id = 'raha-popup';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;';
+
+    const box = document.createElement('div');
+    box.style.cssText = 'background:white;border-radius:16px;padding:1.5rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;';
+
+    const title = document.createElement('h3');
+    title.style.cssText = 'font-family:Bebas Neue,sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:.5rem;color:#0d5c2e;';
+    title.textContent = 'ORDER READY!';
+
+    const info = document.createElement('p');
+    info.style.cssText = 'font-size:.85rem;color:#555;margin-bottom:1rem;line-height:1.5;';
+    info.innerHTML = 'Message <strong>copied to clipboard</strong>. Open WhatsApp below, then paste and send!';
+
+    const pre = document.createElement('pre');
+    pre.style.cssText = 'background:#f5f5f5;border-radius:8px;padding:1rem;font-size:.78rem;white-space:pre-wrap;word-break:break-word;margin-bottom:1rem;border:1px solid #ddd;font-family:monospace;';
+    pre.textContent = msg;
+
+    const btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;gap:.75rem;flex-wrap:wrap;';
+
+    const waBtn = document.createElement('a');
+    waBtn.href = 'https://wa.me/254710611244';
+    waBtn.target = '_blank';
+    waBtn.style.cssText = 'background:#25d366;color:white;padding:.75rem 1.25rem;border-radius:8px;font-weight:700;text-decoration:none;font-size:.9rem;display:inline-flex;align-items:center;gap:.4rem;';
+    waBtn.textContent = 'Open WhatsApp';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.style.cssText = 'background:#eee;border:none;padding:.75rem 1.25rem;border-radius:8px;font-weight:600;cursor:pointer;font-size:.9rem;font-family:Inter,sans-serif;';
+    closeBtn.textContent = 'Close';
+    closeBtn.onclick = function() { document.body.removeChild(overlay); };
+
+    btnRow.appendChild(waBtn);
+    btnRow.appendChild(closeBtn);
+    box.appendChild(title);
+    box.appendChild(info);
+    box.appendChild(pre);
+    box.appendChild(btnRow);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
   }
 </script>
 
