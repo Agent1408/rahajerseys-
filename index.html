@@ -1202,19 +1202,20 @@
     }
 
     /* ── BUILD MESSAGE ── */
+    // String.fromCodePoint guarantees correct emoji regardless of file encoding
     const e = {
-      ball:   '⚽',
-      person: '👤',
-      phone:  '📱',
-      shirt:  '👕',
-      ruler:  '📏',
-      num:    '🔢',
-      art:    '🎨',
-      note:   '📝',
-      pray:   '🙏',
-      globe:  '🌍',
-      gem:    '💫',
-      pencil: '✏️'
+      ball:   String.fromCodePoint(0x26BD),
+      person: String.fromCodePoint(0x1F464),
+      phone:  String.fromCodePoint(0x1F4F1),
+      shirt:  String.fromCodePoint(0x1F455),
+      ruler:  String.fromCodePoint(0x1F4CF),
+      num:    String.fromCodePoint(0x1F522),
+      art:    String.fromCodePoint(0x1F3A8),
+      note:   String.fromCodePoint(0x1F4DD),
+      pray:   String.fromCodePoint(0x1F64F),
+      globe:  String.fromCodePoint(0x1F30D),
+      gem:    String.fromCodePoint(0x1F4AB),
+      pencil: String.fromCodePoint(0x270F) + String.fromCodePoint(0xFE0F)
     };
 
     const fullPhone = dialRaw + ' ' + phoneNum;
