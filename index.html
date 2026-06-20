@@ -247,6 +247,21 @@
     /* Live reviews */
     #live-reviews-grid { margin-top:1rem; }
 
+    /* ── TRUST SECTION ── */
+    .trust-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:2rem; }
+    .trust-item { display:flex; gap:1rem; align-items:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:1.25rem; }
+    .trust-icon { font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
+    .trust-item h4 { font-size:.9rem; font-weight:700; color:white; margin-bottom:.25rem; }
+    .trust-item p { font-size:.8rem; color:rgba(255,255,255,.6); line-height:1.5; }
+    .trust-quote { background:rgba(245,197,24,.1); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:1rem 1.25rem; font-size:.95rem; color:rgba(255,255,255,.85); font-style:italic; margin-top:1rem; }
+
+    /* ── PAYMENT INFO BOX ── */
+    .payment-info-box { background:#fff8e1; border:1.5px solid #f5c518; border-radius:var(--radius); padding:1rem 1.25rem; margin-bottom:1rem; }
+    .payment-info-box h4 { font-size:.9rem; font-weight:700; color:#5d4200; margin-bottom:.4rem; }
+    .payment-info-box p { font-size:.82rem; color:#5d4200; }
+    .pochi-details { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; align-items:center; background:rgba(0,0,0,.05); border-radius:8px; padding:.6rem .9rem; margin:.5rem 0; font-size:.85rem; color:#3d2b00; }
+    .pochi-details strong { font-size:1.05rem; color:var(--green-dark); }
+
     /* ── MOBILE ── */
     @media (max-width:640px) {
       .review-form-grid { grid-template-columns:1fr; }
@@ -1045,9 +1060,19 @@
         </div>
 
       </div>
+      <div class="payment-info-box">
+        <h4>&#x1F4B3; How Payment Works</h4>
+        <p>After sending your order, you'll be asked to pay a <strong>30% deposit</strong> to confirm. Send via:</p>
+        <div class="pochi-details">
+          <span>&#x1F4F2; Pochi La Biashara</span>
+          <strong>0710 611 244</strong>
+          <span>ESTELLE KANG'ETHE</span>
+        </div>
+        <p style="margin-top:.5rem;font-size:.78rem;color:var(--text-muted);">Send a screenshot of your M-Pesa confirmation to the same WhatsApp number as proof.</p>
+      </div>
       <div class="form-submit">
-        <button class="btn-whatsapp" onclick="openWhatsApp()">💬 Send Order on WhatsApp</button>
-        <span class="form-note">We'll confirm &amp; sort delivery 🚚</span>
+        <button class="btn-whatsapp" onclick="openWhatsApp()">&#x1F4AC; Send Order on WhatsApp</button>
+        <span class="form-note">Message auto-fills — just tap Send! &#x1F680;</span>
       </div>
     </div>
   </div>
@@ -1066,6 +1091,64 @@
       <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
       <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name and number for just KSh 300. Make it yours.</p></div>
       <div class="perk"><span class="perk-icon">📲</span><h3>Easy Ordering</h3><p>Just WhatsApp us — fast, personal, friendly. No complicated checkout.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<section id="trust" style="background:var(--pitch);color:white;">
+  <div class="container">
+    <p class="section-label" style="color:var(--accent);">Shop With Confidence</p>
+    <h2 class="section-title" style="color:white;">WHY TRUST RAHA JERSEYS</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;">
+      We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.
+    </p>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon">&#x2705;</span>
+        <div>
+          <h4>Genuine Products Only</h4>
+          <p>Every jersey we sell is exactly as described — premium quality, no surprises.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#x2705;</span>
+        <div>
+          <h4>Clear Pricing, No Hidden Charges</h4>
+          <p>The price you see is the price you pay. Printing is KSh 300 extra — that's it.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#x2705;</span>
+        <div>
+          <h4>Fast &amp; Reliable Delivery Across Kenya</h4>
+          <p>We deliver quickly and keep you updated every step of the way.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#x2705;</span>
+        <div>
+          <h4>Responsive Customer Support</h4>
+          <p>Our team is available before and after your purchase. We're always here to help.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#x2705;</span>
+        <div>
+          <h4>Real Customer Reviews</h4>
+          <p>Read genuine reviews from real customers right here on the site.</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#x1F512;</span>
+        <div>
+          <h4>Secure 30% Deposit Payment</h4>
+          <p>Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p>
+        </div>
+      </div>
+    </div>
+    <div class="trust-quote">
+      "Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."
     </div>
   </div>
 </section>
@@ -1393,9 +1476,18 @@
       msg += ART + ' Printing: No\n';
     }
     if (notes) msg += '\n' + NOTE + ' Notes: ' + notes + '\n';
+    msg += '\n' + String.fromCodePoint(0x1F4B0) + ' PAYMENT: Please send 30% deposit to confirm your order:\n';
+    msg += '   Pochi La Biashara: *0710 611 244*\n';
+    msg += '   Name: *ESTELLE KANG\u2019ETHE*\n';
+    msg += '   Then send a screenshot of your M-Pesa confirmation to this chat.\n';
     msg += '\nPlease confirm my order. Asante! ' + PRAY;
 
-    window.open('https://wa.me/254710611244?text=' + encodeURIComponent(msg), '_blank');
+    // Open WhatsApp with pre-filled message
+    var waUrl = 'https://wa.me/254119485338?text=' + encodeURIComponent(msg);
+    window.open(waUrl, '_blank');
+
+    // Show thank you overlay with countdown
+    showThankYou();
   }
 
   /* ═══════════════════════════════════
@@ -1555,6 +1647,74 @@
     document.querySelectorAll('.star-opt').forEach(function(s) { s.classList.remove('active'); });
     msgEl.textContent = 'Thank you! Your review has been posted. ';
     msgEl.style.color = 'var(--accent)';
+  }
+
+  /* ═══════════════════════════════════
+     THANK YOU OVERLAY + COUNTDOWN
+  ═══════════════════════════════════ */
+  function showThankYou() {
+    // Create overlay
+    var overlay = document.createElement('div');
+    overlay.id  = 'thankyou-overlay';
+    overlay.style.cssText = [
+      'position:fixed','top:0','left:0','right:0','bottom:0',
+      'background:rgba(13,92,46,0.97)','z-index:99999',
+      'display:flex','align-items:center','justify-content:center',
+      'padding:1.5rem','flex-direction:column','text-align:center'
+    ].join(';');
+
+    overlay.innerHTML =
+      '<div style="max-width:480px;width:100%;">' +
+        // Ball emoji via codepoint so it always works
+        '<div style="font-size:5rem;margin-bottom:1rem;line-height:1;">' + String.fromCodePoint(0x26BD) + '</div>' +
+        '<h2 style="font-family:Bebas Neue,sans-serif;font-size:clamp(2.5rem,8vw,4rem);color:#f5c518;letter-spacing:4px;line-height:1;margin-bottom:.75rem;">ORDER SENT!</h2>' +
+        '<p style="font-size:1.1rem;color:white;font-weight:700;margin-bottom:.5rem;">Thank you for trusting Raha Jerseys ' + String.fromCodePoint(0x1F64F) + '</p>' +
+        '<p style="font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:.5rem;line-height:1.6;">Your order has been sent on WhatsApp.<br>We will confirm it shortly ' + String.fromCodePoint(0x1F44C) + '</p>' +
+        '<p style="font-size:1rem;color:#f5c518;font-weight:700;margin-bottom:.35rem;"><em>Asante sana — Happy Pocket, Happy Customer!</em></p>' +
+        '<div style="margin:1.5rem 0;background:rgba(255,255,255,.1);border-radius:12px;padding:1rem;">' +
+          '<p style="font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:.5rem;">' + String.fromCodePoint(0x1F4B0) + ' Remember: Send <strong style="color:#f5c518;">30% deposit</strong> to confirm your order</p>' +
+          '<p style="font-size:.9rem;color:white;font-weight:700;">Pochi La Biashara · 0710 611 244</p>' +
+          '<p style="font-size:.82rem;color:rgba(255,255,255,.7);">ESTELLE KANG’ETHE · Send M-Pesa screenshot as proof</p>' +
+        '</div>' +
+        '<button id="new-order-btn" onclick="resetSite()" style="' +
+          'background:#f5c518;color:#1a1a1a;border:none;border-radius:8px;' +
+          'padding:.85rem 2rem;font-size:1rem;font-weight:700;cursor:pointer;' +
+          'font-family:Inter,sans-serif;display:block;width:100%;margin-bottom:.75rem;' +
+        '">New Order <span id="countdown-num">(10)</span></button>' +
+        '<p style="font-size:.75rem;color:rgba(255,255,255,.45);">Page refreshes automatically when timer ends</p>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    // Countdown 10 → 0 then refresh
+    var secs = 10;
+    var timer = setInterval(function() {
+      secs--;
+      var el = document.getElementById('countdown-num');
+      if (el) el.textContent = '(' + secs + ')';
+      if (secs <= 0) {
+        clearInterval(timer);
+        resetSite();
+      }
+    }, 1000);
+  }
+
+  function resetSite() {
+    // Clear the form
+    var form = document.querySelector('.order-form');
+    if (form) {
+      form.querySelectorAll('input, select, textarea').forEach(function(el) {
+        el.value = '';
+        el.classList.remove('field-error');
+      });
+    }
+    // Hide all form steps
+    hideAllSteps();
+    // Remove overlay
+    var ov = document.getElementById('thankyou-overlay');
+    if (ov) ov.remove();
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Init reviews on page load
