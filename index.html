@@ -262,6 +262,23 @@
     .pochi-details { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; align-items:center; background:rgba(0,0,0,.05); border-radius:8px; padding:.6rem .9rem; margin:.5rem 0; font-size:.85rem; color:#3d2b00; }
     .pochi-details strong { font-size:1.05rem; color:var(--green-dark); }
 
+    /* ── ORDER SUMMARY ── */
+    .order-summary-box { background:#f0faf4; border:2px solid var(--green); border-radius:var(--radius); padding:1.25rem; margin-bottom:1rem; }
+    .summary-title { font-size:.9rem; font-weight:700; color:var(--green-dark); margin-bottom:.75rem; letter-spacing:.5px; }
+    .summary-lines { display:flex; flex-direction:column; gap:.3rem; margin-bottom:.5rem; }
+    .summary-line { display:flex; justify-content:space-between; font-size:.82rem; color:var(--text-muted); }
+    .summary-divider { border-top:1.5px dashed var(--border); margin:.5rem 0; }
+    .summary-row { display:flex; justify-content:space-between; align-items:center; font-size:.88rem; padding:.2rem 0; }
+    .summary-total { font-weight:600; color:var(--text); }
+    .summary-deposit { background:var(--accent); border-radius:8px; padding:.5rem .75rem; margin:.4rem 0; font-weight:700; font-size:.95rem; color:var(--text); }
+    .summary-deposit strong { font-size:1.1rem; }
+    .summary-balance { font-size:.82rem; color:var(--text-muted); }
+    .pochi-box { background:white; border:1px solid var(--border); border-radius:8px; padding:.75rem; margin-top:.75rem; }
+    .pochi-label { font-size:.78rem; font-weight:600; color:var(--text-muted); margin-bottom:.4rem; }
+    .pochi-note { font-size:.72rem; color:var(--text-muted); margin-top:.4rem; }
+    .pochi-details { display:flex; flex-wrap:wrap; gap:.4rem 1rem; align-items:center; font-size:.875rem; color:var(--text); }
+    .pochi-details strong { font-size:1rem; color:var(--green-dark); font-weight:700; }
+
     /* ── MOBILE ── */
     @media (max-width:640px) {
       .review-form-grid { grid-template-columns:1fr; }
@@ -1005,7 +1022,7 @@
         <!-- Version -->
         <div class="form-group form-step" id="step-version" style="display:none;">
           <label for="f-version">Version <span class="req">*</span></label>
-          <select id="f-version">
+          <select id="f-version" onchange="calcPrice()">
             <option value="" disabled selected>Choose...</option>
             <option value="Pro – KSh 1,000" class="opt-pro">Pro – KSh 1,000</option>
             <option value="Retro – KSh 1,300" class="opt-retro">Retro – KSh 1,300</option>
@@ -1026,7 +1043,7 @@
         <!-- Pieces -->
         <div class="form-group form-step" id="step-pieces" style="display:none;">
           <label for="f-pieces">Pieces <span class="req">*</span></label>
-          <select id="f-pieces">
+          <select id="f-pieces" onchange="calcPrice()">
             <option value="" disabled selected>How many?</option>
             <option>1</option><option>2</option><option>3</option>
             <option>4+ (Discount applies!)</option>
@@ -1036,7 +1053,7 @@
         <!-- Printing -->
         <div class="form-group full form-step" id="step-print" style="display:none;">
           <label for="f-print">Add Name &amp; Number Printing? (+KSh 300) <span class="req">*</span></label>
-          <select id="f-print" onchange="onPrintChange()">
+          <select id="f-print" onchange="onPrintChange(); calcPrice();">
             <option value="" disabled selected>Choose...</option>
             <option value="yes">Yes – add KSh 300</option>
             <option value="no">No thanks</option>
@@ -1060,15 +1077,32 @@
         </div>
 
       </div>
-      <div class="payment-info-box">
-        <h4>&#x1F4B3; How Payment Works</h4>
-        <p>After sending your order, you'll be asked to pay a <strong>30% deposit</strong> to confirm. Send via:</p>
-        <div class="pochi-details">
-          <span>&#x1F4F2; Pochi La Biashara</span>
-          <strong>0710 611 244</strong>
-          <span>ESTELLE KANG'ETHE</span>
+      <!-- ORDER SUMMARY + PRICE CALCULATOR -->
+      <div class="order-summary-box form-step" id="step-summary" style="display:none;">
+        <h4 class="summary-title">&#x1F9FE; Order Summary</h4>
+        <div class="summary-lines" id="summary-lines"></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row summary-total">
+          <span>Total</span>
+          <span id="summary-total">KSh 0</span>
         </div>
-        <p style="margin-top:.5rem;font-size:.78rem;color:var(--text-muted);">Send a screenshot of your M-Pesa confirmation to the same WhatsApp number as proof.</p>
+        <div class="summary-row summary-deposit">
+          <span>30% Deposit to pay now</span>
+          <strong id="summary-deposit">KSh 0</strong>
+        </div>
+        <div class="summary-row summary-balance">
+          <span>Balance on delivery</span>
+          <span id="summary-balance">KSh 0</span>
+        </div>
+        <div class="pochi-box">
+          <p class="pochi-label">Send deposit via Pochi La Biashara:</p>
+          <div class="pochi-details">
+            <span>&#x1F4F2;</span>
+            <strong>0710 611 244</strong>
+            <span>ESTELLE KANG'ETHE</span>
+          </div>
+          <p class="pochi-note">Send M-Pesa screenshot to WhatsApp as proof of payment.</p>
+        </div>
       </div>
       <div class="form-submit">
         <button class="btn-whatsapp" onclick="openWhatsApp()">&#x1F4AC; Send Order on WhatsApp</button>
@@ -1189,8 +1223,12 @@
     ['step-league','step-club','step-club-other','step-country','step-country-other',
      'step-retro-team','step-retro-year','step-limited',
      'step-kit','step-version','step-size','step-pieces',
-     'step-print','step-print-name','step-print-number','step-notes'
+     'step-print','step-print-name','step-print-number','step-notes',
+     'step-summary'
     ].forEach(id => hide(id));
+    window._orderTotal = null;
+    window._orderDeposit = null;
+    window._orderBalance = null;
   }
 
   function showCommonSteps() {
@@ -1264,6 +1302,46 @@
     } else {
       hide('step-country-other');
     }
+  }
+
+  /* ── PRICE CALCULATOR ── */
+  var PRICES = { 'Pro – KSh 1,000': 1000, 'Retro – KSh 1,300': 1300, 'Limited Edition – KSh 2,000': 2000 };
+
+  function calcPrice() {
+    var version  = val('f-version');
+    var piecesRaw= val('f-pieces');
+    var print    = val('f-print');
+
+    if (!version || !piecesRaw) return;
+
+    var unitPrice = PRICES[version] || 0;
+    // Parse pieces — "4+ (Discount applies!)" → 4
+    var pieces = parseInt(piecesRaw) || 4;
+
+    var jerseyTotal  = unitPrice * pieces;
+    var printCost    = (print === 'yes') ? 300 * pieces : 0;
+    var total        = jerseyTotal + printCost;
+    var deposit      = Math.ceil(total * 0.30);
+    var balance      = total - deposit;
+
+    // Build summary lines
+    var linesEl = document.getElementById('summary-lines');
+    if (!linesEl) return;
+    linesEl.innerHTML =
+      '<div class="summary-line"><span>' + version + ' × ' + pieces + '</span><span>KSh ' + jerseyTotal.toLocaleString() + '</span></div>' +
+      (printCost > 0 ? '<div class="summary-line"><span>Printing × ' + pieces + '</span><span>KSh ' + printCost.toLocaleString() + '</span></div>' : '');
+
+    document.getElementById('summary-total').textContent   = 'KSh ' + total.toLocaleString();
+    document.getElementById('summary-deposit').textContent = 'KSh ' + deposit.toLocaleString();
+    document.getElementById('summary-balance').textContent = 'KSh ' + balance.toLocaleString();
+
+    // Show summary box
+    show('step-summary');
+
+    // Store for WhatsApp message
+    window._orderTotal   = total;
+    window._orderDeposit = deposit;
+    window._orderBalance = balance;
   }
 
   function onPrintChange() {
@@ -1476,10 +1554,22 @@
       msg += ART + ' Printing: No\n';
     }
     if (notes) msg += '\n' + NOTE + ' Notes: ' + notes + '\n';
-    msg += '\n' + String.fromCodePoint(0x1F4B0) + ' PAYMENT: Please send 30% deposit to confirm your order:\n';
-    msg += '   Pochi La Biashara: *0710 611 244*\n';
-    msg += '   Name: *ESTELLE KANG\u2019ETHE*\n';
-    msg += '   Then send a screenshot of your M-Pesa confirmation to this chat.\n';
+    // Add price breakdown to message
+    if (window._orderTotal) {
+      msg += '\n' + String.fromCodePoint(0x1F4B0) + ' PRICE BREAKDOWN:\n';
+      msg += '   Total: *KSh ' + window._orderTotal.toLocaleString() + '*\n';
+      msg += '   30% Deposit: *KSh ' + window._orderDeposit.toLocaleString() + '*\n';
+      msg += '   Balance on delivery: *KSh ' + window._orderBalance.toLocaleString() + '*\n';
+      msg += '\n' + String.fromCodePoint(0x1F4B3) + ' Send deposit via Pochi La Biashara:\n';
+      msg += '   Number: *0710 611 244*\n';
+      msg += '   Name: *ESTELLE KANG\u2019ETHE*\n';
+      msg += '   Send M-Pesa screenshot as proof ' + String.fromCodePoint(0x1F4F8) + '\n';
+    } else {
+      msg += '\n' + String.fromCodePoint(0x1F4B0) + ' PAYMENT: Please send 30% deposit to confirm:\n';
+      msg += '   Pochi La Biashara: *0710 611 244*\n';
+      msg += '   Name: *ESTELLE KANG\u2019ETHE*\n';
+      msg += '   Send M-Pesa screenshot as proof.\n';
+    }
     msg += '\nPlease confirm my order. Asante! ' + PRAY;
 
     // Open WhatsApp with pre-filled message
