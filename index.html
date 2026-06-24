@@ -395,13 +395,13 @@
         <span class="search-icon">🔍</span>
       </div>
       <div class="view-toggle">
-        <button class="view-btn active" onclick="setView('grid4', this)" title="4 columns">
+        <button class="view-btn" onclick="setView('grid4', this)" title="4 columns">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6" height="6"/><rect x="10" y="0" width="6" height="6"/><rect x="0" y="10" width="6" height="6"/><rect x="10" y="10" width="6" height="6"/></svg>
         </button>
         <button class="view-btn" onclick="setView('grid2', this)" title="2 columns">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6" height="16"/><rect x="10" y="0" width="6" height="16"/></svg>
         </button>
-        <button class="view-btn" onclick="setView('list', this)" title="List view">
+        <button class="view-btn active" onclick="setView('list', this)" title="List view">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="16" height="3"/><rect x="0" y="6" width="16" height="3"/><rect x="0" y="13" width="16" height="3"/></svg>
         </button>
       </div>
@@ -877,13 +877,13 @@
 
         <!-- Jersey Category -->
         <div class="form-group full">
-          <label for="f-category">What type of jersey? <span class="req">*</span></label>
+          <label for="f-category">Aina ya Jezi / Type de Maillot / What type of jersey? <span class="req">*</span></label>
           <select id="f-category" onchange="onCategoryChange()">
-            <option value="" disabled selected>Choose category...</option>
-            <option value="club">⚽ Club Jersey (26/27 Pre-order)</option>
-            <option value="wc2026">🌍 World Cup 2026</option>
-            <option value="retro">📻 Retro / Old Season</option>
-            <option value="limited">💎 Limited Edition</option>
+            <option value="" disabled>Chagua / Choisir…</option>
+            <option value="wc2026" selected>🌍 World Cup 2026 / Kombe la Dunia 2026</option>
+            <option value="club">⚽ Club Jersey / Jezi ya Klabu (26/27 Pre-order)</option>
+            <option value="retro">📻 Retro / Old Season / Zamani</option>
+            <option value="limited">💎 Limited Edition / Maalum</option>
           </select>
         </div>
 
@@ -919,78 +919,53 @@
 
         <!-- WORLD CUP: Country selector -->
         <div class="form-group full form-step" id="step-country" style="display:none;">
-          <label for="f-country">Select Country <span class="req">*</span></label>
+          <label for="f-country">Chagua Nchi / Sélectionner le Pays / Select Country <span class="req">*</span></label>
           <select id="f-country" onchange="onCountryChange()">
-            <option value="" disabled selected>Choose country...</option>
-            <optgroup label="Africa">
-              <option>🇰🇪 Kenya</option>
-              <option>🇳🇬 Nigeria</option>
-              <option>🇲🇦 Morocco</option>
-              <option>🇨🇲 Cameroon</option>
-              <option>🇿🇦 South Africa</option>
-              <option>🇸🇳 Senegal</option>
-              <option>🇪🇬 Egypt</option>
+            <option value="" disabled selected>Chagua nchi… / Choisir un pays…</option>
+            <optgroup label="🌍 Afrika / Afrique — WC 2026">
+              <option>🇩🇿 Algeria / Algérie</option>
+              <option>🇨🇻 Cape Verde / Cap-Vert</option>
+              <option>🇨🇮 Côte d'Ivoire / Ivory Coast</option>
+              <option>🇨🇩 DR Congo / RD Congo</option>
+              <option>🇪🇬 Egypt / Égypte</option>
               <option>🇬🇭 Ghana</option>
-              <option>🇹🇳 Tunisia</option>
-              <option>🇨🇮 Ivory Coast</option>
-              <option>🇺🇬 Uganda</option>
-              <option>🇹🇿 Tanzania</option>
+              <option>🇲🇦 Morocco / Maroc</option>
+              <option>🇸🇳 Senegal / Sénégal</option>
+              <option>🇹🇳 Tunisia / Tunisie</option>
             </optgroup>
-            <optgroup label="Europe">
-              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
+            <optgroup label="🌍 Afrika / Afrique — Mengine / Autres">
+              <option>🇨🇲 Cameroon / Cameroun</option>
+              <option>🇳🇬 Nigeria</option>
+            </optgroup>
+            <optgroup label="🇪🇺 Ulaya / Europe — WC 2026">
+              <option>🇧🇪 Belgium / Belgique</option>
+              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England / Angleterre</option>
               <option>🇫🇷 France</option>
-              <option>🇪🇸 Spain</option>
-              <option>🇩🇪 Germany</option>
+              <option>🇩🇪 Germany / Allemagne</option>
+              <option>🇳🇱 Netherlands / Pays-Bas</option>
               <option>🇵🇹 Portugal</option>
-              <option>🇳🇱 Netherlands</option>
-              <option>🇧🇪 Belgium</option>
-              <option>🇵🇱 Poland</option>
-              <option>🇨🇭 Switzerland</option>
-              <option>🇭🇷 Croatia</option>
-              <option>🇩🇰 Denmark</option>
-              <option>🇸🇪 Sweden</option>
-              <option>🇦🇹 Austria</option>
-              <option>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</option>
-              <option>🇷🇸 Serbia</option>
-              <option>🇺🇦 Ukraine</option>
-              <option>🇹🇷 Turkey</option>
+              <option>🇪🇸 Spain / Espagne</option>
             </optgroup>
-            <optgroup label="South America">
-              <option>🇧🇷 Brazil</option>
-              <option>🇦🇷 Argentina</option>
-              <option>🇺🇾 Uruguay</option>
-              <option>🇨🇴 Colombia</option>
-              <option>🇨🇱 Chile</option>
-              <option>🇪🇨 Ecuador</option>
-              <option>🇵🇾 Paraguay</option>
-              <option>🇵🇪 Peru</option>
-              <option>🇻🇪 Venezuela</option>
-              <option>🇧🇴 Bolivia</option>
-            </optgroup>
-            <optgroup label="North &amp; Central America">
-              <option>🇺🇸 USA</option>
-              <option>🇲🇽 Mexico</option>
+            <optgroup label="🌎 Amerika Kaskazini / Amérique du Nord — WC 2026">
               <option>🇨🇦 Canada</option>
-              <option>🇨🇷 Costa Rica</option>
-              <option>🇯🇲 Jamaica</option>
-              <option>🇵🇦 Panama</option>
-              <option>🇭🇳 Honduras</option>
+              <option>🇲🇽 Mexico / Mexique</option>
+              <option>🇺🇸 United States / États-Unis</option>
             </optgroup>
-            <optgroup label="Asia &amp; Others">
-              <option>🇯🇵 Japan</option>
-              <option>🇰🇷 South Korea</option>
-              <option>🇸🇦 Saudi Arabia</option>
-              <option>🇦🇺 Australia</option>
-              <option>🇮🇷 Iran</option>
-              <option>🇶🇦 Qatar</option>
-              <option>🇨🇳 China</option>
+            <optgroup label="🌎 Amerika Kusini / Amérique du Sud — WC 2026">
+              <option>🇦🇷 Argentina / Argentine</option>
+              <option>🇧🇷 Brazil / Brésil</option>
+              <option>🇨🇴 Colombia / Colombie</option>
             </optgroup>
-            <option value="other-country">Other country (type below)</option>
+            <optgroup label="🌏 Asia / Asie — WC 2026">
+              <option>🇯🇵 Japan / Japon</option>
+              <option>🇰🇷 South Korea / Corée du Sud</option>
+            </optgroup>
+            <option value="other-country">Nchi nyingine / Autre pays (andika hapa)</option>
           </select>
         </div>
         <div class="form-group full form-step" id="step-country-other" style="display:none;">
-          <label for="f-country-other">Type your country</label>
-          <input type="text" id="f-country-other" placeholder="e.g. Algeria, Zimbabwe..." />
+          <label for="f-country-other">Andika nchi yako / Écris ton pays / Type your country</label>
+          <input type="text" id="f-country-other" placeholder="mf. Algeria, Zimbabwe..." />
         </div>
 
         <!-- RETRO: team + year -->
@@ -1011,11 +986,11 @@
 
         <!-- Kit type -->
         <div class="form-group form-step" id="step-kit" style="display:none;">
-          <label for="f-kit">Kit Type <span class="req">*</span></label>
+          <label for="f-kit">Aina ya Kit / Type de Kit / Kit Type <span class="req">*</span></label>
           <select id="f-kit">
-            <option value="" disabled selected>Choose...</option>
-            <option>Home</option>
-            <option>Away</option>
+            <option value="" disabled selected>Chagua… / Choisir…</option>
+            <option>Home / Nyumbani / Domicile</option>
+            <option>Away / Nje / Extérieur</option>
           </select>
         </div>
 
@@ -1032,7 +1007,7 @@
 
         <!-- Size -->
         <div class="form-group form-step" id="step-size" style="display:none;">
-          <label for="f-size">Size <span class="req">*</span> <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;">Size Guide ↑</a></label>
+          <label for="f-size">Saizi / Taille / Size <span class="req">*</span> <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;">Size Guide / Mwongozo ↑</a></label>
           <select id="f-size">
             <option value="" disabled selected>Pick size...</option>
             <option>XS</option><option>S</option><option>M</option>
@@ -1521,7 +1496,9 @@
       var raw = val('f-country') === 'other-country'
         ? document.getElementById('f-country-other').value.trim()
         : val('f-country');
-      jerseyDesc = 'World Cup 2026 - ' + stripFlags(raw);
+      // Clean up bilingual text: take only the first name before " / "
+      var cleaned = stripFlags(raw).split('/')[0].trim();
+      jerseyDesc = 'World Cup 2026 - ' + cleaned;
     } else if (cat === 'retro') {
       jerseyDesc = 'Retro - ' + document.getElementById('f-retro-team').value.trim()
                   + ' ' + document.getElementById('f-retro-year').value.trim();
@@ -1629,7 +1606,7 @@
   /* ═══════════════════════════════════
      VIEW TOGGLE (grid4 / grid2 / list)
   ═══════════════════════════════════ */
-  var currentView = 'grid4';
+  var currentView = 'list';
   function setView(view, btn) {
     currentView = view;
     document.querySelectorAll('.view-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -1806,6 +1783,15 @@
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // Set default view to list on load
+  window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.gallery-grid').forEach(function(g) {
+      g.classList.add('view-list');
+    });
+    // WC2026 is pre-selected — show its form steps immediately
+    onCategoryChange();
+  });
 
   // Init reviews on page load
   window.addEventListener('DOMContentLoaded', function() {
