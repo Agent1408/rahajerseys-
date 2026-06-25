@@ -279,6 +279,9 @@
     .pochi-details { display:flex; flex-wrap:wrap; gap:.4rem 1rem; align-items:center; font-size:.875rem; color:var(--text); }
     .pochi-details strong { font-size:1rem; color:var(--green-dark); font-weight:700; }
 
+    .lang-switcher { display:flex; gap:.35rem; align-items:center; margin-left:.5rem; }
+    .lang-btn { background:transparent; border:1.5px solid rgba(255,255,255,.3); border-radius:50px; color:rgba(255,255,255,.75); font-size:.72rem; font-weight:700; padding:.25rem .65rem; cursor:pointer; font-family:'Inter',sans-serif; transition:all .2s; letter-spacing:.5px; }
+    .lang-btn.active, .lang-btn:hover { background:var(--accent); border-color:var(--accent); color:var(--text); }
     /* ── MOBILE ── */
     @media (max-width:640px) {
       .review-form-grid { grid-template-columns:1fr; }
@@ -294,23 +297,28 @@
 <nav>
   <a href="#" class="nav-logo">RAHA ⚽</a>
   <ul class="nav-links">
-    <li><a href="#pricing">Prices</a></li>
-    <li><a href="#jerseys">Jerseys</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#size-guide">Size Guide</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+    <li><a href="#pricing" data-i18n="nav_prices">Prices</a></li>
+    <li><a href="#jerseys" data-i18n="nav_jerseys">Jerseys</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
+    <li><a href="#size-guide" data-i18n="nav_size">Size Guide</a></li>
+    <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav_order">Order Now</a></li>
   </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('sw')">SW</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-badge">⚡ World Cup 2026 Kits Now In Stock</div>
+  <div class="hero-badge" data-i18n="hero_badge">⚡ World Cup 2026 Kits Now In Stock</div>
   <h1>RAHA<br /><span>JERSEYS</span></h1>
-  <p>Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
+  <p data-i18n="hero_sub">Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
   <div class="hero-btns">
-    <a href="#contact" class="btn-primary">📲 Order Now</a>
-    <a href="#gallery" class="btn-secondary">View Gallery</a>
+    <a href="#contact" class="btn-primary" data-i18n="hero_cta_order">📲 Order Now</a>
+    <a href="#gallery" class="btn-secondary" data-i18n="hero_cta_gallery">View Gallery</a>
   </div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num">4</div><div class="lbl">Kit Types</div></div>
@@ -336,7 +344,7 @@
       <div class="price-card">
         <div class="jersey-type">Retro Version</div>
         <div class="jersey-desc">Classic &amp; old season drops</div>
-        <div class="price">1,300 <span>KSh</span></div>
+        <div class="price">2,200 <span>KSh</span></div>
       </div>
       <div class="price-card">
         <div class="jersey-type">Limited Edition</div>
@@ -513,14 +521,12 @@
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Germany')"><img class="gallery-img" src="images/germany-home-2026.jpg" alt="Germany Home" onerror="this.src='https://placehold.co/400x533/1a1a1a/ffffff?text=Germany+Home'"/><div class="gallery-label"><div class="team">🇩🇪 Germany</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Ghana')"><img class="gallery-img" src="images/ghana-home-2026.jpg" alt="Ghana Home" onerror="this.src='https://placehold.co/400x533/f5f5f5/1a1a1a?text=Ghana+Home'"/><div class="gallery-label"><div class="team">🇬🇭 Ghana</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Ivory Coast')"><img class="gallery-img" src="images/ivory-coast-home-2026.jpg" alt="Ivory Coast Home" onerror="this.src='https://placehold.co/400x533/F77F00/ffffff?text=Ivory+Coast+Home'"/><div class="gallery-label"><div class="team">🇨🇮 Ivory Coast</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('wc2026','','Japan')"><img class="gallery-img" src="images/japan-home-2026.jpg" alt="Japan Home" onerror="this.src='https://placehold.co/400x533/000080/ffffff?text=Japan+Home'"/><div class="gallery-label"><div class="team">🇯🇵 Japan</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Mexico')"><img class="gallery-img" src="images/mexico-home-2026.jpg" alt="Mexico Home" onerror="this.src='https://placehold.co/400x533/006847/ffffff?text=Mexico+Home'"/><div class="gallery-label"><div class="team">🇲🇽 Mexico</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')"><img class="gallery-img" src="images/morocco-home-2026.jpg" alt="Morocco Home" onerror="this.src='https://placehold.co/400x533/C1272D/ffffff?text=Morocco+Home'"/><div class="gallery-label"><div class="team">🇲🇦 Morocco</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Netherlands')"><img class="gallery-img" src="images/netherlands-home-2026.jpg" alt="Netherlands Home" onerror="this.src='https://placehold.co/400x533/FF6600/ffffff?text=Netherlands+Home'"/><div class="gallery-label"><div class="team">🇳🇱 Netherlands</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Portugal')"><img class="gallery-img" src="images/portugal-home-2026.jpg" alt="Portugal Home" onerror="this.src='https://placehold.co/400x533/006600/ffffff?text=Portugal+Home'"/><div class="gallery-label"><div class="team">🇵🇹 Portugal</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Senegal')"><img class="gallery-img" src="images/senegal-home-2026.jpg" alt="Senegal Home" onerror="this.src='https://placehold.co/400x533/00853F/ffffff?text=Senegal+Home'"/><div class="gallery-label"><div class="team">🇸🇳 Senegal</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','South Africa')"><img class="gallery-img" src="images/south-africa-home-2026.jpg" alt="South Africa Home" onerror="this.src='https://placehold.co/400x533/007A4D/ffffff?text=S.Africa+Home'"/><div class="gallery-label"><div class="team">🇿🇦 South Africa</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Korea')"><img class="gallery-img" src="images/south-korea-home-2026.jpg" alt="South Korea Home" onerror="this.src='https://placehold.co/400x533/C60C30/ffffff?text=S.Korea+Home'"/><div class="gallery-label"><div class="team">🇰🇷 South Korea</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Spain')"><img class="gallery-img" src="images/spain-home-2026.jpg" alt="Spain Home" onerror="this.src='https://placehold.co/400x533/AA151B/ffffff?text=Spain+Home'"/><div class="gallery-label"><div class="team">🇪🇸 Spain</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','United States')"><img class="gallery-img" src="images/usa-home-2026.jpg" alt="USA Home" onerror="this.src='https://placehold.co/400x533/002868/ffffff?text=USA+Home'"/><div class="gallery-label"><div class="team">🇺🇸 United States</div><div class="kit-type">World Cup 2026 · Home</div><div class="gallery-price">From 1,000 KSh</div></div></div>
       </div>
@@ -540,14 +546,12 @@
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Germany')"><img class="gallery-img" src="images/germany-away-2026.jpg" alt="Germany Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/1a1a1a?text=Germany+Away'"/><div class="gallery-label"><div class="team">🇩🇪 Germany</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Ghana')"><img class="gallery-img" src="images/ghana-away-2026.jpg" alt="Ghana Away" onerror="this.src='https://placehold.co/400x533/006B3F/ffffff?text=Ghana+Away'"/><div class="gallery-label"><div class="team">🇬🇭 Ghana</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Ivory Coast')"><img class="gallery-img" src="images/ivory-coast-away-2026.jpg" alt="Ivory Coast Away" onerror="this.src='https://placehold.co/400x533/009A44/ffffff?text=Ivory+Coast+Away'"/><div class="gallery-label"><div class="team">🇨🇮 Ivory Coast</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('wc2026','','Japan')"><img class="gallery-img" src="images/japan-away-2026.jpg" alt="Japan Away" onerror="this.src='https://placehold.co/400x533/BC002D/ffffff?text=Japan+Away'"/><div class="gallery-label"><div class="team">🇯🇵 Japan</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Mexico')"><img class="gallery-img" src="images/mexico-away-2026.jpg" alt="Mexico Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Mexico+Away'"/><div class="gallery-label"><div class="team">🇲🇽 Mexico</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')"><img class="gallery-img" src="images/morocco-away-2026.jpg" alt="Morocco Away" onerror="this.src='https://placehold.co/400x533/006233/ffffff?text=Morocco+Away'"/><div class="gallery-label"><div class="team">🇲🇦 Morocco</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Netherlands')"><img class="gallery-img" src="images/netherlands-away-2026.jpg" alt="Netherlands Away" onerror="this.src='https://placehold.co/400x533/003087/FF6600?text=Netherlands+Away'"/><div class="gallery-label"><div class="team">🇳🇱 Netherlands</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Portugal')"><img class="gallery-img" src="images/portugal-away-2026.jpg" alt="Portugal Away" onerror="this.src='https://placehold.co/400x533/CE1126/ffffff?text=Portugal+Away'"/><div class="gallery-label"><div class="team">🇵🇹 Portugal</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Senegal')"><img class="gallery-img" src="images/senegal-away-2026.jpg" alt="Senegal Away" onerror="this.src='https://placehold.co/400x533/FCD116/00853F?text=Senegal+Away'"/><div class="gallery-label"><div class="team">🇸🇳 Senegal</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','South Africa')"><img class="gallery-img" src="images/south-africa-away-2026.jpg" alt="South Africa Away" onerror="this.src='https://placehold.co/400x533/FFB81C/007A4D?text=S.Africa+Away'"/><div class="gallery-label"><div class="team">🇿🇦 South Africa</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('wc2026','','South Korea')"><img class="gallery-img" src="images/south-korea-away-2026.jpg" alt="South Korea Away" onerror="this.src='https://placehold.co/400x533/f5f5f5/C60C30?text=S.Korea+Away'"/><div class="gallery-label"><div class="team">🇰🇷 South Korea</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','Spain')"><img class="gallery-img" src="images/spain-away-2026.jpg" alt="Spain Away" onerror="this.src='https://placehold.co/400x533/003087/ffffff?text=Spain+Away'"/><div class="gallery-label"><div class="team">🇪🇸 Spain</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
         <div class="gallery-item" onclick="prefillOrder('wc2026','','United States')"><img class="gallery-img" src="images/usa-away-2026.jpg" alt="USA Away" onerror="this.src='https://placehold.co/400x533/BF0A30/ffffff?text=USA+Away'"/><div class="gallery-label"><div class="team">🇺🇸 United States</div><div class="kit-type">World Cup 2026 · Away</div><div class="gallery-price">From 1,000 KSh</div></div></div>
       </div>
@@ -581,12 +585,12 @@
     ═══════════════════════════════════ -->
     <div id="panel-retro" style="display:none">
       <div class="gallery-grid">
-        <div class="gallery-item" onclick="prefillOrder('retro','','Brazil 1970')"><img class="gallery-img" src="images/brazil-retro-1970.jpg" alt="Brazil 1970" onerror="this.src='https://placehold.co/400x533/F4C430/009C3B?text=Brazil+1970'"/><div class="gallery-label"><div class="team">🇧🇷 Brazil 1970</div><div class="kit-type">Retro · Classic</div><div class="gallery-price">1,300 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')"><img class="gallery-img" src="images/argentina-retro-1986.jpg" alt="Argentina 1986" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">Retro · Maradona Era</div><div class="gallery-price">1,300 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('retro','','France 1998')"><img class="gallery-img" src="images/france-retro-1998.jpg" alt="France 1998" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+1998'"/><div class="gallery-label"><div class="team">🇫🇷 France 1998</div><div class="kit-type">Retro · World Cup Winners</div><div class="gallery-price">1,300 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('retro','','Manchester United 1999')"><img class="gallery-img" src="images/man-united-retro-1999.jpg" alt="Man United 1999" onerror="this.src='https://placehold.co/400x533/DA291C/FFE500?text=Man+Utd+1999'"/><div class="gallery-label"><div class="team">🔴 Man United 1999</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('retro','','AC Milan 2003')"><img class="gallery-img" src="images/ac-milan-retro-2003.jpg" alt="AC Milan 2003" onerror="this.src='https://placehold.co/400x533/FB090B/1a1a1a?text=AC+Milan+2003'"/><div class="gallery-label"><div class="team">🔴⚫ AC Milan 2003</div><div class="kit-type">Retro · UCL Winners</div><div class="gallery-price">1,300 KSh</div></div></div>
-        <div class="gallery-item" onclick="prefillOrder('retro','','Barcelona 2009')"><img class="gallery-img" src="images/barcelona-retro-2009.jpg" alt="Barcelona 2009" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+2009'"/><div class="gallery-label"><div class="team">🔴🔵 Barcelona 2009</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">1,300 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Brazil 1970')"><img class="gallery-img" src="images/brazil-retro-1970.jpg" alt="Brazil 1970" onerror="this.src='https://placehold.co/400x533/F4C430/009C3B?text=Brazil+1970'"/><div class="gallery-label"><div class="team">🇧🇷 Brazil 1970</div><div class="kit-type">Retro · Classic</div><div class="gallery-price">2,200 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')"><img class="gallery-img" src="images/argentina-retro-1986.jpg" alt="Argentina 1986" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">Retro · Maradona Era</div><div class="gallery-price">2,200 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','France 1998')"><img class="gallery-img" src="images/france-retro-1998.jpg" alt="France 1998" onerror="this.src='https://placehold.co/400x533/002395/ffffff?text=France+1998'"/><div class="gallery-label"><div class="team">🇫🇷 France 1998</div><div class="kit-type">Retro · World Cup Winners</div><div class="gallery-price">2,200 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Manchester United 1999')"><img class="gallery-img" src="images/man-united-retro-1999.jpg" alt="Man United 1999" onerror="this.src='https://placehold.co/400x533/DA291C/FFE500?text=Man+Utd+1999'"/><div class="gallery-label"><div class="team">🔴 Man United 1999</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">2,200 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','AC Milan 2003')"><img class="gallery-img" src="images/ac-milan-retro-2003.jpg" alt="AC Milan 2003" onerror="this.src='https://placehold.co/400x533/FB090B/1a1a1a?text=AC+Milan+2003'"/><div class="gallery-label"><div class="team">🔴⚫ AC Milan 2003</div><div class="kit-type">Retro · UCL Winners</div><div class="gallery-price">2,200 KSh</div></div></div>
+        <div class="gallery-item" onclick="prefillOrder('retro','','Barcelona 2009')"><img class="gallery-img" src="images/barcelona-retro-2009.jpg" alt="Barcelona 2009" onerror="this.src='https://placehold.co/400x533/A50044/ffffff?text=Barcelona+2009'"/><div class="gallery-label"><div class="team">🔴🔵 Barcelona 2009</div><div class="kit-type">Retro · Treble Season</div><div class="gallery-price">2,200 KSh</div></div></div>
       </div>
     </div>
 
@@ -608,7 +612,7 @@
       <div class="gallery-item" onclick="prefillOrder('club','epl','Arsenal')"><img class="gallery-img" src="images/arsenal-2627.jpg" onerror="this.src='https://placehold.co/400x533/EF0107/ffffff?text=Arsenal+26%2F27'"/><div class="gallery-label"><div class="team">🔴 Arsenal 26/27</div><div class="kit-type">🔥 Trending</div><div class="gallery-price">1,000 KSh</div></div></div>
       <div class="gallery-item" onclick="prefillOrder('club','laliga','Real Madrid')"><img class="gallery-img" src="images/real-madrid-2627.jpg" onerror="this.src='https://placehold.co/400x533/FEBE10/1a1a1a?text=Real+Madrid+26%2F27'"/><div class="gallery-label"><div class="team">⚪ Real Madrid 26/27</div><div class="kit-type">⭐ Top Seller</div><div class="gallery-price">1,000 KSh</div></div></div>
       <div class="gallery-item" onclick="prefillOrder('wc2026','','Morocco')"><img class="gallery-img" src="images/morocco-home-2026.jpg" onerror="this.src='https://placehold.co/400x533/C1272D/ffffff?text=Morocco+Home'"/><div class="gallery-label"><div class="team">🇲🇦 Morocco Home</div><div class="kit-type">🌍 World Cup Fave</div><div class="gallery-price">1,000 KSh</div></div></div>
-      <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')"><img class="gallery-img" src="images/argentina-retro-1986.jpg" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">📻 Retro Classic</div><div class="gallery-price">1,300 KSh</div></div></div>
+      <div class="gallery-item" onclick="prefillOrder('retro','','Argentina 1986')"><img class="gallery-img" src="images/argentina-retro-1986.jpg" onerror="this.src='https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986'"/><div class="gallery-label"><div class="team">🇦🇷 Argentina 1986</div><div class="kit-type">📻 Retro Classic</div><div class="gallery-price">2,200 KSh</div></div></div>
     </div>
   </div>
 </section>
@@ -819,22 +823,22 @@
 <!-- ORDER FORM -->
 <section id="contact">
   <div class="container">
-    <p class="section-label">Let's Go</p>
-    <h2 class="section-title">PLACE YOUR ORDER</h2>
-    <p class="section-sub">Fill in the details and we'll confirm your order via WhatsApp. Fast &amp; easy.</p>
+    <p class="section-label" data-i18n="order_label">Let's Go</p>
+    <h2 class="section-title" data-i18n="order_title">PLACE YOUR ORDER</h2>
+    <p class="section-sub" data-i18n="order_sub">Fill in the details and we'll confirm your order via WhatsApp. Fast &amp; easy.</p>
 
     <div class="order-form">
       <div class="form-grid">
 
         <!-- Name -->
         <div class="form-group">
-          <label for="f-name">Your Name <span class="req">*</span></label>
-          <input type="text" id="f-name" placeholder="e.g. Brian Mutua" />
-          <span class="error-msg" id="err-name">Please enter your name</span>
+          <label for="f-name"><span data-i18n="name_label">Your Name</span> <span class="req">*</span></label>
+          <input type="text" id="f-name" data-i18n-ph="name_ph" placeholder="e.g. Brian Mutua" />
+          <span class="error-msg" id="err-name" data-i18n="err_name">Please enter your name</span>
         </div>
         <!-- Phone -->
         <div class="form-group">
-          <label for="f-phone-num">Phone / WhatsApp <span class="req">*</span></label>
+          <label for="f-phone-num"><span data-i18n="phone_label">Phone / WhatsApp</span> <span class="req">*</span></label>
           <div class="phone-row">
             <select id="f-dial" class="phone-code">
               <option value="+254">🇰🇪 +254</option>
@@ -877,21 +881,21 @@
 
         <!-- Jersey Category -->
         <div class="form-group full">
-          <label for="f-category">Aina ya Jezi / Type de Maillot / What type of jersey? <span class="req">*</span></label>
+          <label for="f-category"><span data-i18n="cat_label">What type of jersey?</span> <span class="req">*</span></label>
           <select id="f-category" onchange="onCategoryChange()">
-            <option value="" disabled>Chagua / Choisir…</option>
-            <option value="wc2026" selected>🌍 World Cup 2026 / Kombe la Dunia 2026</option>
-            <option value="club">⚽ Club Jersey / Jezi ya Klabu (26/27 Pre-order)</option>
-            <option value="retro">📻 Retro / Old Season / Zamani</option>
-            <option value="limited">💎 Limited Edition / Maalum</option>
+            <option value="" disabled data-i18n-opt="cat_placeholder">Choose category…</option>
+            <option value="wc2026" selected data-i18n-opt="cat_wc">🌍 World Cup 2026</option>
+            <option value="club" data-i18n-opt="cat_club">⚽ Club Jersey (26/27 Pre-order)</option>
+            <option value="retro" data-i18n-opt="cat_retro">📻 Retro / Old Season</option>
+            <option value="limited" data-i18n-opt="cat_limited">💎 Limited Edition</option>
           </select>
         </div>
 
         <!-- CLUB: League selector -->
         <div class="form-group full form-step" id="step-league" style="display:none;">
-          <label for="f-league">Select League <span class="req">*</span></label>
+          <label for="f-league"><span data-i18n="league_label">Select League</span> <span class="req">*</span></label>
           <select id="f-league" onchange="onLeagueChange()">
-            <option value="" disabled selected>Choose league...</option>
+            <option value="" disabled selected data-i18n-opt="league_placeholder">Choose league...</option>
             <option value="epl">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
             <option value="laliga">🇪🇸 La Liga</option>
             <option value="bundesliga">🇩🇪 Bundesliga</option>
@@ -899,117 +903,113 @@
             <option value="ligue1">🇫🇷 Ligue 1</option>
             <option value="mls">🇺🇸 MLS</option>
             <option value="ucl">🏆 Champions League Clubs</option>
-            <option value="other-club">🌍 Other / Not Listed</option>
+            <option value="other-club" data-i18n-opt="league_other">🌍 Other / Not Listed</option>
           </select>
         </div>
 
         <!-- CLUB: Club selector (populated by JS) -->
         <div class="form-group full form-step" id="step-club" style="display:none;">
-          <label for="f-club">Select Club <span class="req">*</span></label>
+          <label for="f-club"><span data-i18n="club_label">Select Club</span> <span class="req">*</span></label>
           <select id="f-club">
-            <option value="" disabled selected>Choose club...</option>
+            <option value="" disabled selected data-i18n-opt="club_placeholder">Choose club...</option>
           </select>
         </div>
 
         <!-- CLUB: other club text -->
         <div class="form-group full form-step" id="step-club-other" style="display:none;">
-          <label for="f-club-other">Type your club name</label>
-          <input type="text" id="f-club-other" placeholder="e.g. Gor Mahia, Kaizer Chiefs..." />
+          <label for="f-club-other" data-i18n="club_other_label">Type your club name</label>
+          <input type="text" id="f-club-other" data-i18n-ph="club_other_ph" placeholder="e.g. Gor Mahia, Kaizer Chiefs..." />
         </div>
 
         <!-- WORLD CUP: Country selector -->
         <div class="form-group full form-step" id="step-country" style="display:none;">
-          <label for="f-country">Chagua Nchi / Sélectionner le Pays / Select Country <span class="req">*</span></label>
+          <label for="f-country"><span data-i18n="country_label">Select Country</span> <span class="req">*</span></label>
           <select id="f-country" onchange="onCountryChange()">
-            <option value="" disabled selected>Chagua nchi… / Choisir un pays…</option>
-            <optgroup label="🌍 Afrika / Afrique — WC 2026">
-              <option>🇩🇿 Algeria / Algérie</option>
-              <option>🇨🇻 Cape Verde / Cap-Vert</option>
-              <option>🇨🇮 Côte d'Ivoire / Ivory Coast</option>
-              <option>🇨🇩 DR Congo / RD Congo</option>
-              <option>🇪🇬 Egypt / Égypte</option>
+            <option value="" disabled selected data-i18n-opt="country_placeholder">Choose country…</option>
+            <optgroup label="🌍 Africa — WC 2026" data-i18n-grp="africa_wc">
+              <option>🇩🇿 Algeria</option>
+              <option>🇨🇻 Cape Verde</option>
+              <option>🇨🇮 Côte d'Ivoire</option>
+              <option>🇨🇩 DR Congo</option>
+              <option>🇪🇬 Egypt</option>
               <option>🇬🇭 Ghana</option>
-              <option>🇲🇦 Morocco / Maroc</option>
-              <option>🇸🇳 Senegal / Sénégal</option>
-              <option>🇹🇳 Tunisia / Tunisie</option>
+              <option>🇲🇦 Morocco</option>
+              <option>🇸🇳 Senegal</option>
+              <option>🇹🇳 Tunisia</option>
             </optgroup>
-            <optgroup label="🌍 Afrika / Afrique — Mengine / Autres">
-              <option>🇨🇲 Cameroon / Cameroun</option>
+            <optgroup label="🌍 Africa — Others" data-i18n-grp="africa_other">
+              <option>🇨🇲 Cameroon</option>
               <option>🇳🇬 Nigeria</option>
             </optgroup>
-            <optgroup label="🇪🇺 Ulaya / Europe — WC 2026">
-              <option>🇧🇪 Belgium / Belgique</option>
-              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England / Angleterre</option>
+            <optgroup label="🇪🇺 Europe — WC 2026" data-i18n-grp="europe_wc">
+              <option>🇧🇪 Belgium</option>
+              <option>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
               <option>🇫🇷 France</option>
-              <option>🇩🇪 Germany / Allemagne</option>
-              <option>🇳🇱 Netherlands / Pays-Bas</option>
+              <option>🇩🇪 Germany</option>
+              <option>🇳🇱 Netherlands</option>
               <option>🇵🇹 Portugal</option>
-              <option>🇪🇸 Spain / Espagne</option>
+              <option>🇪🇸 Spain</option>
             </optgroup>
-            <optgroup label="🌎 Amerika Kaskazini / Amérique du Nord — WC 2026">
+            <optgroup label="🌎 North & Central America — WC 2026" data-i18n-grp="concacaf">
               <option>🇨🇦 Canada</option>
-              <option>🇲🇽 Mexico / Mexique</option>
-              <option>🇺🇸 United States / États-Unis</option>
+              <option>🇲🇽 Mexico</option>
+              <option>🇺🇸 United States</option>
             </optgroup>
-            <optgroup label="🌎 Amerika Kusini / Amérique du Sud — WC 2026">
-              <option>🇦🇷 Argentina / Argentine</option>
-              <option>🇧🇷 Brazil / Brésil</option>
-              <option>🇨🇴 Colombia / Colombie</option>
+            <optgroup label="🌎 South America — WC 2026" data-i18n-grp="conmebol">
+              <option>🇦🇷 Argentina</option>
+              <option>🇧🇷 Brazil</option>
+              <option>🇨🇴 Colombia</option>
             </optgroup>
-            <optgroup label="🌏 Asia / Asie — WC 2026">
-              <option>🇯🇵 Japan / Japon</option>
-              <option>🇰🇷 South Korea / Corée du Sud</option>
-            </optgroup>
-            <option value="other-country">Nchi nyingine / Autre pays (andika hapa)</option>
+            <option value="other-country" data-i18n-opt="country_other">Other country (type below)</option>
           </select>
         </div>
         <div class="form-group full form-step" id="step-country-other" style="display:none;">
-          <label for="f-country-other">Andika nchi yako / Écris ton pays / Type your country</label>
-          <input type="text" id="f-country-other" placeholder="mf. Algeria, Zimbabwe..." />
+          <label for="f-country-other" data-i18n="country_other_label">Type your country</label>
+          <input type="text" id="f-country-other" data-i18n-ph="country_other_ph" placeholder="e.g. Algeria, Zimbabwe..." />
         </div>
 
         <!-- RETRO: team + year -->
         <div class="form-group form-step" id="step-retro-team" style="display:none;">
-          <label for="f-retro-team">Team Name</label>
-          <input type="text" id="f-retro-team" placeholder="e.g. Brazil, Arsenal..." />
+          <label for="f-retro-team" data-i18n="retro_team_label">Team Name</label>
+          <input type="text" id="f-retro-team" data-i18n-ph="retro_team_ph" placeholder="e.g. Brazil, Arsenal..." />
         </div>
         <div class="form-group form-step" id="step-retro-year" style="display:none;">
-          <label for="f-retro-year">Season / Year</label>
-          <input type="text" id="f-retro-year" placeholder="e.g. 1998, 2005/06..." />
+          <label for="f-retro-year" data-i18n="retro_year_label">Season / Year</label>
+          <input type="text" id="f-retro-year" data-i18n-ph="retro_year_ph" placeholder="e.g. 1998, 2005/06..." />
         </div>
 
         <!-- LIMITED: description -->
         <div class="form-group full form-step" id="step-limited" style="display:none;">
-          <label for="f-limited">Describe the jersey</label>
-          <input type="text" id="f-limited" placeholder="e.g. Man United Lunar New Year 2025..." />
+          <label for="f-limited" data-i18n="limited_label">Describe the jersey</label>
+          <input type="text" id="f-limited" data-i18n-ph="limited_ph" placeholder="e.g. Man United Lunar New Year 2025..." />
         </div>
 
         <!-- Kit type -->
         <div class="form-group form-step" id="step-kit" style="display:none;">
-          <label for="f-kit">Aina ya Kit / Type de Kit / Kit Type <span class="req">*</span></label>
+          <label for="f-kit"><span data-i18n="kit_label">Kit Type</span> <span class="req">*</span></label>
           <select id="f-kit">
-            <option value="" disabled selected>Chagua… / Choisir…</option>
-            <option>Home / Nyumbani / Domicile</option>
-            <option>Away / Nje / Extérieur</option>
+            <option value="" disabled selected data-i18n-opt="kit_placeholder">Choose…</option>
+            <option data-i18n-opt="kit_home">Home</option>
+            <option data-i18n-opt="kit_away">Away</option>
           </select>
         </div>
 
         <!-- Version -->
         <div class="form-group form-step" id="step-version" style="display:none;">
-          <label for="f-version">Version <span class="req">*</span></label>
+          <label for="f-version"><span data-i18n="version_label">Version</span> <span class="req">*</span></label>
           <select id="f-version" onchange="calcPrice()">
-            <option value="" disabled selected>Choose...</option>
+            <option value="" disabled selected data-i18n-opt="version_placeholder">Choose...</option>
             <option value="Pro – KSh 1,000" class="opt-pro">Pro – KSh 1,000</option>
-            <option value="Retro – KSh 1,300" class="opt-retro">Retro – KSh 1,300</option>
+            <option value="Retro – KSh 2,200" class="opt-retro">Retro – KSh 2,200</option>
             <option value="Limited Edition – KSh 2,000" class="opt-limited">Limited Edition – KSh 2,000</option>
           </select>
         </div>
 
         <!-- Size -->
         <div class="form-group form-step" id="step-size" style="display:none;">
-          <label for="f-size">Saizi / Taille / Size <span class="req">*</span> <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;">Size Guide / Mwongozo ↑</a></label>
+          <label for="f-size"><span data-i18n="size_label">Size</span> <span class="req">*</span> <a href="#size-guide" style="font-size:.75rem;color:var(--green);font-weight:600;margin-left:.4rem;" data-i18n="size_guide_link">Size Guide ↑</a></label>
           <select id="f-size">
-            <option value="" disabled selected>Pick size...</option>
+            <option value="" disabled selected data-i18n-opt="size_placeholder">Pick size...</option>
             <option>XS</option><option>S</option><option>M</option>
             <option>L</option><option>XL</option><option>XXL</option>
           </select>
@@ -1017,71 +1017,71 @@
 
         <!-- Pieces -->
         <div class="form-group form-step" id="step-pieces" style="display:none;">
-          <label for="f-pieces">Pieces <span class="req">*</span></label>
+          <label for="f-pieces"><span data-i18n="pieces_label">Pieces</span> <span class="req">*</span></label>
           <select id="f-pieces" onchange="calcPrice()">
-            <option value="" disabled selected>How many?</option>
+            <option value="" disabled selected data-i18n-opt="pieces_placeholder">How many?</option>
             <option>1</option><option>2</option><option>3</option>
-            <option>4+ (Discount applies!)</option>
+            <option data-i18n-opt="pieces_bulk">4+ (Discount applies!)</option>
           </select>
         </div>
 
         <!-- Printing -->
         <div class="form-group full form-step" id="step-print" style="display:none;">
-          <label for="f-print">Add Name &amp; Number Printing? (+KSh 300) <span class="req">*</span></label>
+          <label for="f-print"><span data-i18n="print_label">Add Name &amp; Number Printing? (+KSh 300)</span> <span class="req">*</span></label>
           <select id="f-print" onchange="onPrintChange(); calcPrice();">
-            <option value="" disabled selected>Choose...</option>
-            <option value="yes">Yes – add KSh 300</option>
-            <option value="no">No thanks</option>
+            <option value="" disabled selected data-i18n-opt="version_placeholder">Choose...</option>
+            <option value="yes" data-i18n-opt="print_yes">Yes – add KSh 300</option>
+            <option value="no" data-i18n-opt="print_no">No thanks</option>
           </select>
         </div>
 
         <!-- Printing details (shown only if yes) -->
         <div class="form-group form-step" id="step-print-name" style="display:none;">
-          <label for="f-print-name">Name to Print</label>
-          <input type="text" id="f-print-name" placeholder="e.g. SAKA" />
+          <label for="f-print-name" data-i18n="print_name_label">Name to Print</label>
+          <input type="text" id="f-print-name" data-i18n-ph="print_name_ph" placeholder="e.g. SAKA" />
         </div>
         <div class="form-group form-step" id="step-print-number" style="display:none;">
-          <label for="f-print-number">Number to Print</label>
-          <input type="text" id="f-print-number" placeholder="e.g. 7" />
+          <label for="f-print-number" data-i18n="print_num_label">Number to Print</label>
+          <input type="text" id="f-print-number" data-i18n-ph="print_num_ph" placeholder="e.g. 7" />
         </div>
 
         <!-- Extra notes -->
         <div class="form-group full form-step" id="step-notes" style="display:none;">
-          <label for="f-notes">Any extra notes? (optional)</label>
-          <textarea id="f-notes" placeholder="e.g. specific badge, long sleeve, gift wrap..."></textarea>
+          <label for="f-notes" data-i18n="notes_label">Any extra notes? (optional)</label>
+          <textarea id="f-notes" data-i18n-ph="notes_ph" placeholder="e.g. specific badge, long sleeve, gift wrap..."></textarea>
         </div>
 
       </div>
       <!-- ORDER SUMMARY + PRICE CALCULATOR -->
       <div class="order-summary-box form-step" id="step-summary" style="display:none;">
-        <h4 class="summary-title">&#x1F9FE; Order Summary</h4>
+        <h4 class="summary-title">🧾 <span data-i18n="summary_title">Order Summary</span></h4>
         <div class="summary-lines" id="summary-lines"></div>
         <div class="summary-divider"></div>
         <div class="summary-row summary-total">
-          <span>Total</span>
+          <span data-i18n="summary_total">Total</span>
           <span id="summary-total">KSh 0</span>
         </div>
         <div class="summary-row summary-deposit">
-          <span>30% Deposit to pay now</span>
+          <span data-i18n="summary_deposit">30% Deposit to pay now</span>
           <strong id="summary-deposit">KSh 0</strong>
         </div>
         <div class="summary-row summary-balance">
-          <span>Balance on delivery</span>
+          <span data-i18n="summary_balance">Balance on delivery</span>
           <span id="summary-balance">KSh 0</span>
         </div>
         <div class="pochi-box">
-          <p class="pochi-label">Send deposit via Pochi La Biashara:</p>
+          <p class="pochi-label" data-i18n="pochi_label">Send deposit via Pochi La Biashara:</p>
           <div class="pochi-details">
-            <span>&#x1F4F2;</span>
+            <span>📲</span>
             <strong>0710 611 244</strong>
             <span>ESTELLE KANG'ETHE</span>
           </div>
-          <p class="pochi-note">Send M-Pesa screenshot to WhatsApp as proof of payment.</p>
+          <p class="pochi-note" data-i18n="pochi_note">Send M-Pesa screenshot to WhatsApp as proof of payment.</p>
         </div>
       </div>
       <div class="form-submit">
-        <button class="btn-whatsapp" onclick="openWhatsApp()">&#x1F4AC; Send Order on WhatsApp</button>
-        <span class="form-note">Message auto-fills — just tap Send! &#x1F680;</span>
+        <button class="btn-whatsapp" onclick="openWhatsApp()"><span data-i18n="wa_btn">💬 Send Order on WhatsApp</span></button>
+        <span class="form-note" data-i18n="wa_note">Message auto-fills — just tap Send! 🚀</span>
       </div>
     </div>
   </div>
@@ -1090,16 +1090,16 @@
 <!-- WHY US -->
 <section id="why">
   <div class="container">
-    <p class="section-label">Why Raha</p>
-    <h2 class="section-title">HAPPY POCKET, HAPPY CUSTOMER</h2>
-    <p class="section-sub">Here's what makes us different.</p>
+    <p class="section-label" data-i18n="why_label">Why Raha</p>
+    <h2 class="section-title" data-i18n="why_title">HAPPY POCKET, HAPPY CUSTOMER</h2>
+    <p class="section-sub" data-i18n="why_sub">Here's what makes us different.</p>
     <div class="perks">
-      <div class="perk"><span class="perk-icon">✅</span><h3>Top-Tier Quality</h3><p>Premium materials that look and feel great on every version.</p></div>
-      <div class="perk"><span class="perk-icon">💰</span><h3>Unbeatable Prices</h3><p>Starting from just KSh 1,000. Bulk orders of 4+ get a sweet discount.</p></div>
-      <div class="perk"><span class="perk-icon">🏆</span><h3>Massive Variety</h3><p>Club, international, retro, limited edition — whatever your team, we have it.</p></div>
-      <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
-      <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name and number for just KSh 300. Make it yours.</p></div>
-      <div class="perk"><span class="perk-icon">📲</span><h3>Easy Ordering</h3><p>Just WhatsApp us — fast, personal, friendly. No complicated checkout.</p></div>
+      <div class="perk"><span class="perk-icon">✅</span><h3 data-i18n="perk1_title">Top-Tier Quality</h3><p data-i18n="perk1_desc">Premium materials that look and feel great on every version.</p></div>
+      <div class="perk"><span class="perk-icon">💰</span><h3 data-i18n="perk2_title">Unbeatable Prices</h3><p data-i18n="perk2_desc">Starting from just KSh 1,000. Bulk orders of 4+ get a sweet discount.</p></div>
+      <div class="perk"><span class="perk-icon">🏆</span><h3 data-i18n="perk3_title">Massive Variety</h3><p data-i18n="perk3_desc">Club, international, retro, limited edition — whatever your team, we have it.</p></div>
+      <div class="perk"><span class="perk-icon">🚚</span><h3 data-i18n="perk4_title">Fast Delivery</h3><p data-i18n="perk4_desc">Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
+      <div class="perk"><span class="perk-icon">🎨</span><h3 data-i18n="perk5_title">Custom Printing</h3><p data-i18n="perk5_desc">Add your name and number for just KSh 300. Make it yours.</p></div>
+      <div class="perk"><span class="perk-icon">📲</span><h3 data-i18n="perk6_title">Easy Ordering</h3><p data-i18n="perk6_desc">Just WhatsApp us — fast, personal, friendly. No complicated checkout.</p></div>
     </div>
   </div>
 </section>
@@ -1107,56 +1107,20 @@
 <!-- TRUST SECTION -->
 <section id="trust" style="background:var(--pitch);color:white;">
   <div class="container">
-    <p class="section-label" style="color:var(--accent);">Shop With Confidence</p>
-    <h2 class="section-title" style="color:white;">WHY TRUST RAHA JERSEYS</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;">
+    <p class="section-label" style="color:var(--accent);" data-i18n="trust_label">Shop With Confidence</p>
+    <h2 class="section-title" style="color:white;" data-i18n="trust_title">WHY TRUST RAHA JERSEYS</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;" data-i18n="trust_sub">
       We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.
     </p>
     <div class="trust-grid">
-      <div class="trust-item">
-        <span class="trust-icon">&#x2705;</span>
-        <div>
-          <h4>Genuine Products Only</h4>
-          <p>Every jersey we sell is exactly as described — premium quality, no surprises.</p>
-        </div>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">&#x2705;</span>
-        <div>
-          <h4>Clear Pricing, No Hidden Charges</h4>
-          <p>The price you see is the price you pay. Printing is KSh 300 extra — that's it.</p>
-        </div>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">&#x2705;</span>
-        <div>
-          <h4>Fast &amp; Reliable Delivery Across Kenya</h4>
-          <p>We deliver quickly and keep you updated every step of the way.</p>
-        </div>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">&#x2705;</span>
-        <div>
-          <h4>Responsive Customer Support</h4>
-          <p>Our team is available before and after your purchase. We're always here to help.</p>
-        </div>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">&#x2705;</span>
-        <div>
-          <h4>Real Customer Reviews</h4>
-          <p>Read genuine reviews from real customers right here on the site.</p>
-        </div>
-      </div>
-      <div class="trust-item">
-        <span class="trust-icon">&#x1F512;</span>
-        <div>
-          <h4>Secure 30% Deposit Payment</h4>
-          <p>Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p>
-        </div>
-      </div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust1_title">Genuine Products Only</h4><p data-i18n="trust1_desc">Every jersey we sell is exactly as described — premium quality, no surprises.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust2_title">Clear Pricing, No Hidden Charges</h4><p data-i18n="trust2_desc">The price you see is the price you pay. Printing is KSh 300 extra — that's it.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust3_title">Fast &amp; Reliable Delivery Across Kenya</h4><p data-i18n="trust3_desc">We deliver quickly and keep you updated every step of the way.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust4_title">Responsive Customer Support</h4><p data-i18n="trust4_desc">Our team is available before and after your purchase. We're always here to help.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust5_title">Real Customer Reviews</h4><p data-i18n="trust5_desc">Read genuine reviews from real customers right here on the site.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">🔒</span><div><h4 data-i18n="trust6_title">Secure 30% Deposit Payment</h4><p data-i18n="trust6_desc">Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p></div></div>
     </div>
-    <div class="trust-quote">
+    <div class="trust-quote" data-i18n="trust_quote">
       "Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."
     </div>
   </div>
@@ -1165,11 +1129,11 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">RAHA JERSEYS ⚽</span>
-  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
+  <p data-i18n="footer_tagline">Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
   <div class="footer-contacts">
     <a href="tel:+254710611244">📞 0710 611 244</a>
     <a href="tel:+254119485338">📞 0119 485 338</a>
-    <a href="https://wa.me/254710611244" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+    <a href="https://wa.me/254710611244" target="_blank" rel="noopener" data-i18n="footer_wa">💬 WhatsApp Us</a>
   </div>
   <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
 </footer>
@@ -1222,7 +1186,7 @@
       if (pro)     pro.style.display     = 'none';
       if (limited) limited.style.display = 'none';
       if (retro)   retro.style.display   = '';
-      sel.value = 'Retro – KSh 1,300';
+      sel.value = 'Retro – KSh 2,200';
     } else {
       // Club / WC2026 / Limited: Pro + Limited only
       if (pro)     pro.style.display     = '';
@@ -1280,7 +1244,7 @@
   }
 
   /* ── PRICE CALCULATOR ── */
-  var PRICES = { 'Pro – KSh 1,000': 1000, 'Retro – KSh 1,300': 1300, 'Limited Edition – KSh 2,000': 2000 };
+  var PRICES = { 'Pro – KSh 1,000': 1000, 'Retro – KSh 2,200': 2200, 'Limited Edition – KSh 2,000': 2000 };
 
   function calcPrice() {
     var version  = val('f-version');
@@ -1821,5 +1785,248 @@
       switchKit     = function(p, k, b) { origKit(p, k, b); tw(); };
     })();
   </script>
+
+<script>
+/* ═══════════════════════════════════
+   LANGUAGE SWITCHER — FULL SITE
+═══════════════════════════════════ */
+var TRANSLATIONS = {
+  en: {
+    /* NAV */
+    nav_prices:'Prices', nav_jerseys:'Jerseys', nav_gallery:'Gallery',
+    nav_size:'Size Guide', nav_reviews:'Reviews', nav_order:'Order Now',
+    /* HERO */
+    hero_badge:'⚡ World Cup 2026 Kits Now In Stock',
+    hero_sub:'Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 & Limited Edition — fast delivery across Kenya.',
+    hero_cta_order:'📲 Order Now', hero_cta_gallery:'View Gallery',
+    /* ORDER FORM */
+    order_label:"Let's Go", order_title:'PLACE YOUR ORDER',
+    order_sub:"Fill in the details and we'll confirm your order via WhatsApp. Fast & easy.",
+    name_label:'Your Name', name_ph:'e.g. Brian Mutua',
+    phone_label:'Phone / WhatsApp',
+    err_name:'Please enter your name',
+    cat_label:'What type of jersey?', cat_placeholder:'Choose category…',
+    cat_wc:'🌍 World Cup 2026', cat_club:'⚽ Club Jersey (26/27 Pre-order)',
+    cat_retro:'📻 Retro / Old Season', cat_limited:'💎 Limited Edition',
+    league_label:'Select League', league_placeholder:'Choose league…',
+    league_other:'🌍 Other / Not Listed',
+    club_label:'Select Club', club_placeholder:'Choose club…',
+    club_other_label:'Type your club name', club_other_ph:'e.g. Gor Mahia, Kaizer Chiefs…',
+    country_label:'Select Country', country_placeholder:'Choose country…',
+    country_other:'Other country (type below)',
+    country_other_label:'Type your country', country_other_ph:'e.g. Algeria, Zimbabwe…',
+    africa_wc:'Africa — WC 2026', africa_other:'Africa — Others',
+    europe_wc:'Europe — WC 2026', concacaf:'North & Central America — WC 2026',
+    conmebol:'South America — WC 2026',
+    retro_team_label:'Team Name', retro_team_ph:'e.g. Brazil, Arsenal…',
+    retro_year_label:'Season / Year', retro_year_ph:'e.g. 1998, 2005/06…',
+    limited_label:'Describe the jersey', limited_ph:'e.g. Man United Lunar New Year 2025…',
+    kit_label:'Kit Type', kit_placeholder:'Choose…', kit_home:'Home', kit_away:'Away',
+    version_label:'Version', version_placeholder:'Choose…',
+    size_label:'Size', size_placeholder:'Pick size…', size_guide_link:'Size Guide ↑',
+    pieces_label:'Pieces', pieces_placeholder:'How many?', pieces_bulk:'4+ (Discount applies!)',
+    print_label:'Add Name & Number Printing? (+KSh 300)',
+    print_yes:'Yes – add KSh 300', print_no:'No thanks',
+    print_name_label:'Name to Print', print_name_ph:'e.g. SAKA',
+    print_num_label:'Number to Print', print_num_ph:'e.g. 7',
+    notes_label:'Any extra notes? (optional)',
+    notes_ph:'e.g. specific badge, long sleeve, gift wrap…',
+    summary_title:'Order Summary', summary_total:'Total',
+    summary_deposit:'30% Deposit to pay now', summary_balance:'Balance on delivery',
+    pochi_label:'Send deposit via Pochi La Biashara:',
+    pochi_note:'Send M-Pesa screenshot to WhatsApp as proof of payment.',
+    wa_btn:'💬 Send Order on WhatsApp',
+    wa_note:'Message auto-fills — just tap Send! 🚀',
+    /* WHY US */
+    why_label:'Why Raha', why_title:'HAPPY POCKET, HAPPY CUSTOMER',
+    why_sub:"Here's what makes us different.",
+    perk1_title:'Top-Tier Quality', perk1_desc:'Premium materials that look and feel great on every version.',
+    perk2_title:'Unbeatable Prices', perk2_desc:'Starting from just KSh 1,000. Bulk orders of 4+ get a sweet discount.',
+    perk3_title:'Massive Variety', perk3_desc:'Club, international, retro, limited edition — whatever your team, we have it.',
+    perk4_title:'Fast Delivery', perk4_desc:"Quick and reliable delivery across Kenya. We'll keep you updated.",
+    perk5_title:'Custom Printing', perk5_desc:'Add your name and number for just KSh 300. Make it yours.',
+    perk6_title:'Easy Ordering', perk6_desc:'Just WhatsApp us — fast, personal, friendly. No complicated checkout.',
+    /* TRUST */
+    trust_label:'Shop With Confidence', trust_title:'WHY TRUST RAHA JERSEYS',
+    trust_sub:"We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.",
+    trust1_title:'Genuine Products Only', trust1_desc:'Every jersey we sell is exactly as described — premium quality, no surprises.',
+    trust2_title:'Clear Pricing, No Hidden Charges', trust2_desc:"The price you see is the price you pay. Printing is KSh 300 extra — that's it.",
+    trust3_title:'Fast & Reliable Delivery Across Kenya', trust3_desc:'We deliver quickly and keep you updated every step of the way.',
+    trust4_title:'Responsive Customer Support', trust4_desc:"Our team is available before and after your purchase. We're always here to help.",
+    trust5_title:'Real Customer Reviews', trust5_desc:'Read genuine reviews from real customers right here on the site.',
+    trust6_title:'Secure 30% Deposit Payment', trust6_desc:'Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.',
+    trust_quote:'"Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."',
+    /* FOOTER */
+    footer_tagline:'Premium football kits · Pocket-friendly prices · Fast delivery across Kenya',
+    footer_wa:'💬 WhatsApp Us',
+  },
+  sw: {
+    nav_prices:'Bei', nav_jerseys:'Majersi', nav_gallery:'Picha',
+    nav_size:'Mwongozo wa Saizi', nav_reviews:'Maoni', nav_order:'Agiza Sasa',
+    hero_badge:'⚡ Majersi ya Kombe la Dunia 2026 Ziko!',
+    hero_sub:'Majersi bora ya mpira kwa bei zinazofurahisha. Klabu, Retro, Kombe la Dunia 2026 & Matoleo Maalum — uwasilishaji wa haraka Kenya nzima.',
+    hero_cta_order:'📲 Agiza Sasa', hero_cta_gallery:'Tazama Picha',
+    order_label:'Twende!', order_title:'WEKA AGIZO LAKO',
+    order_sub:'Jaza maelezo na tuthibitisha agizo lako kupitia WhatsApp. Haraka na rahisi.',
+    name_label:'Jina Lako', name_ph:'mf. Brian Mutua',
+    phone_label:'Simu / WhatsApp',
+    err_name:'Tafadhali ingiza jina lako',
+    cat_label:'Aina ya Jezi?', cat_placeholder:'Chagua aina…',
+    cat_wc:'🌍 Kombe la Dunia 2026', cat_club:'⚽ Jezi ya Klabu (Pre-order 26/27)',
+    cat_retro:'📻 Retro / Msimu wa Zamani', cat_limited:'💎 Toleo Maalum',
+    league_label:'Chagua Ligi', league_placeholder:'Chagua ligi…',
+    league_other:'🌍 Nyingine / Haipo',
+    club_label:'Chagua Klabu', club_placeholder:'Chagua klabu…',
+    club_other_label:'Andika jina la klabu', club_other_ph:'mf. Gor Mahia, Kaizer Chiefs…',
+    country_label:'Chagua Nchi', country_placeholder:'Chagua nchi…',
+    country_other:'Nchi nyingine (andika hapa)',
+    country_other_label:'Andika nchi yako', country_other_ph:'mf. Algeria, Zimbabwe…',
+    africa_wc:'Afrika — Kombe la Dunia 2026', africa_other:'Afrika — Nyingine',
+    europe_wc:'Ulaya — Kombe la Dunia 2026', concacaf:'Amerika Kaskazini — Kombe la Dunia 2026',
+    conmebol:'Amerika Kusini — Kombe la Dunia 2026',
+    retro_team_label:'Jina la Timu', retro_team_ph:'mf. Brazil, Arsenal…',
+    retro_year_label:'Msimu / Mwaka', retro_year_ph:'mf. 1998, 2005/06…',
+    limited_label:'Elezea jezi', limited_ph:'mf. Man United Lunar New Year 2025…',
+    kit_label:'Aina ya Kit', kit_placeholder:'Chagua…', kit_home:'Nyumbani', kit_away:'Nje',
+    version_label:'Toleo', version_placeholder:'Chagua…',
+    size_label:'Saizi', size_placeholder:'Chagua saizi…', size_guide_link:'Mwongozo wa Saizi ↑',
+    pieces_label:'Idadi', pieces_placeholder:'Ngapi?', pieces_bulk:'4+ (Punguzo linatumika!)',
+    print_label:'Ongeza Jina & Namba? (+KSh 300)',
+    print_yes:'Ndiyo – ongeza KSh 300', print_no:'Hapana asante',
+    print_name_label:'Jina la Kuchapisha', print_name_ph:'mf. SAKA',
+    print_num_label:'Namba ya Kuchapisha', print_num_ph:'mf. 7',
+    notes_label:'Maelezo zaidi? (hiari)',
+    notes_ph:'mf. beji maalum, mkono mrefu, kufungwa kama zawadi…',
+    summary_title:'Muhtasari wa Agizo', summary_total:'Jumla',
+    summary_deposit:'Malipo ya Awali (30%)', summary_balance:'Salio wakati wa kupokea',
+    pochi_label:'Tuma amana kupitia Pochi La Biashara:',
+    pochi_note:'Tuma picha ya M-Pesa WhatsApp kama uthibitisho wa malipo.',
+    wa_btn:'💬 Tuma Agizo WhatsApp',
+    wa_note:'Ujumbe utajaza peke yake — bonyeza Tuma! 🚀',
+    why_label:'Kwa Nini Raha', why_title:'MFUKO FURAHA, MTEJA FURAHA',
+    why_sub:'Hapa ndipo tunapotofautiana.',
+    perk1_title:'Ubora wa Juu', perk1_desc:'Vifaa bora vinavyoonekana na kuhisi vizuri katika kila toleo.',
+    perk2_title:'Bei Bora Zaidi', perk2_desc:'Kuanzia KSh 1,000 tu. Maagizo ya 4+ yanapata punguzo zuri.',
+    perk3_title:'Uchaguzi Mkubwa', perk3_desc:'Klabu, kimataifa, retro, toleo maalum — timu yoyote, tunayo.',
+    perk4_title:'Uwasilishaji wa Haraka', perk4_desc:'Haraka na kuaminika Kenya nzima. Tutakujulisha kila wakati.',
+    perk5_title:'Uchapishaji wa Kibinafsi', perk5_desc:'Ongeza jina na namba kwa KSh 300 tu. Ifanye yako.',
+    perk6_title:'Uagizaji Rahisi', perk6_desc:'WhatsApp tu — haraka, wa kibinafsi, wa kirafiki. Hakuna malipo magumu.',
+    trust_label:'Nunua kwa Ujasiri', trust_title:'KWA NINI KUAMINI RAHA JERSEYS',
+    trust_sub:'Tunajua kwamba kununua mtandaoni kunaweza kuhisi hatari. Ndiyo maana tumejitolea kufanya uzoefu wako wa ununuzi uwe salama, wazi na wa kuaminika.',
+    trust1_title:'Bidhaa Halisi Pekee', trust1_desc:'Kila jezi tunayouza ni kama ilivyoelezwa — ubora wa juu, hakuna mshangao.',
+    trust2_title:'Bei Wazi, Hakuna Ada Zilizofichwa', trust2_desc:'Bei unayoona ndiyo unayolipa. Uchapishaji ni KSh 300 zaidi — hiyo tu.',
+    trust3_title:'Uwasilishaji wa Haraka & Kuaminika Kenya', trust3_desc:'Tunawasilisha haraka na kukujulisha kila hatua.',
+    trust4_title:'Msaada wa Wateja Unaohusika', trust4_desc:'Timu yetu ipo kabla na baada ya ununuzi wako. Tuko hapa daima.',
+    trust5_title:'Maoni ya Wateja Halisi', trust5_desc:'Soma maoni halisi kutoka kwa wateja halisi hapa kwenye tovuti.',
+    trust6_title:'Malipo ya Amana ya 30% Salama', trust6_desc:'Lipa amana ndogo kupitia Pochi La Biashara kuthibitisha agizo lako — rahisi na salama.',
+    trust_quote:'"Uaminifu wako ndio mali yetu ya thamani zaidi. Nunua kwa ujasiri — tunawasilisha tunachoahidi."',
+    footer_tagline:'Majersi bora ya mpira · Bei za kirafiki · Uwasilishaji wa haraka Kenya',
+    footer_wa:'💬 WhatsApp Sisi',
+  },
+  fr: {
+    nav_prices:'Prix', nav_jerseys:'Maillots', nav_gallery:'Galerie',
+    nav_size:'Guide des Tailles', nav_reviews:'Avis', nav_order:'Commander',
+    hero_badge:'⚡ Maillots Coupe du Monde 2026 Disponibles!',
+    hero_sub:'Maillots de football premium à des prix qui font sourire votre portefeuille. Club, Rétro, Coupe du Monde 2026 & Édition Limitée — livraison rapide au Kenya.',
+    hero_cta_order:'📲 Commander', hero_cta_gallery:'Voir la Galerie',
+    order_label:'Allons-y!', order_title:'PASSER VOTRE COMMANDE',
+    order_sub:'Remplissez les détails et nous confirmerons votre commande via WhatsApp. Rapide & facile.',
+    name_label:'Votre Nom', name_ph:'ex. Brian Mutua',
+    phone_label:'Téléphone / WhatsApp',
+    err_name:'Veuillez entrer votre nom',
+    cat_label:'Quel type de maillot?', cat_placeholder:'Choisir une catégorie…',
+    cat_wc:'🌍 Coupe du Monde 2026', cat_club:'⚽ Maillot de Club (Pré-commande 26/27)',
+    cat_retro:'📻 Rétro / Ancienne Saison', cat_limited:'💎 Édition Limitée',
+    league_label:'Sélectionner la Ligue', league_placeholder:'Choisir une ligue…',
+    league_other:'🌍 Autre / Non listé',
+    club_label:'Sélectionner le Club', club_placeholder:'Choisir un club…',
+    club_other_label:'Écrire le nom du club', club_other_ph:'ex. Gor Mahia, Kaizer Chiefs…',
+    country_label:'Sélectionner le Pays', country_placeholder:'Choisir un pays…',
+    country_other:'Autre pays (écrire ci-dessous)',
+    country_other_label:'Écrire votre pays', country_other_ph:'ex. Algeria, Zimbabwe…',
+    africa_wc:'Afrique — Coupe du Monde 2026', africa_other:'Afrique — Autres',
+    europe_wc:'Europe — Coupe du Monde 2026', concacaf:'Amérique du Nord — Coupe du Monde 2026',
+    conmebol:'Amérique du Sud — Coupe du Monde 2026',
+    retro_team_label:"Nom de l'Équipe", retro_team_ph:'ex. Brazil, Arsenal…',
+    retro_year_label:'Saison / Année', retro_year_ph:'ex. 1998, 2005/06…',
+    limited_label:'Décrire le maillot', limited_ph:'ex. Man United Lunar New Year 2025…',
+    kit_label:'Type de Kit', kit_placeholder:'Choisir…', kit_home:'Domicile', kit_away:'Extérieur',
+    version_label:'Version', version_placeholder:'Choisir…',
+    size_label:'Taille', size_placeholder:'Choisir la taille…', size_guide_link:'Guide des Tailles ↑',
+    pieces_label:'Quantité', pieces_placeholder:'Combien?', pieces_bulk:'4+ (Réduction applicable!)',
+    print_label:'Ajouter Nom & Numéro? (+KSh 300)',
+    print_yes:'Oui – ajouter KSh 300', print_no:'Non merci',
+    print_name_label:'Nom à Imprimer', print_name_ph:'ex. SAKA',
+    print_num_label:'Numéro à Imprimer', print_num_ph:'ex. 7',
+    notes_label:'Notes supplémentaires? (optionnel)',
+    notes_ph:'ex. badge spécifique, manches longues, emballage cadeau…',
+    summary_title:'Récapitulatif de la Commande', summary_total:'Total',
+    summary_deposit:'Acompte 30% à payer maintenant', summary_balance:'Solde à la livraison',
+    pochi_label:'Envoyer le dépôt via Pochi La Biashara:',
+    pochi_note:"Envoyer la capture d'écran M-Pesa sur WhatsApp comme preuve de paiement.",
+    wa_btn:'💬 Envoyer la Commande WhatsApp',
+    wa_note:'Le message se remplit automatiquement — appuyez sur Envoyer! 🚀',
+    why_label:'Pourquoi Raha', why_title:'PORTEFEUILLE HEUREUX, CLIENT HEUREUX',
+    why_sub:'Voilà ce qui nous différencie.',
+    perk1_title:'Qualité Premium', perk1_desc:'Matériaux premium qui ont une belle apparence et un beau toucher sur chaque version.',
+    perk2_title:'Prix Imbattables', perk2_desc:'À partir de seulement KSh 1,000. Les commandes en gros de 4+ obtiennent une belle remise.',
+    perk3_title:'Grande Variété', perk3_desc:"Club, international, rétro, édition limitée — quelle que soit votre équipe, nous l'avons.",
+    perk4_title:'Livraison Rapide', perk4_desc:'Livraison rapide et fiable partout au Kenya. Nous vous tiendrons informé.',
+    perk5_title:'Impression Personnalisée', perk5_desc:'Ajoutez votre nom et numéro pour seulement KSh 300. Faites-en le vôtre.',
+    perk6_title:'Commande Facile', perk6_desc:'Juste WhatsApp — rapide, personnel, convivial. Pas de paiement compliqué.',
+    trust_label:'Achetez en Confiance', trust_title:'POURQUOI FAIRE CONFIANCE À RAHA JERSEYS',
+    trust_sub:"Nous comprenons que l'achat en ligne peut sembler risqué. C'est pourquoi nous nous engageons à rendre votre expérience d'achat sûre, transparente et fiable.",
+    trust1_title:'Produits Authentiques Uniquement', trust1_desc:'Chaque maillot que nous vendons est exactement comme décrit — qualité premium, pas de surprises.',
+    trust2_title:'Prix Clairs, Pas de Frais Cachés', trust2_desc:"Le prix que vous voyez est le prix que vous payez. L'impression est KSh 300 en plus — c'est tout.",
+    trust3_title:'Livraison Rapide & Fiable au Kenya', trust3_desc:'Nous livrons rapidement et vous tenons informé à chaque étape.',
+    trust4_title:'Support Client Réactif', trust4_desc:'Notre équipe est disponible avant et après votre achat. Nous sommes toujours là pour vous aider.',
+    trust5_title:'Vrais Avis Clients', trust5_desc:'Lisez les vrais avis de vrais clients ici même sur le site.',
+    trust6_title:'Paiement de Dépôt 30% Sécurisé', trust6_desc:'Payez un petit dépôt via Pochi La Biashara pour confirmer votre commande — facile et sécurisé.',
+    trust_quote:'"Votre confiance est notre actif le plus précieux. Achetez en confiance — nous livrons ce que nous promettons."',
+    footer_tagline:'Maillots de football premium · Prix abordables · Livraison rapide au Kenya',
+    footer_wa:'💬 WhatsApp Nous',
+  }
+};
+
+var currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  var t = TRANSLATIONS[lang];
+
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase());
+  });
+
+  // Translate all [data-i18n] elements (innerHTML)
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Translate placeholders [data-i18n-ph]
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-ph');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Translate select options [data-i18n-opt]
+  document.querySelectorAll('[data-i18n-opt]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-opt');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Translate optgroup labels [data-i18n-grp]
+  var grpMap = {
+    africa_wc: '🌍 ', africa_other: '🌍 ',
+    europe_wc: '🇪🇺 ', concacaf: '🌎 ', conmebol: '🌎 '
+  };
+  document.querySelectorAll('[data-i18n-grp]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-grp');
+    if (t[key] !== undefined) el.label = (grpMap[key] || '') + t[key];
+  });
+}
+</script>
 </body>
 </html>
