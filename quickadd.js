@@ -53,8 +53,11 @@ function updateQaPricePreview() {
   var version = document.getElementById('qa-version').value;
   var pieces = parseInt(document.getElementById('qa-pieces').value) || 1;
   var printing = document.getElementById('qa-print').value === 'yes';
-  var total = (VERSION_PRICES[version] || 0) * pieces + (printing ? 400 * pieces : 0);
-  document.getElementById('qa-price-preview').textContent = 'KSh ' + total.toLocaleString() + ' total \u00b7 KSh ' + Math.ceil(total * 0.3).toLocaleString() + ' deposit (30%)';
+  var freeCount = Math.floor(pieces / 5); // Buy 5, get 1 free
+  var billablePieces = pieces - freeCount;
+  var total = (VERSION_PRICES[version] || 0) * billablePieces + (printing ? 400 * pieces : 0);
+  var freeNote = freeCount > 0 ? ' \u00b7 ' + freeCount + ' free jersey' + (freeCount > 1 ? 's' : '') : '';
+  document.getElementById('qa-price-preview').textContent = 'KSh ' + total.toLocaleString() + ' total \u00b7 KSh ' + Math.ceil(total * 0.3).toLocaleString() + ' deposit (30%)' + freeNote;
 }
 function submitQuickAdd() {
   var size = document.getElementById('qa-size').value;
