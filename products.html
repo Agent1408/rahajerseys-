@@ -523,6 +523,7 @@ function switchCategory(cat) {
   else if (cat === 'countries') { setBanner('bg-countries','NATIONAL TEAMS','World Cup 2026 nations and more, by continent. Home & away kits available.'); renderCountriesGrid(); }
   else if (cat === 'retro') { setBanner('bg-retro','RETRO CLASSICS','Iconic kits from football history — timeless colours, timeless legends.'); renderRetroGrid(); }
   else if (cat === 'limited') { setBanner('bg-limited','LIMITED EDITION','Rare collabs and special-release kits — while stock lasts.'); renderLimitedGrid(); }
+  saveProductsState();
 }
 
 function switchLeague(league) {
@@ -530,6 +531,7 @@ function switchLeague(league) {
   document.querySelectorAll('.league-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.league === league); });
   setBanner('bg-' + league, LEAGUE_LABEL[league].toUpperCase(), LEAGUE_LABEL[league] + ' 2026/27 pre-order is open — secure your kit now.');
   renderClubGrid(league);
+  saveProductsState();
 }
 
 function setBanner(cls, title, sub) {
@@ -544,6 +546,7 @@ function switchKit(panel, kit, btn) {
   btn.classList.add('active');
   if (panel === 'club') { clubKit = kit; renderClubGrid(currentLeague); }
   else if (panel === 'countries') { countriesKit = kit; renderCountriesGrid(); }
+  saveProductsState();
 }
 
 /* ══════════════════════════════════════
@@ -594,15 +597,60 @@ function searchCatalog(query) {
 }
 
 /* ══════════════════════════════════════
-   INIT — read ?cat= from URL (links from home page)
+   PAGE STATE — remembers which tab/league/kit you were on
+   so a refresh doesn't jump back to the default view.
+═══════════════════════════════════════ */
+var PRODUCTS_STATE_KEY = 'raha_products_state_v1';
+
+function saveProductsState() {
+  try {
+    localStorage.setItem(PRODUCTS_STATE_KEY, JSON.stringify({
+      cat: currentCat,
+      league: currentLeague,
+      clubKit: clubKit,
+      countriesKit: countriesKit
+    }));
+  } catch (e) {}
+}
+
+function loadProductsState() {
+  try {
+    var raw = localStorage.getItem(PRODUCTS_STATE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function syncKitToggleUI(panelId, kit) {
+  var wrap = document.querySelector('#panel-' + panelId + ' .kit-toggle');
+  if (!wrap) return;
+  wrap.querySelectorAll('.kit-toggle-btn').forEach(function (b, i) {
+    b.classList.toggle('active', (i === 0 && kit === 'home') || (i === 1 && kit === 'away'));
+  });
+}
+
+/* ══════════════════════════════════════
+   INIT — ?cat= link from home page wins first, otherwise restore
+   whatever tab/league/kit the person had open before refreshing.
 ═══════════════════════════════════════ */
 (function init() {
   var params = new URLSearchParams(window.location.search);
-  var cat = params.get('cat');
+  var catParam = params.get('cat');
   var validCats = ['club','countries','retro','limited'];
-  if (cat && validCats.indexOf(cat) !== -1) {
-    document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === cat); });
-    switchCategory(cat);
+  var saved = loadProductsState();
+
+  if (catParam && validCats.indexOf(catParam) !== -1) {
+    switchCategory(catParam);
+    return;
+  }
+
+  if (saved) {
+    if (saved.league && CLUBS[saved.league]) {
+      currentLeague = saved.league;
+      document.querySelectorAll('.league-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.league === saved.league); });
+    }
+    if (saved.clubKit === 'home' || saved.clubKit === 'away') { clubKit = saved.clubKit; syncKitToggleUI('club', clubKit); }
+    if (saved.countriesKit === 'home' || saved.countriesKit === 'away') { countriesKit = saved.countriesKit; syncKitToggleUI('countries', countriesKit); }
+    switchCategory(validCats.indexOf(saved.cat) !== -1 ? saved.cat : 'club');
   } else {
     switchCategory('club');
   }
