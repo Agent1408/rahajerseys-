@@ -18,7 +18,7 @@ function saveCart(cart) {
 /* ── ADD / REMOVE ── */
 function addToCart(item) {
   var cart = getCart();
-  item.lineTotal = (VERSION_PRICES[item.version] || 0) * item.pieces + (item.printing ? 300 * item.pieces : 0);
+  item.lineTotal = (VERSION_PRICES[item.version] || 0) * item.pieces + (item.printing ? 400 * item.pieces : 0);
   cart.push(item);
   saveCart(cart);
   renderCartDrawer();
