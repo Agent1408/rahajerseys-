@@ -19,6 +19,7 @@
   .prod-banner.bg-laliga     { background:linear-gradient(135deg,#a3170a,#ee8707); }
   .prod-banner.bg-bundesliga { background:linear-gradient(135deg,#1a1a1a,#d3010c); }
   .prod-banner.bg-ligue1     { background:linear-gradient(135deg,#001b4f,#0a539c); }
+  .prod-banner.bg-kpl        { background:linear-gradient(135deg,#006600,#bb0000); }
   .prod-banner.bg-countries  { background:linear-gradient(135deg,#004225,#0a8a4d); }
   .prod-banner.bg-retro      { background:linear-gradient(135deg,#5c2c0d,#a8471f); }
   .prod-banner.bg-limited    { background:linear-gradient(135deg,#3a0f4a,#8e44ad); }
@@ -111,6 +112,7 @@
     <button class="league-tab" data-league="laliga" onclick="switchLeague('laliga')">🇪🇸 La Liga</button>
     <button class="league-tab" data-league="bundesliga" onclick="switchLeague('bundesliga')">🇩🇪 Bundesliga</button>
     <button class="league-tab" data-league="ligue1" onclick="switchLeague('ligue1')">🇫🇷 Ligue 1</button>
+    <button class="league-tab" data-league="kpl" onclick="switchLeague('kpl')">🇰🇪 Kenyan Premier League</button>
   </div>
 </div>
 
@@ -207,7 +209,7 @@
         </div>
         <div class="mfield"><label>Pieces</label>
           <select id="qa-pieces">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+ (discount)</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+ (Buy 5 get 1 free)</option>
           </select>
         </div>
       </div>
@@ -332,10 +334,16 @@ var CLUBS = {
   ],
   laliga: [ { name:'Barcelona' }, { name:'Real Madrid' } ],
   bundesliga: [ { name:'Bayern Munich' }, { name:'Borussia Dortmund' } ],
-  ligue1: [ { name:'Paris Saint-Germain' } ]
+  ligue1: [ { name:'Paris Saint-Germain' } ],
+  kpl: [
+    { name:'Gor Mahia' }, { name:'AFC Leopards' }, { name:'Kenya Police FC' },
+    { name:'Tusker FC' }, { name:'Shabana FC' }, { name:'Kakamega Homeboyz' },
+    { name:'KCB FC' }, { name:'Nairobi United' }, { name:'Ulinzi Stars' },
+    { name:'Bandari FC' }
+  ]
 };
-var LEAGUE_LABEL = { epl:'Premier League', laliga:'La Liga', bundesliga:'Bundesliga', ligue1:'Ligue 1' };
-var LEAGUE_COLOR = { epl:'37003c/ffffff', laliga:'ee8707/1a1a1a', bundesliga:'d3010c/ffffff', ligue1:'0a539c/ffffff' };
+var LEAGUE_LABEL = { epl:'Premier League', laliga:'La Liga', bundesliga:'Bundesliga', ligue1:'Ligue 1', kpl:'Kenyan Premier League' };
+var LEAGUE_COLOR = { epl:'37003c/ffffff', laliga:'ee8707/1a1a1a', bundesliga:'d3010c/ffffff', ligue1:'0a539c/ffffff', kpl:'006600/ffffff' };
 
 /* Countries — World Cup 2026 nations + other countries, grouped by continent */
 var CONTINENT_ORDER = ['Africa','Europe','South America','North America','Asia'];
