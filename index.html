@@ -26,7 +26,6 @@
     .hero-stats { display:flex; justify-content:center; gap:2.5rem; margin-top:3rem; flex-wrap:wrap; }
     .hero-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--accent); letter-spacing:2px; line-height:1; }
     .hero-stat .lbl { font-size:.72rem; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:1px; }
-
     /* ── PRICING ── */
     #pricing { background: var(--white); }
     .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
@@ -39,7 +38,6 @@
     .price-card .pamount { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; color:var(--green-dark); letter-spacing:1px; line-height:1; }
     .price-card .pamount span { font-family:'Inter',sans-serif; font-size:.85rem; color:var(--muted); }
     .print-note { margin-top:1.5rem; background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.875rem; color:var(--green-dark); }
-
     /* ── CATEGORIES ── */
     #categories { background:var(--off-white); }
     .cats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
@@ -53,7 +51,6 @@
     .cat-label { font-size:.68rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
     .cat-name  { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; line-height:1; }
     .cat-desc  { font-size:.8rem; opacity:.8; }
-
     /* ── ABOUT ── */
     #about { background:var(--pitch); color:white; }
     #about .section-label { color:var(--accent); }
@@ -64,7 +61,6 @@
     .about-stat { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:1.25rem; text-align:center; }
     .about-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--accent); letter-spacing:2px; line-height:1; }
     .about-stat .lbl { font-size:.78rem; color:rgba(255,255,255,.55); }
-
     /* ── PERKS ── */
     #perks { background:var(--white); }
     .perks-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
@@ -72,20 +68,17 @@
     .perk-icon { font-size:2rem; margin-bottom:.75rem; display:block; }
     .perk h3 { font-size:.95rem; font-weight:700; margin-bottom:.3rem; }
     .perk p  { font-size:.82rem; color:var(--muted); }
-
     /* ── TRUST ── */
     #trust { background:var(--pitch); color:white; }
     #trust .section-label { color:var(--accent); }
     #trust .section-title { color:white; }
     #trust .section-sub   { color:rgba(255,255,255,.65); }
-
     @media (max-width:700px) {
       .about-grid { grid-template-columns:1fr; gap:2rem; }
     }
   </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav class="topnav">
   <a href="index.html" class="nav-logo">RAHA ⚽</a>
@@ -113,7 +106,6 @@
     <button class="lang-btn" data-lang="fr">FR</button>
   </div>
 </div>
-
 <!-- HERO -->
 <header class="hero">
   <div class="hero-badge">⚡ World Cup 2026 Kits Now In Stock</div>
@@ -130,7 +122,6 @@
     <div class="hero-stat"><div class="num">🚚</div><div class="lbl">Fast Delivery</div></div>
   </div>
 </header>
-
 <!-- PRICING -->
 <section id="pricing">
   <div class="container">
@@ -163,7 +154,6 @@
     <div class="print-note">🖨️ <strong>Want your name &amp; number printed?</strong> Add KSh 400 per jersey. Bulk orders of 5+ get a discount! 🎉</div>
   </div>
 </section>
-
 <!-- CATEGORIES -->
 <section id="categories">
   <div class="container">
@@ -194,7 +184,6 @@
     </div>
   </div>
 </section>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -219,7 +208,6 @@
     </div>
   </div>
 </section>
-
 <!-- PERKS -->
 <section id="perks">
   <div class="container">
@@ -235,7 +223,6 @@
     </div>
   </div>
 </section>
-
 <!-- TRUST -->
 <section id="trust" style="background:var(--pitch);color:white;">
   <div class="container">
@@ -253,14 +240,12 @@
     <div class="trust-quote">"Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."</div>
   </div>
 </section>
-
 <!-- REVIEWS -->
 <section class="reviews-section" style="padding:4rem 1.5rem;">
   <div class="container">
     <p class="section-label" style="color:var(--accent);">Real Customers</p>
     <h2 class="section-title" style="color:white;">WHAT PEOPLE SAY</h2>
     <p class="section-sub" style="color:rgba(255,255,255,.65);">Trusted by football lovers across Kenya.</p>
-
     <div class="reviews-summary">
       <div class="big-rating" id="avg-rating">4.9</div>
       <div>
@@ -269,7 +254,6 @@
         <div class="rating-detail">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
       </div>
     </div>
-
     <!-- ADD REVIEW -->
     <div class="add-review-box">
       <h3 class="add-review-title">Leave a Review</h3>
@@ -289,11 +273,9 @@
       <button class="review-submit-btn" onclick="submitReview()">Post Review ⭐</button>
       <p class="review-submit-note" id="review-msg"></p>
     </div>
-
     <div class="reviews-grid" id="reviews-grid"></div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-grid">
@@ -329,10 +311,8 @@
     <span>Happy Pocket, Happy Customer 💛</span>
   </div>
 </footer>
-
 <a href="https://wa.me/254710611244" class="wa-float" target="_blank" aria-label="WhatsApp">💬</a>
 <div class="cart-toast" id="cart-toast"></div>
-
 <script src="shared.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <script>
