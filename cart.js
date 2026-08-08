@@ -18,7 +18,9 @@ function saveCart(cart) {
 /* ── ADD / REMOVE ── */
 function addToCart(item) {
   var cart = getCart();
-  item.lineTotal = (VERSION_PRICES[item.version] || 0) * item.pieces + (item.printing ? 400 * item.pieces : 0);
+  var freeCount = Math.floor(item.pieces / 5); // Buy 5, get 1 free
+  var billablePieces = item.pieces - freeCount;
+  item.lineTotal = (VERSION_PRICES[item.version] || 0) * billablePieces + (item.printing ? 400 * item.pieces : 0);
   cart.push(item);
   saveCart(cart);
   renderCartDrawer();
@@ -81,6 +83,8 @@ function renderCartDrawer() {
 
   wrap.innerHTML = cart.map(function (item, idx) {
     var meta = [item.leagueLabel || item.categoryLabel, item.kitType, item.version, 'Size ' + item.size, item.pieces + ' pc' + (item.pieces > 1 ? 's' : '')].filter(Boolean).join(' · ');
+    var freeCount = Math.floor(item.pieces / 5);
+    if (freeCount > 0) meta += ' · ' + freeCount + ' free';
     if (item.printing) meta += ' · Print: ' + (item.printName || '') + ' ' + (item.printNumber || '');
     return '' +
       '<div class="cart-item">' +
