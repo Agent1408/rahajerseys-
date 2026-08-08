@@ -1,127 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Raha Jerseys ⚽ | Premium Football Kits Kenya</title>
-<meta name="description" content="Top-tier football jerseys at pocket-friendly prices. Club, Retro, World Cup 2026 & Limited Edition kits. Fast delivery across Kenya. Order on WhatsApp!" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="shared.css" />
-<style>
-  /* ── HERO ── */
-  .hero {
-    background: var(--pitch);
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3C/g%3E%3C/svg%3E");
-    color: var(--white); padding: 5rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden;
-  }
-  .hero::before { content:'⚽'; position:absolute; font-size:18rem; opacity:.04; top:-3rem; right:-3rem; line-height:1; pointer-events:none; }
-  .hero-badge { display:inline-block; background:rgba(245,197,24,.15); border:1px solid rgba(245,197,24,.4); color:var(--accent); font-size:.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:.35rem 1rem; border-radius:50px; margin-bottom:1.25rem; }
-  .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3.5rem,10vw,7rem); letter-spacing:4px; line-height:.95; margin-bottom:1rem; }
-  .hero h1 span { color:var(--accent); }
-  .hero p { font-size:1.05rem; color:rgba(255,255,255,.75); max-width:480px; margin:0 auto 2rem; }
-  .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-  .hero-stats { display:flex; justify-content:center; gap:2.5rem; margin-top:3rem; flex-wrap:wrap; }
-  .hero-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--accent); letter-spacing:2px; line-height:1; }
-  .hero-stat .lbl { font-size:.75rem; color:rgba(255,255,255,.55); text-transform:uppercase; letter-spacing:1px; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raha Jerseys ⚽ | Premium Football Kits Kenya</title>
+  <meta name="description" content="Top-tier football jerseys at pocket-friendly prices. Club, Retro, World Cup 2026. Fast delivery across Kenya."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      background: var(--pitch);
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3C/g%3E%3C/svg%3E");
+      color: white; padding: 5.5rem 1.5rem 4rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before { content:'⚽'; position:absolute; font-size:18rem; opacity:.04; top:-3rem; right:-3rem; pointer-events:none; }
+    .hero-badge { display:inline-block; background:rgba(245,197,24,.15); border:1px solid rgba(245,197,24,.4); color:var(--accent); font-size:.78rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:.35rem 1rem; border-radius:50px; margin-bottom:1.25rem; }
+    .hero h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(3.5rem,10vw,7rem); letter-spacing:4px; line-height:.95; margin-bottom:1rem; }
+    .hero h1 span { color:var(--accent); }
+    .hero p { font-size:1.05rem; color:rgba(255,255,255,.75); max-width:480px; margin:0 auto 2rem; }
+    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .hero-stats { display:flex; justify-content:center; gap:2.5rem; margin-top:3rem; flex-wrap:wrap; }
+    .hero-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--accent); letter-spacing:2px; line-height:1; }
+    .hero-stat .lbl { font-size:.72rem; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:1px; }
 
-  /* ── PRICING ── */
-  #pricing { background:var(--white); }
-  .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; }
-  .price-card { border:1.5px solid var(--border); border-radius:var(--radius); padding:1.5rem; background:var(--off-white); position:relative; transition:border-color .2s,transform .2s; }
-  .price-card:hover { border-color:var(--green); transform:translateY(-3px); }
-  .price-card.featured { border-color:var(--accent); background:var(--white); box-shadow:var(--shadow); }
-  .featured-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--accent); color:var(--text); font-size:.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 12px; border-radius:50px; white-space:nowrap; }
-  .price-card .jersey-type { font-weight:700; font-size:1rem; margin-bottom:.25rem; }
-  .price-card .jersey-desc { font-size:.8rem; color:var(--text-muted); margin-bottom:1rem; min-height:2.4rem; }
-  .price-card .price { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--green-dark); letter-spacing:1px; line-height:1; }
-  .price-card .price span { font-family:'Inter',sans-serif; font-size:.85rem; font-weight:500; color:var(--text-muted); }
-  .print-note { margin-top:1.5rem; background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.875rem; color:var(--green-dark); }
+    /* ── PRICING ── */
+    #pricing { background: var(--white); }
+    .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .price-card { border:1.5px solid var(--border); border-radius:var(--radius); padding:1.5rem; background:var(--off-white); position:relative; transition:border-color .2s,transform .2s; }
+    .price-card:hover { border-color:var(--green); transform:translateY(-3px); }
+    .price-card.featured { border-color:var(--accent); background:var(--white); box-shadow:var(--shadow); }
+    .feat-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--accent); color:var(--text); font-size:.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 14px; border-radius:50px; white-space:nowrap; }
+    .price-card .ptype { font-weight:700; font-size:1rem; margin-bottom:.25rem; }
+    .price-card .pdesc { font-size:.8rem; color:var(--muted); margin-bottom:1rem; min-height:2.2rem; }
+    .price-card .pamount { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; color:var(--green-dark); letter-spacing:1px; line-height:1; }
+    .price-card .pamount span { font-family:'Inter',sans-serif; font-size:.85rem; color:var(--muted); }
+    .print-note { margin-top:1.5rem; background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.875rem; color:var(--green-dark); }
 
-  /* ── WHAT WE STOCK ── */
-  #jerseys { background:var(--off-white); }
-  .cats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-  .cat-card { border-radius:var(--radius); padding:1.75rem 1.5rem; color:white; text-decoration:none; display:flex; flex-direction:column; gap:.5rem; position:relative; overflow:hidden; transition:transform .2s; min-height:160px; }
-  .cat-card:hover { transform:translateY(-3px); }
-  .cat-card::after { content:attr(data-emoji); position:absolute; right:1rem; bottom:.5rem; font-size:3.5rem; opacity:.25; }
-  .cat-card.club    { background:linear-gradient(135deg,#1a5276,#2980b9); }
-  .cat-card.world   { background:linear-gradient(135deg,#145a32,#27ae60); }
-  .cat-card.retro   { background:linear-gradient(135deg,#6e2f0a,#c0392b); }
-  .cat-card.limited { background:linear-gradient(135deg,#4a235a,#8e44ad); }
-  .cat-label { font-size:.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
-  .cat-name { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; line-height:1; }
-  .cat-desc { font-size:.8rem; opacity:.8; margin-top:.25rem; }
-  .coming-soon-tag { display:inline-block; background:rgba(255,255,255,.2); font-size:.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-top:auto; width:fit-content; }
+    /* ── CATEGORIES ── */
+    #categories { background:var(--off-white); }
+    .cats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .cat-card { border-radius:var(--radius); padding:1.75rem 1.5rem; color:white; text-decoration:none; display:flex; flex-direction:column; gap:.5rem; position:relative; overflow:hidden; transition:transform .2s; min-height:155px; }
+    .cat-card:hover { transform:translateY(-3px); }
+    .cat-card::after { content:attr(data-emoji); position:absolute; right:1rem; bottom:.5rem; font-size:3.5rem; opacity:.2; pointer-events:none; }
+    .cat-club    { background:linear-gradient(135deg,#1a5276,#2980b9); }
+    .cat-wc      { background:linear-gradient(135deg,#145a32,#27ae60); }
+    .cat-retro   { background:linear-gradient(135deg,#6e2f0a,#c0392b); }
+    .cat-limited { background:linear-gradient(135deg,#4a235a,#8e44ad); }
+    .cat-label { font-size:.68rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:.7; }
+    .cat-name  { font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; line-height:1; }
+    .cat-desc  { font-size:.8rem; opacity:.8; }
 
-  /* ── RECOMMENDATIONS ── */
-  #recommendations { background:var(--white); }
+    /* ── ABOUT ── */
+    #about { background:var(--pitch); color:white; }
+    #about .section-label { color:var(--accent); }
+    #about .section-title { color:white; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .about-text p { font-size:.95rem; color:rgba(255,255,255,.75); line-height:1.8; margin-bottom:1rem; }
+    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .about-stat { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:1.25rem; text-align:center; }
+    .about-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--accent); letter-spacing:2px; line-height:1; }
+    .about-stat .lbl { font-size:.78rem; color:rgba(255,255,255,.55); }
 
-  /* ── WHY US ── */
-  #why { background:var(--off-white); }
-  .perks { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-  .perk { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
-  .perk-icon { font-size:2rem; margin-bottom:.75rem; display:block; }
-  .perk h3 { font-size:.95rem; font-weight:700; margin-bottom:.3rem; }
-  .perk p { font-size:.82rem; color:var(--text-muted); }
+    /* ── PERKS ── */
+    #perks { background:var(--white); }
+    .perks-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .perk { background:var(--off-white); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
+    .perk-icon { font-size:2rem; margin-bottom:.75rem; display:block; }
+    .perk h3 { font-size:.95rem; font-weight:700; margin-bottom:.3rem; }
+    .perk p  { font-size:.82rem; color:var(--muted); }
 
-  /* ── TRUST ── */
-  #trust { background:var(--pitch); color:white; }
-  .trust-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin-bottom:2rem; }
-  .trust-item { display:flex; gap:1rem; align-items:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:1.25rem; }
-  .trust-icon { font-size:1.5rem; flex-shrink:0; margin-top:.1rem; }
-  .trust-item h4 { font-size:.9rem; font-weight:700; color:white; margin-bottom:.25rem; }
-  .trust-item p { font-size:.8rem; color:rgba(255,255,255,.6); line-height:1.5; }
-  .trust-quote { background:rgba(245,197,24,.1); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:1rem 1.25rem; font-size:.95rem; color:rgba(255,255,255,.85); font-style:italic; margin-top:1rem; }
+    /* ── TRUST ── */
+    #trust { background:var(--pitch); color:white; }
+    #trust .section-label { color:var(--accent); }
+    #trust .section-title { color:white; }
+    #trust .section-sub   { color:rgba(255,255,255,.65); }
 
-  /* ── ABOUT + CONTACT ── */
-  #about { background:var(--white); }
-  .about-wrap { display:grid; grid-template-columns:1.1fr .9fr; gap:2rem; align-items:start; }
-  .about-wrap p { color:var(--text-muted); font-size:.92rem; margin-bottom:.9rem; }
-  .about-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
-  .about-stat { background:var(--off-white); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; text-align:center; }
-  .about-stat .num { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--green-dark); }
-  .about-stat .lbl { font-size:.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; }
-  @media (max-width:760px) { .about-wrap { grid-template-columns:1fr; } }
-
-  #contact { background:var(--off-white); }
-  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-  .contact-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; text-decoration:none; display:flex; align-items:center; gap:1rem; transition:transform .2s,border-color .2s; }
-  .contact-card:hover { transform:translateY(-3px); border-color:var(--green); }
-  .contact-icon { font-size:1.8rem; width:48px; height:48px; border-radius:50%; background:var(--green-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .contact-card h4 { font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--text-muted); margin-bottom:.15rem; }
-  .contact-card .contact-value { font-size:1rem; font-weight:700; color:var(--text); }
-</style>
+    @media (max-width:700px) {
+      .about-grid { grid-template-columns:1fr; gap:2rem; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="topnav">
   <a href="index.html" class="nav-logo">RAHA ⚽</a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="help.html">Help</a></li>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active" data-t="home">Home</a></li>
+    <li><a href="jerseys.html" data-t="jerseys">Jerseys</a></li>
+    <li><a href="cart.html" class="nav-cart" data-t="cart">Cart <span class="cart-badge">0</span></a></li>
+    <div class="nav-lang">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="sw">SW</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+    </div>
   </ul>
-  <div class="nav-right">
-    <button class="cart-btn" onclick="openCart()" aria-label="Cart">🛒<span class="cart-badge" style="display:none;">0</span></button>
-    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="active" data-t="home">Home</a>
+  <a href="jerseys.html" data-t="jerseys">Jerseys</a>
+  <a href="cart.html" data-t="cart">Cart</a>
+  <div style="display:flex;gap:.5rem;margin-top:.75rem;">
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="sw">SW</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
   <div class="hero-badge">⚡ World Cup 2026 Kits Now In Stock</div>
-  <h1>RAHA<br /><span>JERSEYS</span></h1>
-  <p>Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
+  <h1>RAHA<br/><span>JERSEYS</span></h1>
+  <p>Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 — fast delivery across Kenya.</p>
   <div class="hero-btns">
-    <a href="products.html" class="btn-primary">📲 Shop Jerseys</a>
-    <a href="#jerseys" class="btn-secondary">What We Stock</a>
+    <a href="jerseys.html" class="btn-primary" data-t="order_now">Order Now</a>
+    <a href="jerseys.html" class="btn-outline" data-t="view_gallery">View Gallery</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">4</div><div class="lbl">Kit Types</div></div>
-    <div class="hero-stat"><div class="num">1K+</div><div class="lbl">Teams Available</div></div>
-    <div class="hero-stat"><div class="num">1,000</div><div class="lbl">From KSh</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="lbl">Kit Types</div></div>
+    <div class="hero-stat"><div class="num">100+</div><div class="lbl">Teams</div></div>
+    <div class="hero-stat"><div class="num">1,200</div><div class="lbl">From KSh</div></div>
     <div class="hero-stat"><div class="num">🚚</div><div class="lbl">Fast Delivery</div></div>
   </div>
 </header>
@@ -130,54 +135,58 @@
 <section id="pricing">
   <div class="container">
     <p class="section-label">Pocket-Friendly</p>
-    <h2 class="section-title">PRICES &amp; VERSIONS</h2>
-    <p class="section-sub">All jerseys are premium quality. Choose from Pro, Retro, or Limited Edition.</p>
+    <h2 class="section-title">PRICES & VERSIONS</h2>
+    <p class="section-sub">All jerseys are premium quality. Choose from Fan, Player, Retro, or Limited Edition.</p>
     <div class="pricing-grid">
+      <div class="price-card">
+        <div class="ptype">Fan Version</div>
+        <div class="pdesc">Great quality everyday wear kit</div>
+        <div class="pamount">1,200 <span>KSh</span></div>
+      </div>
       <div class="price-card featured">
-        <div class="featured-badge">⭐ Best Seller</div>
-        <div class="jersey-type">Pro Version</div>
-        <div class="jersey-desc">Match-grade premium quality</div>
-        <div class="price">1,000 <span>KSh</span></div>
+        <div class="feat-badge">⭐ Best Seller</div>
+        <div class="ptype">Player Version</div>
+        <div class="pdesc">Match-grade premium quality</div>
+        <div class="pamount">1,500 <span>KSh</span></div>
       </div>
       <div class="price-card">
-        <div class="jersey-type">Retro Version</div>
-        <div class="jersey-desc">Classic &amp; old season drops</div>
-        <div class="price">1,300 <span>KSh</span></div>
+        <div class="ptype">Retro Version</div>
+        <div class="pdesc">Classic &amp; old season drops</div>
+        <div class="pamount">2,500 <span>KSh</span></div>
       </div>
       <div class="price-card">
-        <div class="jersey-type">Limited Edition</div>
-        <div class="jersey-desc">Special &amp; rare releases</div>
-        <div class="price">2,000 <span>KSh</span></div>
+        <div class="ptype">Limited Edition</div>
+        <div class="pdesc">Special &amp; rare releases</div>
+        <div class="pamount">2,000 <span>KSh</span></div>
       </div>
     </div>
-    <div class="print-note"><strong>Want your name &amp; number printed?</strong> Add KSh 300 for printing. Bulk orders of 4+ pieces get a discount! 🎉</div>
+    <div class="print-note">🖨️ <strong>Want your name &amp; number printed?</strong> Add KSh 400 per jersey. Bulk orders of 5+ get a discount! 🎉</div>
   </div>
 </section>
 
-<!-- WHAT WE STOCK -->
-<section id="jerseys">
+<!-- CATEGORIES -->
+<section id="categories">
   <div class="container">
     <p class="section-label">What We Stock</p>
     <h2 class="section-title">CHOOSE YOUR KIT</h2>
-    <p class="section-sub">From the latest club kits to classic retros — we've got your team covered. Tap a category to browse.</p>
+    <p class="section-sub">From the latest 26/27 kits to World Cup 2026 and classic retros.</p>
     <div class="cats-grid">
-      <a href="products.html?cat=club" class="cat-card club" data-emoji="🏆">
-        <span class="cat-label">All Leagues</span>
+      <a href="jerseys.html?tab=club" class="cat-card cat-club" data-emoji="🏆">
+        <span class="cat-label">26/27 Pre-Order</span>
         <span class="cat-name">CLUB JERSEYS</span>
-        <span class="cat-desc">Home · Away</span>
-        <span class="coming-soon-tag">26/27 Pre-order Open</span>
+        <span class="cat-desc">PL · La Liga · Bundesliga · Ligue 1 · More</span>
       </a>
-      <a href="products.html?cat=wc2026" class="cat-card world" data-emoji="🌍">
+      <a href="jerseys.html?tab=countries" class="cat-card cat-wc" data-emoji="🌍">
         <span class="cat-label">International</span>
-        <span class="cat-name">WORLD CUP 2026</span>
-        <span class="cat-desc">Rep your nation on the biggest stage</span>
+        <span class="cat-name">COUNTRIES</span>
+        <span class="cat-desc">World Cup 2026 nations &amp; more — home &amp; away</span>
       </a>
-      <a href="products.html?cat=retro" class="cat-card retro" data-emoji="📻">
+      <a href="jerseys.html?tab=retro" class="cat-card cat-retro" data-emoji="📻">
         <span class="cat-label">Classics</span>
         <span class="cat-name">RETRO JERSEYS</span>
         <span class="cat-desc">Old season &amp; iconic kits — specify the year!</span>
       </a>
-      <a href="products.html?cat=limited" class="cat-card limited" data-emoji="💎">
+      <a href="jerseys.html?tab=limited" class="cat-card cat-limited" data-emoji="💎">
         <span class="cat-label">Rare Drops</span>
         <span class="cat-name">LIMITED EDITION</span>
         <span class="cat-desc">Special collabs &amp; exclusive releases</span>
@@ -186,323 +195,148 @@
   </div>
 </section>
 
-<!-- POPULAR PICKS -->
-<section id="recommendations">
+<!-- ABOUT -->
+<section id="about">
   <div class="container">
-    <p class="section-label">Picked For You</p>
-    <h2 class="section-title">POPULAR CHOICES</h2>
-    <p class="section-sub">What everyone's buying right now. Tap to add straight to your cart.</p>
-    <div class="gallery-grid" id="recs-grid"></div>
-  </div>
-</section>
-
-<!-- SIZE GUIDE -->
-<section id="size-guide">
-  <div class="container">
-    <p class="section-label">Get the Right Fit</p>
-    <h2 class="section-title">SIZE GUIDE</h2>
-    <p class="section-sub">Use your chest measurement to find your perfect jersey size. Sizes run true to standard football fit.</p>
-    <div class="size-table-wrap">
-      <table class="sizes">
-        <thead><tr><th>Size</th><th>Chest (cm)</th><th>Chest (inches)</th><th>Length (cm)</th><th>Best For</th></tr></thead>
-        <tbody>
-          <tr><td>XS</td><td>84 – 88</td><td>33 – 35"</td><td>68</td><td>Slim/petite build, youth adults</td></tr>
-          <tr><td>S</td><td>88 – 94</td><td>35 – 37"</td><td>71</td><td>Slim to average build</td></tr>
-          <tr><td>M</td><td>94 – 100</td><td>37 – 39"</td><td>74</td><td>Average build — most popular size</td></tr>
-          <tr><td>L</td><td>100 – 106</td><td>39 – 42"</td><td>76</td><td>Broader chest, relaxed fit on medium build</td></tr>
-          <tr><td>XL</td><td>106 – 114</td><td>42 – 45"</td><td>79</td><td>Larger build or prefer a loose fit</td></tr>
-          <tr><td>XXL</td><td>114 – 122</td><td>45 – 48"</td><td>82</td><td>Big &amp; tall, very relaxed fit</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="size-note">📏 <strong>How to measure your chest:</strong> Wrap a tape measure around the fullest part of your chest, just under your arms. Keep it level and add 2–4 cm for a comfortable jersey fit.</div>
-    <div class="size-tips">
-      <div class="size-tip"><h4>🏋️ Athletic Build</h4><p>If you have broad shoulders or a muscular chest, size up one — e.g. if your chest says M, go for L for a comfortable fit through the shoulders.</p></div>
-      <div class="size-tip"><h4>👕 Slim Fit vs Relaxed</h4><p>Our jerseys have a standard football fit. For a body-hugging look, stay true to your measurement. For a looser, casual wear feel, size up one.</p></div>
-      <div class="size-tip"><h4>👦 Buying for a Child?</h4><p>We recommend XS or S for teenagers. For younger kids, message us on WhatsApp and we'll help you find the right fit based on their age and height.</p></div>
-      <div class="size-tip"><h4>❓ Not Sure?</h4><p>Just WhatsApp us your height, weight or chest size and we'll recommend the right size. Getting it right first time saves everyone time! 😊</p></div>
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">ABOUT RAHA JERSEYS</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Raha Jerseys was born from one simple idea — every football fan deserves to rep their team without breaking the bank. We started small, but our passion for the game and commitment to quality has made us one of Kenya's most trusted jersey suppliers.</p>
+        <p>We stock over 100 teams — from Premier League giants to World Cup nations and classic retro kits. Every jersey is carefully sourced to ensure you get premium quality at a price that makes your pocket happy.</p>
+        <p><em style="color:var(--accent);">"Happy Pocket, Happy Customer"</em> — that's not just our slogan, it's our promise.</p>
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="jerseys.html" class="btn-primary">Shop Now</a>
+          <a href="https://wa.me/254710611244" target="_blank" class="btn-outline" style="border-color:rgba(255,255,255,.4);color:white;">💬 WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat"><div class="num">100+</div><div class="lbl">Teams Available</div></div>
+        <div class="about-stat"><div class="num">200+</div><div class="lbl">Happy Customers</div></div>
+        <div class="about-stat"><div class="num">4.9★</div><div class="lbl">Average Rating</div></div>
+        <div class="about-stat"><div class="num">🚚</div><div class="lbl">Kenya-wide Delivery</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why">
+<!-- PERKS -->
+<section id="perks">
   <div class="container">
     <p class="section-label">Why Raha</p>
     <h2 class="section-title">HAPPY POCKET, HAPPY CUSTOMER</h2>
-    <p class="section-sub">Here's what makes us different.</p>
-    <div class="perks">
-      <div class="perk"><span class="perk-icon">✅</span><h3>Top-Tier Quality</h3><p>Premium materials that look and feel great on every version.</p></div>
-      <div class="perk"><span class="perk-icon">💰</span><h3>Unbeatable Prices</h3><p>Starting from just KSh 1,000. Bulk orders of 4+ get a sweet discount.</p></div>
-      <div class="perk"><span class="perk-icon">🏆</span><h3>Massive Variety</h3><p>Club, international, retro, limited edition — whatever your team, we have it.</p></div>
-      <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
-      <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name and number for just KSh 300. Make it yours.</p></div>
-      <div class="perk"><span class="perk-icon">📲</span><h3>Easy Ordering</h3><p>Add to cart and checkout on WhatsApp — fast, personal, friendly.</p></div>
+    <div class="perks-grid">
+      <div class="perk"><span class="perk-icon">✅</span><h3>Top-Tier Quality</h3><p>Premium materials on every version — Pro, Retro or Limited Edition.</p></div>
+      <div class="perk"><span class="perk-icon">💰</span><h3>Unbeatable Prices</h3><p>From KSh 1,200. Bulk orders of 5+ get a discount.</p></div>
+      <div class="perk"><span class="perk-icon">🏆</span><h3>Massive Variety</h3><p>Club, international, retro, limited — 100+ teams available.</p></div>
+      <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick, reliable delivery across Kenya. Updates every step.</p></div>
+      <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name &amp; number for KSh 300. Make it yours.</p></div>
+      <div class="perk"><span class="perk-icon">📲</span><h3>Easy Cart Ordering</h3><p>Add multiple jerseys to your cart and order everything at once.</p></div>
     </div>
   </div>
 </section>
 
 <!-- TRUST -->
-<section id="trust">
+<section id="trust" style="background:var(--pitch);color:white;">
   <div class="container">
     <p class="section-label" style="color:var(--accent);">Shop With Confidence</p>
     <h2 class="section-title" style="color:white;">WHY TRUST RAHA JERSEYS</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;">We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.</p>
+    <p class="section-sub" style="color:rgba(255,255,255,.65);max-width:640px;">We understand that buying online can feel risky. That's why we are committed to making your experience safe, transparent, and reliable.</p>
     <div class="trust-grid">
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Genuine Products Only</h4><p>Every jersey we sell is exactly as described — premium quality, no surprises.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Clear Pricing, No Hidden Charges</h4><p>The price you see is the price you pay. Printing is KSh 300 extra — that's it.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Fast &amp; Reliable Delivery Across Kenya</h4><p>We deliver quickly and keep you updated every step of the way.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Responsive Customer Support</h4><p>Our team is available before and after your purchase. We're always here to help.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Genuine Products Only</h4><p>Every jersey is exactly as described — premium quality, no surprises.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Clear Pricing, No Hidden Charges</h4><p>The price you see is what you pay. Printing is KSh 400 extra — that's it.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Fast &amp; Reliable Delivery</h4><p>We deliver across Kenya and keep you updated every step.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Responsive Customer Support</h4><p>Available before and after your purchase. Always here to help.</p></div></div>
       <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Real Customer Reviews</h4><p>Read genuine reviews from real customers right here on the site.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">🔒</span><div><h4>Secure 30% Deposit Payment</h4><p>Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">🔒</span><div><h4>Secure 30% Deposit</h4><p>Pay a small deposit via Pochi La Biashara to confirm — easy and safe.</p></div></div>
     </div>
     <div class="trust-quote">"Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."</div>
   </div>
 </section>
 
-<!-- CUSTOMER REVIEWS -->
-<section id="reviews">
+<!-- REVIEWS -->
+<section class="reviews-section" style="padding:4rem 1.5rem;">
   <div class="container">
-    <p class="section-label">Real Customers</p>
-    <h2 class="section-title">WHAT PEOPLE SAY</h2>
-    <p class="section-sub">Trusted by football lovers across Kenya.</p>
+    <p class="section-label" style="color:var(--accent);">Real Customers</p>
+    <h2 class="section-title" style="color:white;">WHAT PEOPLE SAY</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.65);">Trusted by football lovers across Kenya.</p>
+
     <div class="reviews-summary">
-      <div class="big-rating" id="avg-rating-display">4.9</div>
+      <div class="big-rating" id="avg-rating">4.9</div>
       <div>
-        <span class="rating-stars-big" id="avg-stars-display">★★★★★</span>
-        <div style="font-size:.88rem;color:rgba(255,255,255,.7);" id="review-count-display">Based on 200+ happy customers</div>
-        <div class="rating-detail" style="margin-top:.3rem;">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
+        <span class="rating-stars-big" id="avg-stars">★★★★★</span>
+        <div id="review-count" style="font-size:.85rem;color:rgba(255,255,255,.65);">Based on 200+ happy customers</div>
+        <div class="rating-detail">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
       </div>
     </div>
+
+    <!-- ADD REVIEW -->
     <div class="add-review-box">
       <h3 class="add-review-title">Leave a Review</h3>
-      <div class="star-picker" id="star-picker">
-        <span class="star-opt" data-v="1" onclick="pickStar(1)">★</span>
-        <span class="star-opt" data-v="2" onclick="pickStar(2)">★</span>
-        <span class="star-opt" data-v="3" onclick="pickStar(3)">★</span>
-        <span class="star-opt" data-v="4" onclick="pickStar(4)">★</span>
-        <span class="star-opt" data-v="5" onclick="pickStar(5)">★</span>
+      <div class="star-picker">
+        <span class="star-opt" onclick="pickStar(1)">★</span>
+        <span class="star-opt" onclick="pickStar(2)">★</span>
+        <span class="star-opt" onclick="pickStar(3)">★</span>
+        <span class="star-opt" onclick="pickStar(4)">★</span>
+        <span class="star-opt" onclick="pickStar(5)">★</span>
       </div>
-      <input type="hidden" id="review-stars" value="0" />
+      <input type="hidden" id="review-stars-input" value="0"/>
       <div class="review-form-grid">
-        <input type="text" id="review-name" placeholder="Your name" maxlength="40" />
-        <input type="text" id="review-kit-bought" placeholder="What did you buy? e.g. Arsenal Home" maxlength="60" />
+        <input type="text" id="review-name" placeholder="Your name" maxlength="40"/>
+        <input type="text" id="review-kit-input" placeholder="What did you buy? e.g. Arsenal Home" maxlength="60"/>
       </div>
-      <textarea id="review-text" placeholder="Tell others about your experience..." maxlength="300" rows="3"></textarea>
-      <button class="review-submit-btn" onclick="submitReview()">Post Review</button>
+      <textarea id="review-text" placeholder="Tell others about your experience..." maxlength="300"></textarea>
+      <button class="review-submit-btn" onclick="submitReview()">Post Review ⭐</button>
       <p class="review-submit-note" id="review-msg"></p>
     </div>
-    <div class="reviews-grid" id="live-reviews-grid"></div>
-  </div>
-</section>
 
-<!-- ABOUT US -->
-<section id="about">
-  <div class="container">
-    <div class="about-wrap">
-      <div>
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title">ABOUT RAHA JERSEYS</h2>
-        <p>Raha Jerseys started with one simple idea: every football fan in Kenya deserves a quality kit without paying import prices. "Raha" means comfort and ease in Swahili — and that's exactly what we aim to give you, from browsing to delivery.</p>
-        <p>We stock over 1,000 club, national and retro jerseys — from the Premier League to the World Cup 2026 — all at prices that keep your pocket happy. Every order is confirmed personally on WhatsApp, so you always know exactly what you're getting.</p>
-        <p>Based in Kenya, delivering across the country. Sawa kabisa. ⚽</p>
-      </div>
-      <div class="about-stats">
-        <div class="about-stat"><div class="num">2+</div><div class="lbl">Years Running</div></div>
-        <div class="about-stat"><div class="num">1,000+</div><div class="lbl">Teams Stocked</div></div>
-        <div class="about-stat"><div class="num">200+</div><div class="lbl">Happy Customers</div></div>
-        <div class="about-stat"><div class="num">4.9★</div><div class="lbl">Average Rating</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT US -->
-<section id="contact">
-  <div class="container">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">CONTACT US</h2>
-    <p class="section-sub">Questions about sizing, stock, or an order? Reach us any way that suits you.</p>
-    <div class="contact-grid">
-      <a href="https://wa.me/254119485338" target="_blank" rel="noopener" class="contact-card">
-        <span class="contact-icon">💬</span>
-        <div><h4>WhatsApp</h4><span class="contact-value">0119 485 338</span></div>
-      </a>
-      <a href="tel:+254716932313" class="contact-card">
-        <span class="contact-icon">📞</span>
-        <div><h4>Call Us</h4><span class="contact-value">0716 932 313</span></div>
-      </a>
-      <a href="mailto:rahajersey@gmail.com" class="contact-card">
-        <span class="contact-icon">✉️</span>
-        <div><h4>Email</h4><span class="contact-value" style="font-size:.85rem;">rahajersey@gmail.com</span></div>
-      </a>
-      <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener" class="contact-card">
-        <span class="contact-icon">📸</span>
-        <div><h4>Instagram</h4><span class="contact-value">@raha_jerseys</span></div>
-      </a>
-    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <span class="footer-logo">RAHA JERSEYS ⚽</span>
-  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
-  <div class="footer-contacts">
-    <a href="tel:+254716932313">📞 0716 932 313</a>
-    <a href="https://wa.me/254119485338" target="_blank" rel="noopener">💬 WhatsApp Us</a>
-    <a href="mailto:rahajersey@gmail.com">✉️ Email</a>
-    <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener">📸 @raha_jerseys</a>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo-text">RAHA ⚽</span>
+      <p class="footer-tagline">Premium football kits at pocket-friendly prices. Fast delivery across Kenya.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/rahajerseys" target="_blank" class="social-btn">📸 Instagram</a>
+        <a href="https://wa.me/254710611244" target="_blank" class="social-btn">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-heading">QUICK LINKS</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jerseys.html">Jerseys</a></li>
+        <li><a href="jerseys.html?tab=wc2026">World Cup 2026</a></li>
+        <li><a href="jerseys.html?tab=retro">Retro Kits</a></li>
+        <li><a href="cart.html">Cart &amp; Order</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-heading">CONTACT</p>
+      <div class="footer-contact-item">📞 <a href="tel:+254710611244">0710 611 244</a></div>
+      <div class="footer-contact-item">📞 <a href="tel:+254119485338">0119 485 338</a></div>
+      <div class="footer-contact-item">💬 <a href="https://wa.me/254710611244" target="_blank">WhatsApp Us</a></div>
+      <div class="footer-contact-item">📸 <a href="https://www.instagram.com/rahajerseys" target="_blank">@rahajerseys</a></div>
+      <div class="footer-contact-item" style="margin-top:.5rem;">📍 Nairobi, Kenya</div>
+    </div>
   </div>
-  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
+  <div class="footer-bottom">
+    <span>© 2026 Raha Jerseys. All rights reserved.</span>
+    <span>Happy Pocket, Happy Customer 💛</span>
+  </div>
 </footer>
 
-<a href="https://wa.me/254119485338" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<a href="https://wa.me/254710611244" class="wa-float" target="_blank" aria-label="WhatsApp">💬</a>
+<div class="cart-toast" id="cart-toast"></div>
 
-<!-- CART DRAWER -->
-<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
-<div class="cart-drawer" id="cart-drawer">
-  <div class="cart-header"><h3>YOUR CART</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
-  <div class="cart-items" id="cart-items"></div>
-  <div class="cart-footer" id="cart-footer" style="display:none;">
-    <div class="mfield" style="margin-bottom:.6rem;"><label>Your Name</label><input type="text" id="checkout-name" placeholder="e.g. Brian Mutua" /></div>
-    <div class="mfield" style="margin-bottom:.6rem;"><label>Phone / WhatsApp</label><input type="tel" id="checkout-phone" placeholder="07XX XXX XXX" /></div>
-    <div class="cart-summary-row total"><span>Total</span><span id="cart-total">KSh 0</span></div>
-    <div class="cart-deposit-box">30% Deposit now: <span id="cart-deposit">KSh 0</span></div>
-    <div class="cart-summary-row"><span>Balance on delivery</span><span id="cart-balance">KSh 0</span></div>
-    <button class="btn-whatsapp" onclick="checkoutCart()">💬 Checkout on WhatsApp</button>
-  </div>
-</div>
-
-<!-- QUICK ADD MODAL -->
-<div class="modal-overlay" id="qa-overlay">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeQuickAdd()">✕</button>
-    <div class="modal-head">
-      <img id="qa-img" src="" alt="" />
-      <div><h4 id="qa-team"></h4><div class="modal-sub" id="qa-sub"></div></div>
-    </div>
-    <div class="modal-body">
-      <div class="mfield" id="qa-kit-wrap"><label>Kit</label><select id="qa-kit"></select></div>
-      <div class="mfield"><label>Version</label><select id="qa-version"></select></div>
-      <div class="mrow2">
-        <div class="mfield"><label>Size</label>
-          <select id="qa-size">
-            <option value="" disabled selected>Pick size</option>
-            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-          </select>
-        </div>
-        <div class="mfield"><label>Pieces</label>
-          <select id="qa-pieces">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+ (discount)</option>
-          </select>
-        </div>
-      </div>
-      <div class="mfield"><label>Add Printing? (+KSh 300/piece)</label>
-        <select id="qa-print" onchange="onQaPrintChange()"><option value="no">No thanks</option><option value="yes">Yes please</option></select>
-      </div>
-      <div class="mrow2" id="qa-print-details" style="display:none;">
-        <div class="mfield"><label>Name</label><input type="text" id="qa-print-name" placeholder="e.g. SAKA" /></div>
-        <div class="mfield"><label>Number</label><input type="text" id="qa-print-number" placeholder="e.g. 7" /></div>
-      </div>
-      <div class="modal-price-preview" id="qa-price-preview">KSh 0</div>
-      <button class="modal-add-btn" onclick="submitQuickAdd()">🛒 Add to Cart</button>
-    </div>
-  </div>
-</div>
-
-<script src="cart.js"></script>
-<script src="quickadd.js"></script>
+<script src="shared.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <script>
-  /* ── POPULAR PICKS ── */
-  var RECS = [
-    { team:'Brazil Home', sub:'World Cup 2026', tag:'🔥 Most Popular', img:'images/brazil-home-2026.jpg', fallback:'https://placehold.co/400x533/009C3B/ffffff?text=Brazil+Home', hasKitType:false, versions:['Pro','Limited Edition'] },
-    { team:'Argentina Home', sub:'World Cup 2026', tag:'⭐ Top Seller', img:'images/argentina-home-2026.jpg', fallback:'https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+Home', hasKitType:false, versions:['Pro','Limited Edition'] },
-    { team:'Arsenal 26/27', sub:'Premier League', tag:'🔥 Trending', img:'images/arsenal-2627.jpg', fallback:'https://placehold.co/400x533/EF0107/ffffff?text=Arsenal+26%2F27', hasKitType:true, versions:['Pro','Limited Edition'] },
-    { team:'Real Madrid 26/27', sub:'La Liga', tag:'⭐ Top Seller', img:'images/real-madrid-2627.jpg', fallback:'https://placehold.co/400x533/FEBE10/1a1a1a?text=Real+Madrid+26%2F27', hasKitType:true, versions:['Pro','Limited Edition'] },
-    { team:'Morocco Home', sub:'World Cup 2026', tag:'🌍 World Cup Fave', img:'images/morocco-home-2026.jpg', fallback:'https://placehold.co/400x533/C1272D/ffffff?text=Morocco+Home', hasKitType:false, versions:['Pro','Limited Edition'] },
-    { team:'Argentina 1986', sub:'Retro Classic', tag:'📻 Retro Classic', img:'images/argentina-retro-1986.jpg', fallback:'https://placehold.co/400x533/74ACDF/ffffff?text=Argentina+1986', hasKitType:false, versions:['Retro'] }
-  ];
-  var recsGrid = document.getElementById('recs-grid');
-  RECS.forEach(function (r) {
-    var div = document.createElement('div');
-    div.className = 'gallery-item';
-    div.innerHTML =
-      '<img class="gallery-img" src="' + r.img + '" onerror="this.src=\'' + r.fallback + '\'" alt="' + r.team + '" />' +
-      '<div class="gallery-label">' +
-        '<div class="team">' + r.team + '</div>' +
-        '<div class="kit-type">' + r.tag + '</div>' +
-        '<div class="gallery-price">From ' + (VERSION_PRICES[r.versions[0]]).toLocaleString() + ' KSh</div>' +
-        '<button class="gallery-add-btn">+ Add to Cart</button>' +
-      '</div>';
-    div.querySelector('.gallery-add-btn').addEventListener('click', function (e) {
-      e.stopPropagation();
-      openQuickAdd({ team:r.team, subLabel:r.sub, img:r.img, hasKitType:r.hasKitType, versions:r.versions });
-    });
-    div.addEventListener('click', function () {
-      openQuickAdd({ team:r.team, subLabel:r.sub, img:r.img, hasKitType:r.hasKitType, versions:r.versions });
-    });
-    recsGrid.appendChild(div);
-  });
-
-  /* ── LIVE REVIEWS ── */
-  var REVIEWS_KEY = 'raha_reviews_v1';
-  var seedReviews = [
-    { name:'Brian M.', kit:'Arsenal Home · Pro Version', stars:5, text:'Ordered an Arsenal Pro jersey on Monday and it arrived by Wednesday. Quality is unreal for the price — stitching is tight, colours are vivid. Already ordered two more for my brothers!' },
-    { name:'Sharon W.', kit:'Argentina WC 2026 · Pro + Printing', stars:5, text:'Got the Argentina 2026 World Cup jersey with printing — Messi 10 on the back. Looks absolutely official. My friends keep asking me where I got it. Raha Jerseys is the real deal!' },
-    { name:'James O.', kit:'Bulk Order · 6 Jerseys', stars:5, text:'Ordered 6 jerseys for our 5-aside team and got a great bulk discount. All arrived on time, all the right sizes. Communication on WhatsApp was super fast. Will definitely reorder!' },
-    { name:'Dennis K.', kit:'Man United 1999 · Retro', stars:5, text:'I was skeptical at first but the retro Man United 1999 jersey is absolutely beautiful. The fabric quality and badge embroidery are top notch. Very happy customer!' },
-    { name:'Fatuma K.', kit:'Morocco WC 2026 · Pro Version', stars:5, text:'Needed a Morocco World Cup 2026 jersey for the opening game. Contacted Raha on Tuesday, had it by Thursday. Size guide was accurate too. Sawa kabisa!' },
-    { name:'Tony M.', kit:'Multiple orders · Loyal customer', stars:5, text:'Best jersey shop in Kenya hands down. Been buying from Raha for 2 years — always quality, always on time. The Pro version feels just like a match-worn kit. Keep it up guys!' }
-  ];
-  function loadReviews() { try { var s = localStorage.getItem(REVIEWS_KEY); return s ? JSON.parse(s) : seedReviews.slice(); } catch(e) { return seedReviews.slice(); } }
-  function saveReviews(r) { try { localStorage.setItem(REVIEWS_KEY, JSON.stringify(r)); } catch(e) {} }
-  function renderReviews() {
-    var reviews = loadReviews();
-    var grid = document.getElementById('live-reviews-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    var total = reviews.reduce(function (s, r) { return s + r.stars; }, 0);
-    var avg = reviews.length ? (total / reviews.length).toFixed(1) : '5.0';
-    document.getElementById('avg-rating-display').textContent = avg;
-    document.getElementById('review-count-display').textContent = 'Based on ' + reviews.length + ' happy customers';
-    document.getElementById('avg-stars-display').textContent = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
-    reviews.forEach(function (r) {
-      var initials = r.name.split(' ').map(function (w) { return w[0]; }).join('').toUpperCase().slice(0,2);
-      var stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-      var card = document.createElement('div');
-      card.className = 'review-card';
-      card.innerHTML = '<div class="review-stars">' + stars + '</div><p class="review-text">"' + r.text.replace(/</g,'&lt;') + '"</p><div class="review-author"><div class="review-avatar">' + initials + '</div><div><div class="review-name">' + r.name + '</div><div class="review-kit">' + r.kit + '</div></div></div>';
-      grid.appendChild(card);
-    });
-  }
-  var selectedStars = 0;
-  function pickStar(n) {
-    selectedStars = n;
-    document.getElementById('review-stars').value = n;
-    document.querySelectorAll('.star-opt').forEach(function (s, i) { s.classList.toggle('active', i < n); });
-  }
-  function submitReview() {
-    var name = document.getElementById('review-name').value.trim();
-    var kit = document.getElementById('review-kit-bought').value.trim();
-    var text = document.getElementById('review-text').value.trim();
-    var stars = parseInt(document.getElementById('review-stars').value) || 0;
-    var msgEl = document.getElementById('review-msg');
-    if (!name || !text || stars === 0) { msgEl.textContent = 'Please fill in your name, pick a star rating, and write a review.'; msgEl.style.color = '#ff6b6b'; return; }
-    var reviews = loadReviews();
-    reviews.unshift({ name:name, kit:kit || 'Raha Jerseys customer', stars:stars, text:text });
-    saveReviews(reviews);
-    renderReviews();
-    document.getElementById('review-name').value = '';
-    document.getElementById('review-kit-bought').value = '';
-    document.getElementById('review-text').value = '';
-    document.getElementById('review-stars').value = '0';
-    selectedStars = 0;
-    document.querySelectorAll('.star-opt').forEach(function (s) { s.classList.remove('active'); });
-    msgEl.textContent = 'Thank you! Your review has been posted.';
-    msgEl.style.color = 'var(--accent)';
-  }
-  renderReviews();
+  window.addEventListener('load', function() { tw(); });
 </script>
 </body>
 </html>
