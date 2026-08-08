@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop Jerseys ⚽ | Raha Jerseys</title>
+<meta name="description" content="Browse Premier League, La Liga, Bundesliga & Ligue 1 club kits, national team jerseys by continent, retro classics and limited editions. Add to cart and checkout on WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
+<style>
+  /* ── PAGE BANNER (background changes per league) ── */
+  .prod-banner {
+    position:relative; color:white; padding:3rem 1.5rem 2rem; text-align:center; overflow:hidden;
+    background:linear-gradient(135deg,#0d5c2e,#1a7a3c); transition:background 1s ease;
+  }
+  .prod-banner.bg-epl        { background:linear-gradient(135deg,#37003c,#8e0e6b); }
+  .prod-banner.bg-laliga     { background:linear-gradient(135deg,#a3170a,#ee8707); }
+  .prod-banner.bg-bundesliga { background:linear-gradient(135deg,#1a1a1a,#d3010c); }
+  .prod-banner.bg-ligue1     { background:linear-gradient(135deg,#001b4f,#0a539c); }
+  .prod-banner.bg-countries  { background:linear-gradient(135deg,#004225,#0a8a4d); }
+  .prod-banner.bg-retro      { background:linear-gradient(135deg,#5c2c0d,#a8471f); }
+  .prod-banner.bg-limited    { background:linear-gradient(135deg,#3a0f4a,#8e44ad); }
+  .prod-banner h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.4rem,7vw,4rem); letter-spacing:3px; line-height:1; margin-bottom:.4rem; }
+  .prod-banner p { color:rgba(255,255,255,.8); font-size:.95rem; max-width:520px; margin:0 auto; }
+
+  /* ── CATEGORY TABS ── */
+  .cat-tabs-wrap { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:60px; z-index:150; }
+  .cat-tabs { max-width:1100px; margin:0 auto; display:flex; gap:.5rem; padding:.85rem 1.5rem; overflow-x:auto; }
+  .cat-tab { flex-shrink:0; background:var(--off-white); border:1.5px solid var(--border); border-radius:50px; padding:.5rem 1.15rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .2s; white-space:nowrap; }
+  .cat-tab.active, .cat-tab:hover { background:var(--pitch); border-color:var(--pitch); color:white; }
+
+  /* ── LEAGUE SUB-NAV ── */
+  .league-nav-wrap { background:var(--off-white); border-bottom:1px solid var(--border); }
+  .league-nav { max-width:1100px; margin:0 auto; display:flex; gap:.5rem; padding:.75rem 1.5rem; overflow-x:auto; align-items:center; }
+  .league-tab { flex-shrink:0; background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:.55rem 1.1rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text); font-family:'Inter',sans-serif; transition:all .2s; white-space:nowrap; }
+  .league-tab.active, .league-tab:hover { background:var(--accent); border-color:var(--accent); color:var(--text); }
+
+  /* ── KIT TOGGLE (home/away) ── */
+  .kit-toggle { display:flex; gap:.5rem; margin-bottom:1rem; }
+  .kit-toggle-btn { background:var(--off-white); border:1.5px solid var(--border); border-radius:50px; padding:.45rem 1.1rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .2s; }
+  .kit-toggle-btn.active, .kit-toggle-btn:hover { background:var(--pitch); border-color:var(--pitch); color:white; }
+
+  /* ── CONTINENT GROUPING ── */
+  .continent-heading { grid-column:1/-1; font-family:'Bebas Neue',sans-serif; letter-spacing:2px; font-size:1.4rem; margin:1.75rem 0 .75rem; color:var(--text); }
+  .continent-heading:first-child { margin-top:0; }
+
+  /* ── OUT OF STOCK ── */
+  .gallery-item { position:relative; }
+  .gallery-item.out-of-stock .gallery-img { filter:grayscale(1) brightness(.75); }
+  .gallery-item.out-of-stock .oos-badge { position:absolute; top:10px; left:10px; background:#c0392b; color:#fff; font-size:.68rem; font-weight:800; padding:.3rem .6rem; border-radius:4px; letter-spacing:.5px; text-transform:uppercase; z-index:5; }
+  .gallery-item.out-of-stock .gallery-add-btn { background:#999 !important; cursor:not-allowed !important; pointer-events:none; }
+  .gallery-item.out-of-stock { cursor:default; }
+
+  main section { padding-top:2.5rem; padding-bottom:3rem; }
+  .catalog-note { margin-top:1.5rem; font-size:.85rem; color:var(--text-muted); text-align:center; }
+  .catalog-note a { color:var(--green); font-weight:600; }
+
+  /* ── SEARCH ── */
+  .prod-search-wrap { max-width:1100px; margin:0 auto; padding:1.25rem 1.5rem 0; }
+  .prod-search { position:relative; }
+  .prod-search input { width:100%; padding:.75rem 3rem .75rem 1.1rem; border:1.5px solid var(--border); border-radius:50px; font-size:.9rem; font-family:'Inter',sans-serif; outline:none; }
+  .prod-search input:focus { border-color:var(--green); }
+  .prod-search .search-icon { position:absolute; right:1rem; top:50%; transform:translateY(-50%); }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="nav-logo">RAHA ⚽</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="help.html">Help</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()" aria-label="Cart">🛒<span class="cart-badge" style="display:none;">0</span></button>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- BANNER (background swaps per league/category) -->
+<header class="prod-banner" id="prod-banner">
+  <h1 id="banner-title">SHOP JERSEYS</h1>
+  <p id="banner-sub">Browse by league, country, or era — add your favourites to cart and checkout on WhatsApp.</p>
+</header>
+
+<!-- SEARCH -->
+<div class="prod-search-wrap">
+  <div class="prod-search">
+    <input type="text" id="prod-search-input" placeholder="Search any team e.g. Arsenal, Brazil, Bayern..." oninput="searchCatalog(this.value)" autocomplete="off" />
+    <span class="search-icon">🔍</span>
+  </div>
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="cat-tabs-wrap">
+  <div class="cat-tabs" id="cat-tabs">
+    <button class="cat-tab active" data-cat="club" onclick="switchCategory('club')">⚽ Club Leagues</button>
+    <button class="cat-tab" data-cat="countries" onclick="switchCategory('countries')">🌍 Countries</button>
+    <button class="cat-tab" data-cat="retro" onclick="switchCategory('retro')">📻 Retro</button>
+    <button class="cat-tab" data-cat="limited" onclick="switchCategory('limited')">💎 Limited Edition</button>
+  </div>
+</div>
+
+<!-- LEAGUE SUB-NAV (club leagues only) -->
+<div class="league-nav-wrap" id="league-nav-wrap">
+  <div class="league-nav">
+    <button class="league-tab active" data-league="epl" onclick="switchLeague('epl')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+    <button class="league-tab" data-league="laliga" onclick="switchLeague('laliga')">🇪🇸 La Liga</button>
+    <button class="league-tab" data-league="bundesliga" onclick="switchLeague('bundesliga')">🇩🇪 Bundesliga</button>
+    <button class="league-tab" data-league="ligue1" onclick="switchLeague('ligue1')">🇫🇷 Ligue 1</button>
+  </div>
+</div>
+
+<main>
+  <section>
+    <div class="container">
+
+      <!-- SEARCH RESULTS -->
+      <div id="search-results-panel" style="display:none;">
+        <p style="font-size:.85rem;color:var(--text-muted);font-weight:600;margin-bottom:.75rem;">Search results: <span id="search-count">0</span> found</p>
+        <div class="gallery-grid" id="search-results-grid"></div>
+      </div>
+
+      <!-- CLUB PANEL -->
+      <div id="panel-club">
+        <div class="kit-toggle">
+          <button class="kit-toggle-btn active" onclick="switchKit('club','home',this)">👕 Home</button>
+          <button class="kit-toggle-btn" onclick="switchKit('club','away',this)">👕 Away</button>
+        </div>
+        <div class="gallery-grid" id="club-grid"></div>
+      </div>
+
+      <!-- COUNTRIES PANEL (World Cup 2026 nations + other countries, grouped by continent) -->
+      <div id="panel-countries" style="display:none">
+        <div class="kit-toggle">
+          <button class="kit-toggle-btn active" onclick="switchKit('countries','home',this)">👕 Home</button>
+          <button class="kit-toggle-btn" onclick="switchKit('countries','away',this)">👕 Away</button>
+        </div>
+        <div id="countries-grid"></div>
+      </div>
+
+      <!-- RETRO PANEL -->
+      <div id="panel-retro" style="display:none">
+        <div class="gallery-grid" id="retro-grid"></div>
+      </div>
+
+      <!-- LIMITED EDITION PANEL -->
+      <div id="panel-limited" style="display:none">
+        <div class="gallery-grid" id="limited-grid"></div>
+      </div>
+
+      <p class="catalog-note">💬 Don't see your team? <a href="https://wa.me/254119485338" target="_blank" rel="noopener">Message us on WhatsApp</a> — we stock 1,000+ teams. Stock moves fast! ⚡</p>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-logo">RAHA JERSEYS ⚽</span>
+  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
+  <div class="footer-contacts">
+    <a href="tel:+254716932313">📞 0716 932 313</a>
+    <a href="https://wa.me/254119485338" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+    <a href="mailto:rahajersey@gmail.com">✉️ Email</a>
+    <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener">📸 @raha_jerseys</a>
+  </div>
+  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
+</footer>
+
+<a href="https://wa.me/254119485338" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header"><h3>YOUR CART</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="mfield" style="margin-bottom:.6rem;"><label>Your Name</label><input type="text" id="checkout-name" placeholder="e.g. Brian Mutua" /></div>
+    <div class="mfield" style="margin-bottom:.6rem;"><label>Phone / WhatsApp</label><input type="tel" id="checkout-phone" placeholder="07XX XXX XXX" /></div>
+    <div class="cart-summary-row total"><span>Total</span><span id="cart-total">KSh 0</span></div>
+    <div class="cart-deposit-box">30% Deposit now: <span id="cart-deposit">KSh 0</span></div>
+    <div class="cart-summary-row"><span>Balance on delivery</span><span id="cart-balance">KSh 0</span></div>
+    <button class="btn-whatsapp" onclick="checkoutCart()">💬 Checkout on WhatsApp</button>
+  </div>
+</div>
+
+<!-- QUICK ADD MODAL -->
+<div class="modal-overlay" id="qa-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuickAdd()">✕</button>
+    <div class="modal-head">
+      <img id="qa-img" src="" alt="" />
+      <div><h4 id="qa-team"></h4><div class="modal-sub" id="qa-sub"></div></div>
+    </div>
+    <div class="modal-body">
+      <div class="mfield" id="qa-kit-wrap"><label>Kit</label><select id="qa-kit"></select></div>
+      <div class="mfield"><label>Version</label><select id="qa-version"></select></div>
+      <div class="mrow2">
+        <div class="mfield"><label>Size</label>
+          <select id="qa-size">
+            <option value="" disabled selected>Pick size</option>
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+        <div class="mfield"><label>Pieces</label>
+          <select id="qa-pieces">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+ (discount)</option>
+          </select>
+        </div>
+      </div>
+      <div class="mfield"><label>Add Printing? (+KSh 300/piece)</label>
+        <select id="qa-print" onchange="onQaPrintChange()"><option value="no">No thanks</option><option value="yes">Yes please</option></select>
+      </div>
+      <div class="mrow2" id="qa-print-details" style="display:none;">
+        <div class="mfield"><label>Name</label><input type="text" id="qa-print-name" placeholder="e.g. SAKA" /></div>
+        <div class="mfield"><label>Number</label><input type="text" id="qa-print-number" placeholder="e.g. 7" /></div>
+      </div>
+      <div class="modal-price-preview" id="qa-price-preview">KSh 0</div>
+      <button class="modal-add-btn" onclick="submitQuickAdd()">🛒 Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+<script src="quickadd.js"></script>
+<script>
+/* ══════════════════════════════════════
+   PRICING — two tiers across the whole catalog
+   (actual KSh values live in VERSION_PRICES in cart.js)
+═══════════════════════════════════════ */
+var VERSIONS = ['Fan Version', 'Player Version'];
+
+/* ══════════════════════════════════════
+   IMAGES
+   ────────────────────────────────────
+   Put your jersey photos in an "images/" folder next
+   to this HTML file. Filenames are auto-generated from
+   the team/country name using this convention:
+
+     Club (26/27 season):   {slug}-2026-27-home-kit.jpg
+                             {slug}-2026-27-away-kit.jpg
+       e.g. Manchester United -> images/manchester-united-2026-27-away-kit.jpg
+
+     Countries (national teams): {slug}-home-kit.jpg / {slug}-away-kit.jpg
+       e.g. Brazil (home)   -> images/brazil-home-kit.jpg
+       e.g. Nigeria (away)  -> images/nigeria-away-kit.jpg
+
+     Retro:                  {slug}-kit.jpg
+       e.g. Brazil 1970     -> images/brazil-1970-kit.jpg
+
+     Limited Edition:        {slug}-kit.jpg
+       e.g. Nike x Jordan PSG -> images/nike-x-jordan-psg-kit.jpg
+
+   "slug" = lowercase, spaces/punctuation replaced with hyphens.
+   If a real image is missing, the page automatically falls
+   back to a placeholder graphic — nothing breaks while you're
+   still uploading photos.
+
+   ── FULL LIST — CLUB IMAGES NEEDED (2026/27, home + away) ──
+   images/arsenal-2026-27-home-kit.jpg
+   images/arsenal-2026-27-away-kit.jpg
+   images/aston-villa-2026-27-home-kit.jpg
+   images/aston-villa-2026-27-away-kit.jpg
+   images/chelsea-2026-27-home-kit.jpg
+   images/chelsea-2026-27-away-kit.jpg
+   images/leicester-city-2026-27-home-kit.jpg
+   images/leicester-city-2026-27-away-kit.jpg
+   images/liverpool-2026-27-home-kit.jpg
+   images/liverpool-2026-27-away-kit.jpg
+   images/manchester-city-2026-27-home-kit.jpg
+   images/manchester-city-2026-27-away-kit.jpg
+   images/manchester-united-2026-27-home-kit.jpg
+   images/manchester-united-2026-27-away-kit.jpg
+   images/barcelona-2026-27-home-kit.jpg
+   images/barcelona-2026-27-away-kit.jpg
+   images/real-madrid-2026-27-home-kit.jpg
+   images/real-madrid-2026-27-away-kit.jpg
+   images/bayern-munich-2026-27-home-kit.jpg
+   images/bayern-munich-2026-27-away-kit.jpg
+   images/borussia-dortmund-2026-27-home-kit.jpg
+   images/borussia-dortmund-2026-27-away-kit.jpg
+   images/paris-saint-germain-2026-27-home-kit.jpg
+   images/paris-saint-germain-2026-27-away-kit.jpg
+
+   ── OUT OF STOCK ──
+   To mark any item as sold out, add  outOfStock: true  to its
+   entry in the data below, e.g.:
+     { name:'Arsenal', outOfStock: true }
+   The card will grey out, show an "Out of Stock" badge, and
+   the Add to Cart button will be disabled.
+═══════════════════════════════════════ */
+var IMG_BASE = 'images/';
+
+function slugify(str) {
+  return str.toString().toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+function clubImg(team, kit)    { return IMG_BASE + slugify(team) + '-2026-27-' + kit + '-kit.jpg'; }
+function countryImg(team, kit) { return IMG_BASE + slugify(team) + '-' + kit + '-kit.jpg'; }
+function retroImg(team)        { return IMG_BASE + slugify(team) + '-kit.jpg'; }
+function limitedImg(team)      { return IMG_BASE + slugify(team) + '-kit.jpg'; }
+
+/* ══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
+var CLUBS = {
+  epl: [
+    { name:'Arsenal' }, { name:'Aston Villa' }, { name:'Chelsea' },
+    { name:'Leicester City' }, { name:'Liverpool' },
+    { name:'Manchester City' }, { name:'Manchester United' }
+  ],
+  laliga: [ { name:'Barcelona' }, { name:'Real Madrid' } ],
+  bundesliga: [ { name:'Bayern Munich' }, { name:'Borussia Dortmund' } ],
+  ligue1: [ { name:'Paris Saint-Germain' } ]
+};
+var LEAGUE_LABEL = { epl:'Premier League', laliga:'La Liga', bundesliga:'Bundesliga', ligue1:'Ligue 1' };
+var LEAGUE_COLOR = { epl:'37003c/ffffff', laliga:'ee8707/1a1a1a', bundesliga:'d3010c/ffffff', ligue1:'0a539c/ffffff' };
+
+/* Countries — World Cup 2026 nations + other countries, grouped by continent */
+var CONTINENT_ORDER = ['Africa','Europe','South America','North America','Asia'];
+var COUNTRIES = [
+  // Africa
+  { name:'Cape Verde', continent:'Africa', color:'003893/ffffff' },
+  { name:'Cameroon', continent:'Africa', color:'007A5E/ffffff' },
+  { name:'DR Congo', continent:'Africa', color:'007FFF/ffffff' },
+  { name:'Ghana', continent:'Africa', color:'f5f5f5/1a1a1a' },
+  { name:'Ivory Coast', continent:'Africa', color:'F77F00/ffffff' },
+  { name:'Morocco', continent:'Africa', color:'C1272D/ffffff' },
+  { name:'Nigeria', continent:'Africa', color:'008751/ffffff' },
+  { name:'Senegal', continent:'Africa', color:'00853F/ffffff' },
+  { name:'South Africa', continent:'Africa', color:'007A4D/ffffff' },
+  // Europe
+  { name:'England', continent:'Europe', color:'CF081F/ffffff' },
+  { name:'France', continent:'Europe', color:'002395/ffffff' },
+  { name:'Germany', continent:'Europe', color:'1a1a1a/ffffff' },
+  { name:'Netherlands', continent:'Europe', color:'FF6600/ffffff' },
+  { name:'Portugal', continent:'Europe', color:'006600/ffffff' },
+  { name:'Spain', continent:'Europe', color:'AA151B/ffffff' },
+  // South America
+  { name:'Argentina', continent:'South America', color:'74ACDF/ffffff' },
+  { name:'Brazil', continent:'South America', color:'009C3B/ffffff' },
+  { name:'Colombia', continent:'South America', color:'FCD116/1a1a1a' },
+  // North America
+  { name:'Canada', continent:'North America', color:'FF0000/ffffff' },
+  { name:'Mexico', continent:'North America', color:'006847/ffffff' },
+  { name:'United States', continent:'North America', color:'002868/ffffff' },
+  { name:'Jamaica', continent:'North America', color:'000000/FED100' },
+  // Asia
+  { name:'Japan', continent:'Asia', color:'000080/ffffff' },
+  { name:'South Korea', continent:'Asia', color:'C60C30/ffffff' }
+];
+
+var RETRO_ITEMS = [
+  { team:'Brazil 1970', tag:'Retro · Classic', color:'F4C430/009C3B' },
+  { team:'Argentina 1986', tag:'Retro · Maradona Era', color:'74ACDF/ffffff' },
+  { team:'France 1998', tag:'Retro · World Cup Winners', color:'002395/ffffff' },
+  { team:'Manchester United 1999', tag:'Retro · Treble Season', color:'DA291C/FFE500' },
+  { team:'AC Milan 2003', tag:'Retro · UCL Winners', color:'FB090B/1a1a1a' },
+  { team:'Barcelona 2009', tag:'Retro · Treble Season', color:'A50044/ffffff' }
+];
+
+var LIMITED_ITEMS = [
+  { team:'Man United Lunar New Year', tag:'Limited · Collab Drop', color:'DA291C/FFD700' },
+  { team:'Nike x Jordan PSG', tag:'Limited · Collab Drop', color:'1a1a1a/DA291C' },
+  { team:'Arsenal x Labrum London', tag:'Limited · Cultural Kit', color:'EF0107/ffffff' },
+  { team:'Mexico Aztec Special', tag:'Limited · Heritage Kit', color:'006847/CE1126' }
+];
+
+function ph(team, colorPair, kit) {
+  var c = (colorPair || '0d5c2e/f5c518').split('/');
+  var label = encodeURIComponent(team + (kit ? ' ' + kit : ''));
+  return 'https://placehold.co/400x533/' + c[0] + '/' + c[1] + '?text=' + label.replace(/%20/g,'+');
+}
+
+/* ── CARD BUILDER ── */
+function buildCard(cfg) {
+  var div = document.createElement('div');
+  div.className = 'gallery-item' + (cfg.outOfStock ? ' out-of-stock' : '');
+  var priceFrom = VERSION_PRICES[cfg.versions[0]];
+  var fallback = cfg.fallback || ph(cfg.team);
+  div.innerHTML =
+    '<img class="gallery-img" src="' + cfg.img + '" alt="' + cfg.team + '" onerror="this.onerror=null;this.src=\'' + fallback + '\';" />' +
+    (cfg.outOfStock ? '<span class="oos-badge">Out of Stock</span>' : '') +
+    '<div class="gallery-label">' +
+      '<div class="team">' + cfg.team + '</div>' +
+      '<div class="kit-type">' + cfg.tag + '</div>' +
+      '<div class="gallery-price">' + (cfg.outOfStock ? 'Currently unavailable' : 'From ' + priceFrom.toLocaleString() + ' KSh') + '</div>' +
+      '<button class="gallery-add-btn"' + (cfg.outOfStock ? ' disabled' : '') + '>' + (cfg.outOfStock ? 'Out of Stock' : '+ Add to Cart') + '</button>' +
+    '</div>';
+  if (!cfg.outOfStock) {
+    div.addEventListener('click', function () {
+      openQuickAdd({
+        team: cfg.team, subLabel: cfg.subLabel, img: cfg.img, fallback: fallback,
+        versions: cfg.versions, presetKit: cfg.presetKit
+      });
+    });
+  }
+  return div;
+}
+
+/* ══════════════════════════════════════
+   RENDER: CLUB GRID
+═══════════════════════════════════════ */
+var clubKit = 'home';
+function renderClubGrid(league) {
+  var grid = document.getElementById('club-grid');
+  grid.innerHTML = '';
+  var kitLabel = clubKit === 'home' ? 'Home' : 'Away';
+  (CLUBS[league] || []).forEach(function (club) {
+    grid.appendChild(buildCard({
+      team: club.name,
+      subLabel: LEAGUE_LABEL[league] + ' · 26/27 · ' + kitLabel,
+      tag: LEAGUE_LABEL[league] + ' · ' + kitLabel,
+      img: clubImg(club.name, clubKit),
+      fallback: ph(club.name, LEAGUE_COLOR[league], kitLabel),
+      presetKit: kitLabel,
+      versions: VERSIONS,
+      outOfStock: !!club.outOfStock
+    }));
+  });
+}
+
+/* ══════════════════════════════════════
+   RENDER: COUNTRIES GRID (grouped by continent)
+═══════════════════════════════════════ */
+var countriesKit = 'home';
+function renderCountriesGrid() {
+  var wrap = document.getElementById('countries-grid');
+  wrap.innerHTML = '';
+  var kitLabel = countriesKit === 'home' ? 'Home' : 'Away';
+  CONTINENT_ORDER.forEach(function (continent) {
+    var list = COUNTRIES.filter(function (c) { return c.continent === continent; });
+    if (!list.length) return;
+    var heading = document.createElement('h3');
+    heading.className = 'continent-heading';
+    heading.textContent = continent;
+    wrap.appendChild(heading);
+    var grid = document.createElement('div');
+    grid.className = 'gallery-grid';
+    list.forEach(function (c) {
+      grid.appendChild(buildCard({
+        team: c.name,
+        subLabel: continent + ' · ' + kitLabel,
+        tag: continent + ' · ' + kitLabel,
+        img: countryImg(c.name, countriesKit),
+        fallback: ph(c.name, c.color, kitLabel),
+        presetKit: kitLabel,
+        versions: VERSIONS,
+        outOfStock: !!c.outOfStock
+      }));
+    });
+    wrap.appendChild(grid);
+  });
+}
+
+function renderRetroGrid() {
+  var grid = document.getElementById('retro-grid');
+  grid.innerHTML = '';
+  RETRO_ITEMS.forEach(function (r) {
+    grid.appendChild(buildCard({
+      team: r.team, subLabel: r.tag, tag: r.tag, img: retroImg(r.team), fallback: ph(r.team, r.color),
+      versions: VERSIONS, outOfStock: !!r.outOfStock
+    }));
+  });
+}
+function renderLimitedGrid() {
+  var grid = document.getElementById('limited-grid');
+  grid.innerHTML = '';
+  LIMITED_ITEMS.forEach(function (r) {
+    grid.appendChild(buildCard({
+      team: r.team, subLabel: r.tag, tag: r.tag, img: limitedImg(r.team), fallback: ph(r.team, r.color),
+      versions: VERSIONS, outOfStock: !!r.outOfStock
+    }));
+  });
+}
+
+/* ══════════════════════════════════════
+   CATEGORY / LEAGUE SWITCHING + BANNER
+═══════════════════════════════════════ */
+var currentCat = 'club';
+var currentLeague = 'epl';
+
+function switchCategory(cat) {
+  currentCat = cat;
+  document.getElementById('search-results-panel').style.display = 'none';
+  document.getElementById('prod-search-input').value = '';
+  document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === cat); });
+  ['club','countries','retro','limited'].forEach(function (p) {
+    document.getElementById('panel-' + p).style.display = (p === cat) ? '' : 'none';
+  });
+  document.getElementById('league-nav-wrap').style.display = (cat === 'club') ? '' : 'none';
+
+  if (cat === 'club') { setBanner('bg-' + currentLeague, LEAGUE_LABEL[currentLeague].toUpperCase(), LEAGUE_LABEL[currentLeague] + ' 2026/27 pre-order is open — secure your kit now.'); renderClubGrid(currentLeague); }
+  else if (cat === 'countries') { setBanner('bg-countries','NATIONAL TEAMS','World Cup 2026 nations and more, by continent. Home & away kits available.'); renderCountriesGrid(); }
+  else if (cat === 'retro') { setBanner('bg-retro','RETRO CLASSICS','Iconic kits from football history — timeless colours, timeless legends.'); renderRetroGrid(); }
+  else if (cat === 'limited') { setBanner('bg-limited','LIMITED EDITION','Rare collabs and special-release kits — while stock lasts.'); renderLimitedGrid(); }
+}
+
+function switchLeague(league) {
+  currentLeague = league;
+  document.querySelectorAll('.league-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.league === league); });
+  setBanner('bg-' + league, LEAGUE_LABEL[league].toUpperCase(), LEAGUE_LABEL[league] + ' 2026/27 pre-order is open — secure your kit now.');
+  renderClubGrid(league);
+}
+
+function setBanner(cls, title, sub) {
+  var b = document.getElementById('prod-banner');
+  b.className = 'prod-banner ' + cls;
+  document.getElementById('banner-title').textContent = title;
+  document.getElementById('banner-sub').textContent = sub;
+}
+
+function switchKit(panel, kit, btn) {
+  btn.closest('.kit-toggle').querySelectorAll('.kit-toggle-btn').forEach(function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  if (panel === 'club') { clubKit = kit; renderClubGrid(currentLeague); }
+  else if (panel === 'countries') { countriesKit = kit; renderCountriesGrid(); }
+}
+
+/* ══════════════════════════════════════
+   SEARCH (across all catalogs)
+═══════════════════════════════════════ */
+function buildAllCards() {
+  var all = [];
+  Object.keys(CLUBS).forEach(function (lg) {
+    CLUBS[lg].forEach(function (c) {
+      all.push({
+        team:c.name, subLabel:LEAGUE_LABEL[lg]+' · 26/27', tag:LEAGUE_LABEL[lg]+' · Home',
+        img:clubImg(c.name,'home'), fallback:ph(c.name,LEAGUE_COLOR[lg],'Home'),
+        presetKit:'Home', versions:VERSIONS, outOfStock: !!c.outOfStock
+      });
+    });
+  });
+  COUNTRIES.forEach(function (c) {
+    all.push({
+      team:c.name, subLabel:c.continent, tag:c.continent+' · Home',
+      img:countryImg(c.name,'home'), fallback:ph(c.name,c.color,'Home'),
+      presetKit:'Home', versions:VERSIONS, outOfStock: !!c.outOfStock
+    });
+  });
+  RETRO_ITEMS.forEach(function (r) {
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:retroImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+  });
+  LIMITED_ITEMS.forEach(function (r) {
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:limitedImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+  });
+  return all;
+}
+var ALL_CARDS = null;
+
+function searchCatalog(query) {
+  var panel = document.getElementById('search-results-panel');
+  var grid = document.getElementById('search-results-grid');
+  var q = query.trim().toLowerCase();
+  if (!q) { panel.style.display = 'none'; switchCategory(currentCat); return; }
+  if (!ALL_CARDS) ALL_CARDS = buildAllCards();
+
+  ['panel-club','panel-countries','panel-retro','panel-limited'].forEach(function (id) { document.getElementById(id).style.display = 'none'; });
+  panel.style.display = '';
+
+  var matches = ALL_CARDS.filter(function (c) { return c.team.toLowerCase().indexOf(q) !== -1; });
+  grid.innerHTML = '';
+  matches.forEach(function (m) { grid.appendChild(buildCard(m)); });
+  document.getElementById('search-count').textContent = matches.length;
+}
+
+/* ══════════════════════════════════════
+   INIT — read ?cat= from URL (links from home page)
+═══════════════════════════════════════ */
+(function init() {
+  var params = new URLSearchParams(window.location.search);
+  var cat = params.get('cat');
+  var validCats = ['club','countries','retro','limited'];
+  if (cat && validCats.indexOf(cat) !== -1) {
+    document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === cat); });
+    switchCategory(cat);
+  } else {
+    switchCategory('club');
+  }
+})();
+</script>
+</body>
+</html>
