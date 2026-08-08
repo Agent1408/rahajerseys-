@@ -4,912 +4,525 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Shop Jerseys ⚽ | Raha Jerseys</title>
+<meta name="description" content="Browse Premier League, La Liga, Bundesliga & Ligue 1 club kits, national team jerseys by continent, retro classics and limited editions. Add to cart and checkout on WhatsApp." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous" defer></script>
+<link rel="stylesheet" href="shared.css" />
 <style>
-:root {
-  --pitch:#0a2e1a; --green:#1a6b38; --green2:#22883f;
-  --lime:#c8f135; --lime2:#aad01f;
-  --white:#fff; --off:#f6f8f2; --text:#111; --muted:#5a6360;
-  --border:#dde8d8; --red:#e53e3e; --radius:10px;
-  --shadow:0 2px 20px rgba(0,0,0,.08);
-  --font-d:'Bebas Neue',sans-serif; --font-b:'Inter',sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--font-b);background:var(--off);color:var(--text);line-height:1.6;}
+  /* ── PAGE BANNER (background changes per league) ── */
+  .prod-banner {
+    position:relative; color:white; padding:3rem 1.5rem 2rem; text-align:center; overflow:hidden;
+    background:linear-gradient(135deg,#0d5c2e,#1a7a3c); transition:background 1s ease;
+  }
+  .prod-banner.bg-epl        { background:linear-gradient(135deg,#37003c,#8e0e6b); }
+  .prod-banner.bg-laliga     { background:linear-gradient(135deg,#a3170a,#ee8707); }
+  .prod-banner.bg-bundesliga { background:linear-gradient(135deg,#1a1a1a,#d3010c); }
+  .prod-banner.bg-ligue1     { background:linear-gradient(135deg,#001b4f,#0a539c); }
+  .prod-banner.bg-countries  { background:linear-gradient(135deg,#004225,#0a8a4d); }
+  .prod-banner.bg-retro      { background:linear-gradient(135deg,#5c2c0d,#a8471f); }
+  .prod-banner.bg-limited    { background:linear-gradient(135deg,#3a0f4a,#8e44ad); }
+  .prod-banner h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.4rem,7vw,4rem); letter-spacing:3px; line-height:1; margin-bottom:.4rem; }
+  .prod-banner p { color:rgba(255,255,255,.8); font-size:.95rem; max-width:520px; margin:0 auto; }
 
-/* NAV */
-.navbar{position:sticky;top:0;z-index:300;background:var(--pitch);display:flex;align-items:center;gap:1rem;padding:0 1.5rem;height:62px;border-bottom:2px solid var(--lime);}
-.nav-logo{font-family:var(--font-d);font-size:1.7rem;color:var(--lime);letter-spacing:3px;text-decoration:none;flex-shrink:0;}
-.nav-links{display:flex;gap:.25rem;list-style:none;flex:1;}
-.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.82rem;font-weight:600;padding:.4rem .8rem;border-radius:6px;transition:all .2s;}
-.nav-links a:hover,.nav-links a.active{background:var(--lime);color:var(--pitch);}
-.nav-right{display:flex;align-items:center;gap:.6rem;flex-shrink:0;}
-.cart-btn{position:relative;background:transparent;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;color:white;padding:.4rem .75rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:var(--font-b);display:flex;align-items:center;gap:.35rem;transition:all .2s;}
-.cart-btn:hover{background:var(--lime);color:var(--pitch);border-color:var(--lime);}
-.cart-badge{background:var(--lime);color:var(--pitch);border-radius:50%;width:18px;height:18px;font-size:.65rem;font-weight:800;display:none;align-items:center;justify-content:center;margin-left:.2rem;}
-.lang-switcher{display:flex;gap:.2rem;}
-.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:4px;color:rgba(255,255,255,.7);font-size:.68rem;font-weight:700;padding:.2rem .4rem;cursor:pointer;font-family:var(--font-b);transition:all .2s;}
-.lang-btn.active,.lang-btn:hover{background:var(--lime);border-color:var(--lime);color:var(--pitch);}
+  /* ── CATEGORY TABS ── */
+  .cat-tabs-wrap { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:60px; z-index:150; }
+  .cat-tabs { max-width:1100px; margin:0 auto; display:flex; gap:.5rem; padding:.85rem 1.5rem; overflow-x:auto; }
+  .cat-tab { flex-shrink:0; background:var(--off-white); border:1.5px solid var(--border); border-radius:50px; padding:.5rem 1.15rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .2s; white-space:nowrap; }
+  .cat-tab.active, .cat-tab:hover { background:var(--pitch); border-color:var(--pitch); color:white; }
 
-/* BANNER */
-.prod-banner{position:relative;color:white;padding:3rem 1.5rem 2rem;text-align:center;overflow:hidden;background:linear-gradient(135deg,#0d5c2e,#1a7a3c);transition:background .6s ease;}
-.prod-banner.bg-epl{background:linear-gradient(135deg,#37003c,#8e0e6b);}
-.prod-banner.bg-laliga{background:linear-gradient(135deg,#a3170a,#ee8707);}
-.prod-banner.bg-bundesliga{background:linear-gradient(135deg,#1a1a1a,#d3010c);}
-.prod-banner.bg-ligue1{background:linear-gradient(135deg,#001b4f,#0a539c);}
-.prod-banner.bg-countries{background:linear-gradient(135deg,#004225,#0a8a4d);}
-.prod-banner.bg-retro{background:linear-gradient(135deg,#5c2c0d,#a8471f);}
-.prod-banner.bg-limited{background:linear-gradient(135deg,#3a0f4a,#8e44ad);}
-.prod-banner h1{font-family:var(--font-d);font-size:clamp(2.4rem,7vw,4rem);letter-spacing:3px;line-height:1;margin-bottom:.4rem;}
-.prod-banner p{color:rgba(255,255,255,.8);font-size:.9rem;max-width:520px;margin:0 auto;}
+  /* ── LEAGUE SUB-NAV ── */
+  .league-nav-wrap { background:var(--off-white); border-bottom:1px solid var(--border); }
+  .league-nav { max-width:1100px; margin:0 auto; display:flex; gap:.5rem; padding:.75rem 1.5rem; overflow-x:auto; align-items:center; }
+  .league-tab { flex-shrink:0; background:var(--white); border:1.5px solid var(--border); border-radius:8px; padding:.55rem 1.1rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text); font-family:'Inter',sans-serif; transition:all .2s; white-space:nowrap; }
+  .league-tab.active, .league-tab:hover { background:var(--accent); border-color:var(--accent); color:var(--text); }
 
-/* CAT TABS */
-.cat-tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:200;}
-.cat-tabs{max-width:1100px;margin:0 auto;display:flex;gap:.5rem;padding:.75rem 1.5rem;overflow-x:auto;}
-.cat-tab{flex-shrink:0;background:var(--off);border:1.5px solid var(--border);border-radius:50px;padding:.45rem 1.1rem;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--muted);font-family:var(--font-b);transition:all .2s;white-space:nowrap;}
-.cat-tab.active,.cat-tab:hover{background:var(--pitch);border-color:var(--pitch);color:white;}
+  /* ── KIT TOGGLE (home/away) ── */
+  .kit-toggle { display:flex; gap:.5rem; margin-bottom:1rem; }
+  .kit-toggle-btn { background:var(--off-white); border:1.5px solid var(--border); border-radius:50px; padding:.45rem 1.1rem; font-size:.82rem; font-weight:700; cursor:pointer; color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .2s; }
+  .kit-toggle-btn.active, .kit-toggle-btn:hover { background:var(--pitch); border-color:var(--pitch); color:white; }
 
-/* LEAGUE NAV */
-.league-nav-wrap{background:var(--off);border-bottom:1px solid var(--border);}
-.league-nav{max-width:1100px;margin:0 auto;display:flex;gap:.4rem;padding:.6rem 1.5rem;overflow-x:auto;align-items:center;}
-.league-tab{flex-shrink:0;background:var(--white);border:1.5px solid var(--border);border-radius:8px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;cursor:pointer;color:var(--text);font-family:var(--font-b);transition:all .2s;white-space:nowrap;}
-.league-tab.active,.league-tab:hover{background:var(--lime);border-color:var(--lime2);color:var(--pitch);}
+  /* ── CONTINENT GROUPING ── */
+  .continent-heading { grid-column:1/-1; font-family:'Bebas Neue',sans-serif; letter-spacing:2px; font-size:1.4rem; margin:1.75rem 0 .75rem; color:var(--text); }
+  .continent-heading:first-child { margin-top:0; }
 
-/* SEARCH */
-.search-bar-wrap{max-width:1100px;margin:0 auto;padding:1.25rem 1.5rem 0;}
-.search-bar{position:relative;}
-.search-bar input{width:100%;padding:.7rem 3rem .7rem 1rem;border:1.5px solid var(--border);border-radius:50px;font-size:.88rem;font-family:var(--font-b);outline:none;background:white;}
-.search-bar input:focus{border-color:var(--green);}
-.search-bar .si{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:.9rem;pointer-events:none;}
+  /* ── OUT OF STOCK ── */
+  .gallery-item { position:relative; }
+  .gallery-item.out-of-stock .gallery-img { filter:grayscale(1) brightness(.75); }
+  .gallery-item.out-of-stock .oos-badge { position:absolute; top:10px; left:10px; background:#c0392b; color:#fff; font-size:.68rem; font-weight:800; padding:.3rem .6rem; border-radius:4px; letter-spacing:.5px; text-transform:uppercase; z-index:5; }
+  .gallery-item.out-of-stock .gallery-add-btn { background:#999 !important; cursor:not-allowed !important; pointer-events:none; }
+  .gallery-item.out-of-stock { cursor:default; }
 
-/* KIT TOGGLE */
-.kit-toggle{display:flex;gap:.5rem;margin-bottom:1.25rem;}
-.kit-btn{background:var(--off);border:1.5px solid var(--border);border-radius:50px;padding:.4rem 1.1rem;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--muted);font-family:var(--font-b);transition:all .2s;}
-.kit-btn.active,.kit-btn:hover{background:var(--pitch);border-color:var(--pitch);color:white;}
+  main section { padding-top:2.5rem; padding-bottom:3rem; }
+  .catalog-note { margin-top:1.5rem; font-size:.85rem; color:var(--text-muted); text-align:center; }
+  .catalog-note a { color:var(--green); font-weight:600; }
 
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem;}
-.j-card{background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;}
-.j-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12);}
-.j-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--off);}
-.j-card-body{padding:.65rem .75rem;}
-.j-card-team{font-weight:700;font-size:.85rem;}
-.j-card-sub{font-size:.72rem;color:var(--muted);margin-bottom:.3rem;}
-.j-card-price{font-family:var(--font-d);font-size:1.1rem;color:var(--green);letter-spacing:1px;}
-.j-card-btn{margin-top:.5rem;background:var(--lime);border:none;border-radius:6px;padding:.45rem .75rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:var(--font-b);color:var(--pitch);width:100%;transition:background .2s;}
-.j-card-btn:hover{background:var(--lime2);}
-.j-card.oos img{filter:grayscale(1) brightness(.75);}
-.j-card.oos .j-card-btn{background:#ccc;cursor:not-allowed;pointer-events:none;color:#666;}
-.oos-badge{position:absolute;top:8px;left:8px;background:#c0392b;color:white;font-size:.65rem;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;}
-.badge-hot{position:absolute;top:8px;right:8px;background:var(--lime);color:var(--pitch);font-size:.62rem;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;}
-
-/* CONTINENT HEADING */
-.cont-heading{grid-column:1/-1;font-family:var(--font-d);letter-spacing:2px;font-size:1.3rem;margin:1.5rem 0 .5rem;color:var(--text);border-left:4px solid var(--lime);padding-left:.75rem;}
-.cont-heading:first-child{margin-top:0;}
-
-/* SECTION */
-main section{padding:2rem 1.5rem 3rem;}
-.container{max-width:1100px;margin:0 auto;}
-.catalog-note{margin-top:1.5rem;font-size:.83rem;color:var(--muted);text-align:center;}
-.catalog-note a{color:var(--green);font-weight:600;}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:flex-end;justify-content:center;padding:1rem;}
-.modal-overlay.open{display:flex;}
-@media(min-width:600px){.modal-overlay{align-items:center;}}
-.modal-box{background:white;border-radius:16px 16px 0 0;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:1.5rem;position:relative;}
-@media(min-width:600px){.modal-box{border-radius:16px;}}
-.modal-close-btn{position:absolute;top:1rem;right:1rem;background:var(--off);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
-.modal-head{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start;}
-.modal-head img{width:80px;height:100px;object-fit:cover;border-radius:8px;background:var(--off);flex-shrink:0;}
-.modal-team{font-family:var(--font-d);font-size:1.5rem;letter-spacing:2px;color:var(--pitch);}
-.modal-sub{font-size:.8rem;color:var(--muted);margin-top:.2rem;}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;}
-.modal-field{display:flex;flex-direction:column;gap:.3rem;}
-.modal-field label{font-size:.76rem;font-weight:600;color:var(--muted);}
-.modal-field select,.modal-field input{background:var(--off);border:1.5px solid var(--border);border-radius:8px;color:var(--text);padding:.55rem .8rem;font-size:.88rem;font-family:var(--font-b);outline:none;transition:border-color .2s;}
-.modal-field select:focus,.modal-field input:focus{border-color:var(--green);}
-.modal-print-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.5rem;}
-.price-preview{font-family:var(--font-d);font-size:1.6rem;color:var(--green);letter-spacing:2px;margin:.75rem 0 .5rem;text-align:right;}
-.modal-add-btn{background:var(--lime);border:none;border-radius:8px;padding:.8rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:var(--font-b);color:var(--pitch);width:100%;transition:background .2s;}
-.modal-add-btn:hover{background:var(--lime2);}
-
-/* CART DRAWER */
-.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:400;}
-.cart-overlay.open{display:block;}
-.cart-drawer{position:fixed;top:0;right:-420px;width:min(420px,100vw);height:100vh;background:white;z-index:500;display:flex;flex-direction:column;transition:right .3s ease;box-shadow:-4px 0 30px rgba(0,0,0,.15);}
-.cart-drawer.open{right:0;}
-.cart-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);flex-shrink:0;}
-.cart-header h3{font-family:var(--font-d);font-size:1.5rem;letter-spacing:2px;color:var(--pitch);}
-.cart-close-btn{background:var(--off);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;}
-.cart-items-wrap{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
-.cart-empty-msg{text-align:center;color:var(--muted);padding:3rem 1rem;font-size:.9rem;}
-.cart-item-row{display:flex;gap:.75rem;align-items:center;padding:.75rem 0;border-bottom:1px solid var(--border);}
-.cart-item-row img{width:56px;height:70px;object-fit:cover;border-radius:6px;background:var(--off);flex-shrink:0;}
-.cart-item-info{flex:1;}
-.cart-item-name{font-weight:700;font-size:.85rem;}
-.cart-item-detail{font-size:.73rem;color:var(--muted);}
-.cart-item-price{font-family:var(--font-d);font-size:1rem;color:var(--green);letter-spacing:1px;}
-.cart-item-remove{background:#fee;border:1px solid #fcc;border-radius:6px;color:var(--red);width:28px;height:28px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
-.cart-item-remove:hover{background:#fdd;}
-.cart-footer-wrap{padding:1.25rem 1.5rem;border-top:1px solid var(--border);flex-shrink:0;}
-.checkout-fields{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
-.checkout-fields label{font-size:.74rem;font-weight:600;color:var(--muted);}
-.checkout-fields input{background:var(--off);border:1.5px solid var(--border);border-radius:8px;color:var(--text);padding:.55rem .8rem;font-size:.88rem;font-family:var(--font-b);outline:none;}
-.checkout-fields input:focus{border-color:var(--green);}
-.cart-summary-line{display:flex;justify-content:space-between;font-size:.85rem;padding:.2rem 0;}
-.cart-deposit-line{display:flex;justify-content:space-between;background:var(--lime);border-radius:8px;padding:.5rem .75rem;font-weight:700;font-size:.9rem;margin:.4rem 0;}
-.cart-balance-line{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);padding:.2rem 0;margin-bottom:.75rem;}
-.pochi-mini{background:#f0faf4;border:1px solid var(--border);border-radius:8px;padding:.65rem .85rem;margin-bottom:.85rem;font-size:.78rem;color:var(--muted);}
-.pochi-mini strong{color:var(--green);font-size:.88rem;display:block;margin-top:.2rem;}
-.btn-wa-checkout{background:#25d366;color:white;border:none;border-radius:8px;padding:.85rem;font-size:.95rem;font-weight:700;cursor:pointer;font-family:var(--font-b);width:100%;transition:background .2s;}
-.btn-wa-checkout:hover{background:#1ebe5c;}
-
-/* THANK YOU OVERLAY */
-#thankyou-overlay{position:fixed;inset:0;background:rgba(13,92,46,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:1.5rem;flex-direction:column;text-align:center;}
-#thankyou-overlay.open{display:flex;}
-.ty-ball{font-size:4.5rem;margin-bottom:1rem;}
-.ty-h2{font-family:var(--font-d);font-size:clamp(2.5rem,8vw,4rem);color:var(--lime);letter-spacing:4px;margin-bottom:.5rem;}
-.ty-p{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:.5rem;}
-.ty-asante{font-size:1rem;color:var(--lime);font-weight:700;font-style:italic;margin-bottom:1.25rem;}
-.ty-pochi{background:rgba(255,255,255,.1);border-radius:12px;padding:1rem;margin-bottom:1.25rem;max-width:400px;width:100%;}
-.ty-pochi p{font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:.3rem;}
-.ty-pochi strong{font-size:.9rem;color:white;font-weight:700;}
-.ty-btn{background:var(--lime);color:var(--pitch);border:none;border-radius:8px;padding:.85rem 2rem;font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--font-b);width:100%;max-width:400px;}
-.ty-note{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:.5rem;}
-
-/* TOAST */
-.cart-toast{position:fixed;bottom:5rem;right:1.5rem;background:var(--pitch);color:var(--lime);padding:.7rem 1.1rem;border-radius:8px;font-weight:600;font-size:.85rem;z-index:9998;opacity:0;transform:translateY(6px);transition:all .3s;border:1px solid var(--lime);pointer-events:none;}
-.cart-toast.show{opacity:1;transform:translateY(0);}
-
-/* FLOATING WA */
-.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;background:#25d366;color:white;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(37,211,102,.45);text-decoration:none;z-index:199;transition:transform .2s;}
-.wa-float:hover{transform:scale(1.1);}
-
-@media(max-width:640px){
-  .navbar{padding:0 1rem;}
-  .nav-links{display:none;}
-  .modal-grid,.modal-print-row{grid-template-columns:1fr;}
-}
+  /* ── SEARCH ── */
+  .prod-search-wrap { max-width:1100px; margin:0 auto; padding:1.25rem 1.5rem 0; }
+  .prod-search { position:relative; }
+  .prod-search input { width:100%; padding:.75rem 3rem .75rem 1.1rem; border:1.5px solid var(--border); border-radius:50px; font-size:.9rem; font-family:'Inter',sans-serif; outline:none; }
+  .prod-search input:focus { border-color:var(--green); }
+  .prod-search .search-icon { position:absolute; right:1rem; top:50%; transform:translateY(-50%); }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
+<nav class="topnav">
   <a href="index.html" class="nav-logo">RAHA ⚽</a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="products.html" class="active">Products</a></li>
-    <li><a href="index.html#contact">Help</a></li>
+    <li><a href="help.html">Help</a></li>
   </ul>
   <div class="nav-right">
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="this.classList.add('active');document.querySelectorAll('.lang-btn').forEach(b=>b!==this&&b.classList.remove('active'));">EN</button>
-      <button class="lang-btn" onclick="this.classList.add('active');document.querySelectorAll('.lang-btn').forEach(b=>b!==this&&b.classList.remove('active'));">FR</button>
-      <button class="lang-btn" onclick="this.classList.add('active');document.querySelectorAll('.lang-btn').forEach(b=>b!==this&&b.classList.remove('active'));">SW</button>
-    </div>
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Cart <span class="cart-badge" id="cart-badge">0</span>
-    </button>
+    <button class="cart-btn" onclick="openCart()" aria-label="Cart">🛒<span class="cart-badge" style="display:none;">0</span></button>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
   </div>
 </nav>
 
-<!-- BANNER -->
+<!-- BANNER (background swaps per league/category) -->
 <header class="prod-banner" id="prod-banner">
   <h1 id="banner-title">SHOP JERSEYS</h1>
-  <p id="banner-sub">Browse by league, country, or era — add to cart and checkout on WhatsApp.</p>
+  <p id="banner-sub">Browse by league, country, or era — add your favourites to cart and checkout on WhatsApp.</p>
 </header>
 
 <!-- SEARCH -->
-<div class="search-bar-wrap">
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search any team e.g. Arsenal, Brazil, Bayern..." oninput="searchAll(this.value)" autocomplete="off"/>
-    <span class="si">🔍</span>
+<div class="prod-search-wrap">
+  <div class="prod-search">
+    <input type="text" id="prod-search-input" placeholder="Search any team e.g. Arsenal, Brazil, Bayern..." oninput="searchCatalog(this.value)" autocomplete="off" />
+    <span class="search-icon">🔍</span>
   </div>
 </div>
 
-<!-- CAT TABS -->
+<!-- CATEGORY TABS -->
 <div class="cat-tabs-wrap">
-  <div class="cat-tabs">
-    <button class="cat-tab active" data-cat="club" onclick="switchCat('club',this)">⚽ Club Leagues</button>
-    <button class="cat-tab" data-cat="countries" onclick="switchCat('countries',this)">🌍 Countries</button>
-    <button class="cat-tab" data-cat="retro" onclick="switchCat('retro',this)">📻 Retro</button>
-    <button class="cat-tab" data-cat="limited" onclick="switchCat('limited',this)">💎 Limited Edition</button>
+  <div class="cat-tabs" id="cat-tabs">
+    <button class="cat-tab active" data-cat="club" onclick="switchCategory('club')">⚽ Club Leagues</button>
+    <button class="cat-tab" data-cat="countries" onclick="switchCategory('countries')">🌍 Countries</button>
+    <button class="cat-tab" data-cat="retro" onclick="switchCategory('retro')">📻 Retro</button>
+    <button class="cat-tab" data-cat="limited" onclick="switchCategory('limited')">💎 Limited Edition</button>
   </div>
 </div>
 
-<!-- LEAGUE NAV (club only) -->
+<!-- LEAGUE SUB-NAV (club leagues only) -->
 <div class="league-nav-wrap" id="league-nav-wrap">
   <div class="league-nav">
-    <button class="league-tab active" data-lg="epl" onclick="switchLeague('epl',this)">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
-    <button class="league-tab" data-lg="laliga" onclick="switchLeague('laliga',this)">🇪🇸 La Liga</button>
-    <button class="league-tab" data-lg="bundesliga" onclick="switchLeague('bundesliga',this)">🇩🇪 Bundesliga</button>
-    <button class="league-tab" data-lg="ligue1" onclick="switchLeague('ligue1',this)">🇫🇷 Ligue 1</button>
-    <button class="league-tab" data-lg="other" onclick="switchLeague('other',this)">🌍 Other Leagues ▾</button>
+    <button class="league-tab active" data-league="epl" onclick="switchLeague('epl')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+    <button class="league-tab" data-league="laliga" onclick="switchLeague('laliga')">🇪🇸 La Liga</button>
+    <button class="league-tab" data-league="bundesliga" onclick="switchLeague('bundesliga')">🇩🇪 Bundesliga</button>
+    <button class="league-tab" data-league="ligue1" onclick="switchLeague('ligue1')">🇫🇷 Ligue 1</button>
   </div>
 </div>
 
 <main>
-<section>
-<div class="container">
+  <section>
+    <div class="container">
 
-  <!-- SEARCH RESULTS -->
-  <div id="panel-search" style="display:none;">
-    <p style="font-size:.83rem;color:var(--muted);font-weight:600;margin-bottom:.75rem;"><span id="search-count">0</span> results</p>
-    <div class="gallery-grid" id="search-grid"></div>
-  </div>
+      <!-- SEARCH RESULTS -->
+      <div id="search-results-panel" style="display:none;">
+        <p style="font-size:.85rem;color:var(--text-muted);font-weight:600;margin-bottom:.75rem;">Search results: <span id="search-count">0</span> found</p>
+        <div class="gallery-grid" id="search-results-grid"></div>
+      </div>
 
-  <!-- CLUB -->
-  <div id="panel-club">
-    <div class="kit-toggle">
-      <button class="kit-btn active" onclick="switchKit('club','home',this)">👕 Home</button>
-      <button class="kit-btn" onclick="switchKit('club','away',this)">👕 Away</button>
+      <!-- CLUB PANEL -->
+      <div id="panel-club">
+        <div class="kit-toggle">
+          <button class="kit-toggle-btn active" onclick="switchKit('club','home',this)">👕 Home</button>
+          <button class="kit-toggle-btn" onclick="switchKit('club','away',this)">👕 Away</button>
+        </div>
+        <div class="gallery-grid" id="club-grid"></div>
+      </div>
+
+      <!-- COUNTRIES PANEL (World Cup 2026 nations + other countries, grouped by continent) -->
+      <div id="panel-countries" style="display:none">
+        <div class="kit-toggle">
+          <button class="kit-toggle-btn active" onclick="switchKit('countries','home',this)">👕 Home</button>
+          <button class="kit-toggle-btn" onclick="switchKit('countries','away',this)">👕 Away</button>
+        </div>
+        <div id="countries-grid"></div>
+      </div>
+
+      <!-- RETRO PANEL -->
+      <div id="panel-retro" style="display:none">
+        <div class="gallery-grid" id="retro-grid"></div>
+      </div>
+
+      <!-- LIMITED EDITION PANEL -->
+      <div id="panel-limited" style="display:none">
+        <div class="gallery-grid" id="limited-grid"></div>
+      </div>
+
+      <p class="catalog-note">💬 Don't see your team? <a href="https://wa.me/254119485338" target="_blank" rel="noopener">Message us on WhatsApp</a> — we stock 1,000+ teams. Stock moves fast! ⚡</p>
     </div>
-    <div class="gallery-grid" id="club-grid"></div>
-  </div>
-
-  <!-- COUNTRIES -->
-  <div id="panel-countries" style="display:none;">
-    <div class="kit-toggle">
-      <button class="kit-btn active" onclick="switchKit('countries','home',this)">👕 Home</button>
-      <button class="kit-btn" onclick="switchKit('countries','away',this)">👕 Away</button>
-    </div>
-    <div id="countries-grid"></div>
-  </div>
-
-  <!-- RETRO -->
-  <div id="panel-retro" style="display:none;">
-    <div class="gallery-grid" id="retro-grid"></div>
-  </div>
-
-  <!-- LIMITED -->
-  <div id="panel-limited" style="display:none;">
-    <div class="gallery-grid" id="limited-grid"></div>
-  </div>
-
-  <p class="catalog-note">💬 Don't see your team? <a href="https://wa.me/254119485338" target="_blank">Message us on WhatsApp</a> — we stock 1,000+ teams. Stock moves fast! ⚡</p>
-</div>
-</section>
+  </section>
 </main>
 
 <!-- FOOTER -->
-<footer style="background:var(--pitch);color:rgba(255,255,255,.6);text-align:center;padding:2rem 1.5rem;border-top:2px solid var(--lime);">
-  <div style="font-family:var(--font-d);font-size:1.8rem;color:var(--lime);letter-spacing:3px;margin-bottom:.4rem;">RAHA JERSEYS ⚽</div>
-  <p style="font-size:.82rem;">Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
-  <div style="display:flex;justify-content:center;gap:1.5rem;margin:.75rem 0;flex-wrap:wrap;font-size:.82rem;">
-    <a href="tel:+254716932313" style="color:var(--lime);">📞 0716 932 313</a>
-    <a href="https://wa.me/254119485338" style="color:var(--lime);" target="_blank">💬 WhatsApp</a>
-    <a href="mailto:rahajersey@gmail.com" style="color:var(--lime);">✉️ Email</a>
-    <a href="https://instagram.com/raha_jerseys" style="color:var(--lime);" target="_blank">📸 @raha_jerseys</a>
+<footer class="site-footer">
+  <span class="footer-logo">RAHA JERSEYS ⚽</span>
+  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
+  <div class="footer-contacts">
+    <a href="tel:+254716932313">📞 0716 932 313</a>
+    <a href="https://wa.me/254119485338" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+    <a href="mailto:rahajersey@gmail.com">✉️ Email</a>
+    <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener">📸 @raha_jerseys</a>
   </div>
-  <p style="font-size:.7rem;opacity:.4;">© 2026 Raha Jerseys. Kenya 🇰🇪</p>
+  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
 </footer>
 
-<a href="https://wa.me/254119485338" class="wa-float" target="_blank" aria-label="WhatsApp">💬</a>
-
-<!-- ADD TO CART MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal-box">
-    <button class="modal-close-btn" onclick="closeModalBtn()">✕</button>
-    <div class="modal-head">
-      <img id="m-img" src="" alt=""/>
-      <div>
-        <div class="modal-team" id="m-team">Team</div>
-        <div class="modal-sub" id="m-sub">Details</div>
-      </div>
-    </div>
-    <div class="modal-grid">
-      <div class="modal-field" id="m-kit-wrap">
-        <label>Kit</label>
-        <select id="m-kit" onchange="calcModalPrice()">
-          <option value="Home">Home</option>
-          <option value="Away">Away</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label>Version</label>
-        <select id="m-version" onchange="calcModalPrice()">
-          <option value="1500">Pro – KSh 1,500</option>
-          <option value="2000">Retro – KSh 2,000</option>
-          <option value="2200">Limited Edition – KSh 2,200</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label>Size *</label>
-        <select id="m-size">
-          <option value="">Pick size</option>
-          <option>XS</option><option>S</option><option>M</option>
-          <option>L</option><option>XL</option><option>XXL</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label>Pieces</label>
-        <select id="m-pieces" onchange="calcModalPrice()">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5+ (Discount!)</option>
-        </select>
-      </div>
-    </div>
-    <div class="modal-field">
-      <label>Add Printing? (+KSh 400 per piece)</label>
-      <select id="m-print" onchange="togglePrint()">
-        <option value="no">No thanks</option>
-        <option value="yes">Yes – add KSh 400/piece</option>
-      </select>
-    </div>
-    <div class="modal-print-row" id="m-print-row" style="display:none;margin-top:.5rem;">
-      <div class="modal-field"><label>Name to print</label><input type="text" id="m-pname" placeholder="e.g. SAKA"/></div>
-      <div class="modal-field"><label>Number to print</label><input type="text" id="m-pnum" placeholder="e.g. 7"/></div>
-    </div>
-    <div class="price-preview" id="m-price">KSh 1,500</div>
-    <button class="modal-add-btn" onclick="doAddToCart()">🛒 Add to Cart</button>
-  </div>
-</div>
+<a href="https://wa.me/254119485338" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
 <!-- CART DRAWER -->
 <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cart-drawer">
-  <div class="cart-header">
-    <h3>YOUR CART</h3>
-    <button class="cart-close-btn" onclick="closeCart()">✕</button>
-  </div>
-  <div class="cart-items-wrap" id="cart-items-wrap">
-    <div class="cart-empty-msg" id="cart-empty">Your cart is empty 😢<br/>Go pick some jerseys!</div>
-  </div>
-  <div class="cart-footer-wrap" id="cart-footer" style="display:none;">
-    <div class="checkout-fields">
-      <div><label>Your Name</label><input type="text" id="co-name" placeholder="e.g. Brian Mutua"/></div>
-      <div><label>Phone / WhatsApp</label><input type="tel" id="co-phone" placeholder="07XX XXX XXX"/></div>
-    </div>
-    <div class="cart-summary-line"><span>Total</span><strong id="ct-total">KSh 0</strong></div>
-    <div class="cart-deposit-line"><span>30% Deposit (pay now)</span><strong id="ct-deposit">KSh 0</strong></div>
-    <div class="cart-balance-line"><span>Balance on delivery</span><span id="ct-balance">KSh 0</span></div>
-    <div class="pochi-mini">
-      Send deposit via Pochi La Biashara:
-      <strong>0710 611 244 · ESTELLE KANG'ETHE</strong>
-    </div>
-    <button class="btn-wa-checkout" onclick="checkoutWhatsApp()">💬 Checkout on WhatsApp</button>
+  <div class="cart-header"><h3>YOUR CART</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="mfield" style="margin-bottom:.6rem;"><label>Your Name</label><input type="text" id="checkout-name" placeholder="e.g. Brian Mutua" /></div>
+    <div class="mfield" style="margin-bottom:.6rem;"><label>Phone / WhatsApp</label><input type="tel" id="checkout-phone" placeholder="07XX XXX XXX" /></div>
+    <div class="cart-summary-row total"><span>Total</span><span id="cart-total">KSh 0</span></div>
+    <div class="cart-deposit-box">30% Deposit now: <span id="cart-deposit">KSh 0</span></div>
+    <div class="cart-summary-row"><span>Balance on delivery</span><span id="cart-balance">KSh 0</span></div>
+    <button class="btn-whatsapp" onclick="checkoutCart()">💬 Checkout on WhatsApp</button>
   </div>
 </div>
 
-<!-- THANK YOU OVERLAY -->
-<div id="thankyou-overlay">
-  <div class="ty-ball" id="ty-ball"></div>
-  <h2 class="ty-h2">ORDER SENT!</h2>
-  <p class="ty-p">Your order has been sent on WhatsApp.<br/>We will confirm it shortly 👌</p>
-  <p class="ty-asante">Asante sana — Happy Pocket, Happy Customer!</p>
-  <div class="ty-pochi">
-    <p id="ty-deposit-line"></p>
-    <strong>Pochi La Biashara · 0710 611 244 · ESTELLE KANG'ETHE</strong>
-    <p style="font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.3rem;">Send M-Pesa screenshot as proof 📸</p>
+<!-- QUICK ADD MODAL -->
+<div class="modal-overlay" id="qa-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuickAdd()">✕</button>
+    <div class="modal-head">
+      <img id="qa-img" src="" alt="" />
+      <div><h4 id="qa-team"></h4><div class="modal-sub" id="qa-sub"></div></div>
+    </div>
+    <div class="modal-body">
+      <div class="mfield" id="qa-kit-wrap"><label>Kit</label><select id="qa-kit"></select></div>
+      <div class="mfield"><label>Version</label><select id="qa-version"></select></div>
+      <div class="mrow2">
+        <div class="mfield"><label>Size</label>
+          <select id="qa-size">
+            <option value="" disabled selected>Pick size</option>
+            <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+        <div class="mfield"><label>Pieces</label>
+          <select id="qa-pieces">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+ (discount)</option>
+          </select>
+        </div>
+      </div>
+      <div class="mfield"><label>Add Printing? (+KSh 300/piece)</label>
+        <select id="qa-print" onchange="onQaPrintChange()"><option value="no">No thanks</option><option value="yes">Yes please</option></select>
+      </div>
+      <div class="mrow2" id="qa-print-details" style="display:none;">
+        <div class="mfield"><label>Name</label><input type="text" id="qa-print-name" placeholder="e.g. SAKA" /></div>
+        <div class="mfield"><label>Number</label><input type="text" id="qa-print-number" placeholder="e.g. 7" /></div>
+      </div>
+      <div class="modal-price-preview" id="qa-price-preview">KSh 0</div>
+      <button class="modal-add-btn" onclick="submitQuickAdd()">🛒 Add to Cart</button>
+    </div>
   </div>
-  <button class="ty-btn" id="ty-btn">New Order (<span id="ty-cd">10</span>)</button>
-  <p class="ty-note">Page clears automatically when timer ends</p>
 </div>
 
-<!-- TOAST -->
-<div class="cart-toast" id="cart-toast"></div>
-
+<script src="cart.js"></script>
+<script src="quickadd.js"></script>
 <script>
-/* ═══════════════════════════════════════
-   PRICES & DATA
+/* ══════════════════════════════════════
+   PRICING — two tiers across the whole catalog
+   (actual KSh values live in VERSION_PRICES in cart.js)
 ═══════════════════════════════════════ */
-var PRICES = { pro:1500, retro:2000, limited:2200, print:400 };
+var VERSIONS = ['Player Version', 'Fan Version'];
 
+/* ══════════════════════════════════════
+   IMAGES
+   ────────────────────────────────────
+   Put your jersey photos in an "images/" folder next
+   to this HTML file. Filenames are auto-generated from
+   the team/country name using this convention:
+
+     Club (26/27 season):   {slug}-2026-27-home-kit.jpg
+                             {slug}-2026-27-away-kit.jpg
+       e.g. Manchester United -> images/manchester-united-2026-27-away-kit.jpg
+
+     Countries (national teams): {slug}-home-kit.jpg / {slug}-away-kit.jpg
+       e.g. Brazil (home)   -> images/brazil-home-kit.jpg
+       e.g. Nigeria (away)  -> images/nigeria-away-kit.jpg
+
+     Retro:                  {slug}-kit.jpg
+       e.g. Brazil 1970     -> images/brazil-1970-kit.jpg
+
+     Limited Edition:        {slug}-kit.jpg
+       e.g. Nike x Jordan PSG -> images/nike-x-jordan-psg-kit.jpg
+
+   "slug" = lowercase, spaces/punctuation replaced with hyphens.
+   If a real image is missing, the page automatically falls
+   back to a placeholder graphic — nothing breaks while you're
+   still uploading photos.
+
+   ── OUT OF STOCK ──
+   To mark any item as sold out, add  outOfStock: true  to its
+   entry in the data below, e.g.:
+     { name:'Arsenal', outOfStock: true }
+   The card will grey out, show an "Out of Stock" badge, and
+   the Add to Cart button will be disabled.
+═══════════════════════════════════════ */
+var IMG_BASE = 'images/';
+
+function slugify(str) {
+  return str.toString().toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+/* ── IMAGE FILENAME OVERRIDES ──
+   Use this when an uploaded file doesn't match the auto-generated
+   slug (e.g. "Arsenal" auto-slugs to "arsenal" but the uploaded file
+   is "arsenal-fc-..."). Two ways to override:
+
+   1. { slug: 'custom-slug' } — just changes the team-name part,
+      still follows the normal -2026-27-home-kit.jpg / -home-kit.jpg pattern.
+        'Arsenal': { slug: 'arsenal-fc' }
+
+   2. { home: 'exact-filename.jpg', away: 'exact-filename.jpg' } —
+      full filename override for countries/retro/limited when the
+      whole pattern differs (e.g. includes an unexpected year).
+        'Cameroon': { home: 'cameroon-2025-home-kit.jpg', away: 'cameroon-2025-away-kit.jpg' }
+
+   Add more entries here any time you spot a mismatched filename in
+   your images/ folder — no need to touch anything else in the code.
+*/
+var IMAGE_OVERRIDES = {
+  'Arsenal': { slug: 'arsenal-fc' },
+  'Bayern Munich': { slug: 'bayern-munchen' },
+  'Chelsea': { slug: 'chelsea-fc' },
+  'Barcelona': { slug: 'fc-barcelona' },
+  'Liverpool': { slug: 'liverpool-fc' },
+  'Cameroon': { home: 'cameroon-2025-home-kit.jpg', away: 'cameroon-2025-away-kit.jpg' }
+};
+
+function clubImg(team, kit) {
+  var ov = IMAGE_OVERRIDES[team];
+  var slug = (ov && ov.slug) ? ov.slug : slugify(team);
+  return IMG_BASE + slug + '-2026-27-' + kit + '-kit.jpg';
+}
+function countryImg(team, kit) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov[kit]) return IMG_BASE + ov[kit];
+  return IMG_BASE + slugify(team) + '-' + kit + '-kit.jpg';
+}
+function retroImg(team) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov.slug) return IMG_BASE + ov.slug + '-kit.jpg';
+  return IMG_BASE + slugify(team) + '-kit.jpg';
+}
+function limitedImg(team) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov.slug) return IMG_BASE + ov.slug + '-kit.jpg';
+  return IMG_BASE + slugify(team) + '-kit.jpg';
+}
+
+/* ══════════════════════════════════════
+   DATA
+═══════════════════════════════════════ */
 var CLUBS = {
   epl: [
-    {name:'Arsenal', hot:true},
-    {name:'Aston Villa'},
-    {name:'Chelsea'},
-    {name:'Leicester City'},
-    {name:'Liverpool', hot:true},
-    {name:'Manchester City', hot:true},
-    {name:'Manchester United', hot:true}
+    { name:'Arsenal' }, { name:'Aston Villa' }, { name:'Chelsea' },
+    { name:'Leicester City' }, { name:'Liverpool' },
+    { name:'Manchester City' }, { name:'Manchester United' }
   ],
-  laliga: [
-    {name:'Barcelona', hot:true},
-    {name:'Real Madrid', hot:true},
-    {name:'Atletico Madrid'},
-    {name:'Athletic Bilbao'},
-    {name:'Villarreal'}
-  ],
-  bundesliga: [
-    {name:'Bayern Munich', hot:true},
-    {name:'Borussia Dortmund', hot:true},
-    {name:'Bayer Leverkusen'},
-    {name:'RB Leipzig'},
-    {name:'Stuttgart'}
-  ],
-  ligue1: [
-    {name:'Paris Saint-Germain', hot:true},
-    {name:'Monaco'},
-    {name:'Marseille'},
-    {name:'Lyon'},
-    {name:'Lille'}
-  ],
-  other: [
-    {name:'Inter Miami', league:'MLS'},
-    {name:'LA Galaxy', league:'MLS'},
-    {name:'LAFC', league:'MLS'},
-    {name:'Seattle Sounders', league:'MLS'},
-    {name:'New York City FC', league:'MLS'},
-    {name:'Inter Milan', league:'Serie A', hot:true},
-    {name:'AC Milan', league:'Serie A', hot:true},
-    {name:'Juventus', league:'Serie A'},
-    {name:'Napoli', league:'Serie A'},
-    {name:'Atalanta', league:'Serie A'}
-  ]
+  laliga: [ { name:'Barcelona' }, { name:'Real Madrid' } ],
+  bundesliga: [ { name:'Bayern Munich' }, { name:'Borussia Dortmund' } ],
+  ligue1: [ { name:'Paris Saint-Germain' } ]
 };
+var LEAGUE_LABEL = { epl:'Premier League', laliga:'La Liga', bundesliga:'Bundesliga', ligue1:'Ligue 1' };
+var LEAGUE_COLOR = { epl:'37003c/ffffff', laliga:'ee8707/1a1a1a', bundesliga:'d3010c/ffffff', ligue1:'0a539c/ffffff' };
 
-var LEAGUE_LABEL = {epl:'Premier League',laliga:'La Liga',bundesliga:'Bundesliga',ligue1:'Ligue 1',other:'Other Leagues'};
-var LEAGUE_BG = {epl:'bg-epl',laliga:'bg-laliga',bundesliga:'bg-bundesliga',ligue1:'bg-ligue1',other:'bg-countries'};
-
-var COUNTRIES = {
-  'World Cup 2026 — Africa': [
-    {name:'Algeria',color:'006233/ffffff'},
-    {name:'Cape Verde',color:'003893/ffffff'},
-    {name:'DR Congo',color:'007FFF/ffffff'},
-    {name:'Egypt',color:'CE1126/ffffff'},
-    {name:'Ghana',color:'f0f0f0/1a1a1a'},
-    {name:'Ivory Coast',color:'F77F00/ffffff'},
-    {name:'Morocco',color:'C1272D/ffffff'},
-    {name:'Senegal',color:'00853F/ffffff'},
-    {name:'South Africa',color:'007A4D/ffffff'},
-    {name:'Tunisia',color:'E70013/ffffff'}
-  ],
-  'World Cup 2026 — Europe': [
-    {name:'Belgium',color:'EF0107/1a1a1a'},
-    {name:'England',color:'CF081F/ffffff'},
-    {name:'France',color:'002395/ffffff'},
-    {name:'Germany',color:'1a1a1a/ffffff'},
-    {name:'Netherlands',color:'FF6600/ffffff'},
-    {name:'Portugal',color:'006600/ffffff'},
-    {name:'Spain',color:'AA151B/ffffff'}
-  ],
-  'World Cup 2026 — South America': [
-    {name:'Argentina',color:'74ACDF/ffffff',hot:true},
-    {name:'Brazil',color:'009C3B/ffffff',hot:true},
-    {name:'Colombia',color:'FCD116/1a1a1a'}
-  ],
-  'World Cup 2026 — North America': [
-    {name:'Canada',color:'FF0000/ffffff'},
-    {name:'Jamaica',color:'000000/FED100'},
-    {name:'Mexico',color:'006847/ffffff'},
-    {name:'United States',color:'002868/ffffff'}
-  ],
-  'World Cup 2026 — Asia': [
-    {name:'Japan',color:'000080/ffffff'},
-    {name:'South Korea',color:'C60C30/ffffff'}
-  ],
-  'Other Countries': [
-    {name:'Cameroon',color:'007A5E/ffffff'},
-    {name:'Nigeria',color:'008751/ffffff',hot:true}
-  ]
-};
-
-var RETRO = [
-  {name:'Brazil 1970', tag:'Retro · Classic', color:'F4C430/009C3B'},
-  {name:'Argentina 1986', tag:'Retro · Maradona Era', color:'74ACDF/ffffff'},
-  {name:'France 1998', tag:'Retro · World Cup Winners', color:'002395/ffffff'},
-  {name:'Manchester United 1999', tag:'Retro · Treble Season', color:'DA291C/FFE500'},
-  {name:'AC Milan 2003', tag:'Retro · UCL Winners', color:'FB090B/1a1a1a'},
-  {name:'Barcelona 2009', tag:'Retro · Treble Season', color:'A50044/ffffff'}
+/* Countries — World Cup 2026 nations + other countries, grouped by continent */
+var CONTINENT_ORDER = ['Africa','Europe','South America','North America','Asia'];
+var COUNTRIES = [
+  // Africa
+  { name:'Cape Verde', continent:'Africa', color:'003893/ffffff' },
+  { name:'Cameroon', continent:'Africa', color:'007A5E/ffffff' },
+  { name:'DR Congo', continent:'Africa', color:'007FFF/ffffff' },
+  { name:'Ghana', continent:'Africa', color:'f5f5f5/1a1a1a' },
+  { name:'Ivory Coast', continent:'Africa', color:'F77F00/ffffff' },
+  { name:'Morocco', continent:'Africa', color:'C1272D/ffffff' },
+  { name:'Nigeria', continent:'Africa', color:'008751/ffffff' },
+  { name:'Senegal', continent:'Africa', color:'00853F/ffffff' },
+  { name:'South Africa', continent:'Africa', color:'007A4D/ffffff' },
+  // Europe
+  { name:'England', continent:'Europe', color:'CF081F/ffffff' },
+  { name:'France', continent:'Europe', color:'002395/ffffff' },
+  { name:'Germany', continent:'Europe', color:'1a1a1a/ffffff' },
+  { name:'Netherlands', continent:'Europe', color:'FF6600/ffffff' },
+  { name:'Portugal', continent:'Europe', color:'006600/ffffff' },
+  { name:'Spain', continent:'Europe', color:'AA151B/ffffff' },
+  // South America
+  { name:'Argentina', continent:'South America', color:'74ACDF/ffffff' },
+  { name:'Brazil', continent:'South America', color:'009C3B/ffffff' },
+  { name:'Colombia', continent:'South America', color:'FCD116/1a1a1a' },
+  // North America
+  { name:'Canada', continent:'North America', color:'FF0000/ffffff' },
+  { name:'Mexico', continent:'North America', color:'006847/ffffff' },
+  { name:'United States', continent:'North America', color:'002868/ffffff' },
+  { name:'Jamaica', continent:'North America', color:'000000/FED100' },
+  // Asia
+  { name:'Japan', continent:'Asia', color:'000080/ffffff' },
+  { name:'South Korea', continent:'Asia', color:'C60C30/ffffff' }
 ];
 
-var LIMITED = [
-  {name:'Man United Lunar New Year', tag:'Limited · Collab', color:'DA291C/FFD700'},
-  {name:'Nike x Jordan PSG', tag:'Limited · Collab', color:'1a1a1a/DA291C'},
-  {name:'Arsenal x Labrum London', tag:'Limited · Cultural', color:'EF0107/ffffff'},
-  {name:'Mexico Aztec Special', tag:'Limited · Heritage', color:'006847/CE1126'}
+var RETRO_ITEMS = [
+  { team:'Brazil 1970', tag:'Retro · Classic', color:'F4C430/009C3B' },
+  { team:'Argentina 1986', tag:'Retro · Maradona Era', color:'74ACDF/ffffff' },
+  { team:'France 1998', tag:'Retro · World Cup Winners', color:'002395/ffffff' },
+  { team:'Manchester United 1999', tag:'Retro · Treble Season', color:'DA291C/FFE500' },
+  { team:'AC Milan 2003', tag:'Retro · UCL Winners', color:'FB090B/1a1a1a' },
+  { team:'Barcelona 2009', tag:'Retro · Treble Season', color:'A50044/ffffff' }
 ];
 
-/* ── SLUG & IMAGE HELPERS ── */
-function slug(str) {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-}
+var LIMITED_ITEMS = [
+  { team:'Man United Lunar New Year', tag:'Limited · Collab Drop', color:'DA291C/FFD700' },
+  { team:'Nike x Jordan PSG', tag:'Limited · Collab Drop', color:'1a1a1a/DA291C' },
+  { team:'Arsenal x Labrum London', tag:'Limited · Cultural Kit', color:'EF0107/ffffff' },
+  { team:'Mexico Aztec Special', tag:'Limited · Heritage Kit', color:'006847/CE1126' }
+];
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   IMAGE FILENAME RULES (simple & consistent)
-   
-   CLUBS:    images/{slug}-home.jpg  /  images/{slug}-away.jpg
-   COUNTRIES:images/{slug}-home.jpg  /  images/{slug}-away.jpg
-   RETRO:    images/{slug}.jpg
-   LIMITED:  images/{slug}.jpg
-
-   FULL LIST OF EXPECTED FILENAMES:
-   See comment block at the top of the page.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-/* EXACT OVERRIDES — add here when uploaded filename differs */
-var IMG_EXACT = {
-  /* Example: 'Arsenal-home': 'images/arsenal-fc-home.jpg' */
-  /* If you renamed arsenal to arsenal-fc-..., add: */
-  /* 'Arsenal-home': 'images/arsenal-fc-2026-27-home-kit.jpg', */
-  /* 'Arsenal-away': 'images/arsenal-fc-2026-27-away-kit.jpg', */
-};
-
-function clubImg(name, kit) {
-  var key = name + '-' + kit;
-  if (IMG_EXACT[key]) return IMG_EXACT[key];
-  return 'images/' + slug(name) + '-' + kit + '.jpg';
-}
-function countryImg(name, kit) {
-  var key = name + '-' + kit;
-  if (IMG_EXACT[key]) return IMG_EXACT[key];
-  return 'images/' + slug(name) + '-' + kit + '.jpg';
-}
-function retroImg(name) {
-  if (IMG_EXACT[name]) return IMG_EXACT[name];
-  return 'images/' + slug(name) + '.jpg';
-}
-function limitedImg(name) {
-  if (IMG_EXACT[name]) return IMG_EXACT[name];
-  return 'images/' + slug(name) + '.jpg';
-}
-
-function ph(name, colorPair) {
-  var c = (colorPair||'1a6b38/c8f135').split('/');
-  return 'https://placehold.co/400x533/'+c[0]+'/'+c[1]+'?text='+encodeURIComponent(name).replace(/%20/g,'+');
+function ph(team, colorPair, kit) {
+  var c = (colorPair || '0d5c2e/f5c518').split('/');
+  var label = encodeURIComponent(team + (kit ? ' ' + kit : ''));
+  return 'https://placehold.co/400x533/' + c[0] + '/' + c[1] + '?text=' + label.replace(/%20/g,'+');
 }
 
 /* ── CARD BUILDER ── */
-var _curModalData = {};
 function buildCard(cfg) {
   var div = document.createElement('div');
-  div.className = 'j-card' + (cfg.oos ? ' oos' : '');
-
-  var imgSrc = cfg.img;
-  var fallback = cfg.fallback || ph(cfg.name);
-  var priceVal = cfg.priceVal || PRICES.pro;
-  var priceLabel = 'KSh ' + priceVal.toLocaleString();
-
+  div.className = 'gallery-item' + (cfg.outOfStock ? ' out-of-stock' : '');
+  var priceFrom = VERSION_PRICES[cfg.versions[0]];
+  var fallback = cfg.fallback || ph(cfg.team);
   div.innerHTML =
-    '<img src="' + imgSrc + '" alt="' + cfg.name + '" onerror="this.onerror=null;this.src=\'' + fallback + '\';"/>' +
-    (cfg.oos ? '<span class="oos-badge">Out of Stock</span>' : '') +
-    (cfg.hot && !cfg.oos ? '<span class="badge-hot">🔥 Hot</span>' : '') +
-    '<div class="j-card-body">' +
-      '<div class="j-card-team">' + cfg.name + '</div>' +
-      '<div class="j-card-sub">' + cfg.sub + '</div>' +
-      '<div class="j-card-price">' + (cfg.oos ? 'Unavailable' : 'From ' + priceLabel) + '</div>' +
-      '<button class="j-card-btn"' + (cfg.oos ? ' disabled' : '') + '>' +
-        (cfg.oos ? 'Out of Stock' : '+ Add to Cart') +
-      '</button>' +
+    '<img class="gallery-img" src="' + cfg.img + '" alt="' + cfg.team + '" onerror="this.onerror=null;this.src=\'' + fallback + '\';" />' +
+    (cfg.outOfStock ? '<span class="oos-badge">Out of Stock</span>' : '') +
+    '<div class="gallery-label">' +
+      '<div class="team">' + cfg.team + '</div>' +
+      '<div class="kit-type">' + cfg.tag + '</div>' +
+      '<div class="gallery-price">' + (cfg.outOfStock ? 'Currently unavailable' : 'From ' + priceFrom.toLocaleString() + ' KSh') + '</div>' +
+      '<button class="gallery-add-btn"' + (cfg.outOfStock ? ' disabled' : '') + '>' + (cfg.outOfStock ? 'Out of Stock' : '+ Add to Cart') + '</button>' +
     '</div>';
-
-  if (!cfg.oos) {
-    div.addEventListener('click', function(e) {
-      if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-        openModal(cfg);
-      } else {
-        openModal(cfg);
-      }
+  if (!cfg.outOfStock) {
+    div.addEventListener('click', function () {
+      openQuickAdd({
+        team: cfg.team, subLabel: cfg.subLabel, img: cfg.img, fallback: fallback,
+        versions: cfg.versions, presetKit: cfg.presetKit
+      });
     });
   }
   return div;
 }
 
-/* ── MODAL ── */
-function openModal(cfg) {
-  _curModalData = cfg;
-  document.getElementById('m-img').src = cfg.img;
-  document.getElementById('m-img').onerror = function() { this.onerror=null; this.src=cfg.fallback||''; };
-  document.getElementById('m-team').textContent = cfg.name;
-  document.getElementById('m-sub').textContent = cfg.sub;
-  // Version options
-  var vsel = document.getElementById('m-version');
-  vsel.innerHTML = '';
-  if (cfg.type === 'retro') {
-    vsel.innerHTML = '<option value="2000">Retro – KSh 2,000</option>';
-  } else if (cfg.type === 'limited') {
-    vsel.innerHTML = '<option value="2200">Limited Edition – KSh 2,200</option>';
-  } else {
-    vsel.innerHTML =
-      '<option value="1500">Pro – KSh 1,500</option>' +
-      '<option value="2200">Limited Edition – KSh 2,200</option>';
-  }
-  // Kit field — hide for retro/limited (no home/away)
-  var kitWrap = document.getElementById('m-kit-wrap');
-  if (cfg.type === 'retro' || cfg.type === 'limited') {
-    kitWrap.style.display = 'none';
-  } else {
-    kitWrap.style.display = '';
-    document.getElementById('m-kit').value = cfg.presetKit || 'Home';
-  }
-  document.getElementById('m-size').value = '';
-  document.getElementById('m-pieces').value = '1';
-  document.getElementById('m-print').value = 'no';
-  document.getElementById('m-print-row').style.display = 'none';
-  calcModalPrice();
-  document.getElementById('modal-overlay').classList.add('open');
-}
-function closeModal(e) { if (!e || e.target.id==='modal-overlay') closeModalBtn(); }
-function closeModalBtn() { document.getElementById('modal-overlay').classList.remove('open'); }
-function togglePrint() {
-  var show = document.getElementById('m-print').value === 'yes';
-  document.getElementById('m-print-row').style.display = show ? 'grid' : 'none';
-  calcModalPrice();
-}
-function calcModalPrice() {
-  var base = parseInt(document.getElementById('m-version').value) || PRICES.pro;
-  var pieces = parseInt(document.getElementById('m-pieces').value) || 1;
-  var print = document.getElementById('m-print').value === 'yes' ? PRICES.print : 0;
-  var total = (base + print) * pieces;
-  document.getElementById('m-price').textContent = 'KSh ' + total.toLocaleString();
-}
-function doAddToCart() {
-  var size = document.getElementById('m-size').value;
-  if (!size) { alert('Please select a size!'); return; }
-  var base = parseInt(document.getElementById('m-version').value) || PRICES.pro;
-  var pieces = parseInt(document.getElementById('m-pieces').value) || 1;
-  var print = document.getElementById('m-print').value === 'yes';
-  var pname = document.getElementById('m-pname').value.trim().toUpperCase();
-  var pnum  = document.getElementById('m-pnum').value.trim();
-  var priceEach = base + (print ? PRICES.print : 0);
-
-  var versionLabel = document.getElementById('m-version').options[document.getElementById('m-version').selectedIndex].text.split('–')[0].trim();
-  var kitVal = document.getElementById('m-kit-wrap').style.display === 'none' ? '' : document.getElementById('m-kit').value;
-
-  var item = {
-    id: Date.now(),
-    name: _curModalData.name,
-    sub: _curModalData.sub,
-    img: _curModalData.img,
-    fallback: _curModalData.fallback || '',
-    kit: kitVal,
-    version: versionLabel,
-    size: size,
-    pieces: pieces,
-    print: print,
-    printName: pname,
-    printNum: pnum,
-    priceEach: priceEach
-  };
-  cart.push(item);
-  saveCart();
-  closeModalBtn();
-  showToast('✅ ' + item.name + ' added to cart!');
-}
-
-/* ── CART ── */
-var cart = [];
-function saveCart() {
-  try { localStorage.setItem('raha_cart_v2', JSON.stringify(cart)); } catch(e){}
-  updateBadge();
-  renderCartDrawer();
-}
-function loadCart() {
-  try { var s = localStorage.getItem('raha_cart_v2'); if(s) cart = JSON.parse(s); } catch(e){}
-}
-function updateBadge() {
-  var b = document.getElementById('cart-badge');
-  if (b) { b.textContent = cart.length; b.style.display = cart.length ? 'inline-flex' : 'none'; }
-}
-function openCart() {
-  document.getElementById('cart-overlay').classList.add('open');
-  document.getElementById('cart-drawer').classList.add('open');
-  renderCartDrawer();
-}
-function closeCart() {
-  document.getElementById('cart-overlay').classList.remove('open');
-  document.getElementById('cart-drawer').classList.remove('open');
-}
-function removeItem(id) {
-  cart = cart.filter(function(c){ return c.id !== id; });
-  saveCart();
-}
-function renderCartDrawer() {
-  var wrap = document.getElementById('cart-items-wrap');
-  var empty = document.getElementById('cart-empty');
-  var footer = document.getElementById('cart-footer');
-  if (!wrap) return;
-  // Clear old items (keep empty msg)
-  Array.from(wrap.children).forEach(function(ch){ if(ch.id !== 'cart-empty') ch.remove(); });
-  if (cart.length === 0) {
-    empty.style.display = '';
-    footer.style.display = 'none';
-    return;
-  }
-  empty.style.display = 'none';
-  footer.style.display = '';
-  var total = 0;
-  cart.forEach(function(item) {
-    var itemTotal = item.priceEach * item.pieces;
-    total += itemTotal;
-    var row = document.createElement('div');
-    row.className = 'cart-item-row';
-    row.innerHTML =
-      '<img src="' + item.img + '" onerror="this.onerror=null;this.src=\'' + (item.fallback||'') + '\';" />' +
-      '<div class="cart-item-info">' +
-        '<div class="cart-item-name">' + item.name + (item.kit ? ' — ' + item.kit : '') + '</div>' +
-        '<div class="cart-item-detail">' + item.version + ' · Size ' + item.size + ' · x' + item.pieces + (item.print ? ' · Print: '+item.printName+' '+item.printNum : '') + '</div>' +
-        '<div class="cart-item-price">KSh ' + itemTotal.toLocaleString() + '</div>' +
-      '</div>' +
-      '<button class="cart-item-remove" onclick="removeItem(' + item.id + ')">✕</button>';
-    wrap.appendChild(row);
-  });
-  var deposit = Math.ceil(total * 0.30);
-  var balance = total - deposit;
-  document.getElementById('ct-total').textContent   = 'KSh ' + total.toLocaleString();
-  document.getElementById('ct-deposit').textContent = 'KSh ' + deposit.toLocaleString();
-  document.getElementById('ct-balance').textContent = 'KSh ' + balance.toLocaleString();
-}
-
-function checkoutWhatsApp() {
-  var name  = document.getElementById('co-name').value.trim();
-  var phone = document.getElementById('co-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var B = String.fromCodePoint;
-  var BALL=B(0x26BD), SHIRT=B(0x1F455), NUM=B(0x1F522), MONEY=B(0x1F4B0), CARD=B(0x1F4B3), PRAY=B(0x1F64F), CAM=B(0x1F4F8);
-  var total = 0;
-  var msg = BALL + ' *NEW ORDER - RAHA JERSEYS*\n\n';
-  msg += B(0x1F464) + ' Name: ' + name + '\n';
-  msg += B(0x1F4F1) + ' Contact: ' + phone + '\n\n';
-  msg += NUM + ' *' + cart.length + ' item(s):*\n';
-  cart.forEach(function(item, i) {
-    var itemTotal = item.priceEach * item.pieces;
-    total += itemTotal;
-    msg += '\n' + (i+1) + '. ' + SHIRT + ' ' + item.name;
-    if (item.kit) msg += ' (' + item.kit + ')';
-    msg += ' · ' + item.version + ' · Size ' + item.size + ' · x' + item.pieces;
-    if (item.print) msg += '\n   ' + B(0x270F) + B(0xFE0F) + ' Print: ' + item.printName + ' ' + item.printNum;
-    msg += '\n   KSh ' + itemTotal.toLocaleString();
-  });
-  var deposit = Math.ceil(total * 0.30);
-  var balance = total - deposit;
-  msg += '\n\n' + MONEY + ' *PRICE BREAKDOWN:*\n';
-  msg += '   Total: *KSh ' + total.toLocaleString() + '*\n';
-  msg += '   30% Deposit: *KSh ' + deposit.toLocaleString() + '*\n';
-  msg += '   Balance on delivery: *KSh ' + balance.toLocaleString() + '*\n';
-  msg += '\n' + CARD + ' Send deposit via Pochi La Biashara:\n';
-  msg += '   Number: *0710 611 244*\n';
-  msg += '   Name: *ESTELLE KANG\u2019ETHE*\n';
-  msg += '   Send M-Pesa screenshot as proof ' + CAM + '\n';
-  msg += '\nAsante sana! ' + PRAY;
-
-  closeCart();
-  window.open('https://wa.me/254119485338?text=' + encodeURIComponent(msg), '_blank');
-  showThankYou(deposit);
-}
-
-/* ── THANK YOU ── */
-function showThankYou(deposit) {
-  var ov = document.getElementById('thankyou-overlay');
-  document.getElementById('ty-ball').textContent = String.fromCodePoint(0x26BD);
-  document.getElementById('ty-deposit-line').textContent =
-    String.fromCodePoint(0x1F4B0) + ' Send KSh ' + deposit.toLocaleString() + ' (30% deposit) to confirm';
-  ov.classList.add('open');
-  var secs = 10;
-  var btn = document.getElementById('ty-btn');
-  var cd = document.getElementById('ty-cd');
-  btn.onclick = function() { clearInterval(timer); resetAfterOrder(); };
-  var timer = setInterval(function() {
-    secs--;
-    if (cd) cd.textContent = secs;
-    if (secs <= 0) { clearInterval(timer); resetAfterOrder(); }
-  }, 1000);
-}
-function resetAfterOrder() {
-  cart = [];
-  saveCart();
-  document.getElementById('thankyou-overlay').classList.remove('open');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-/* ── TOAST ── */
-function showToast(msg) {
-  var t = document.getElementById('cart-toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2500);
-}
-
-/* ── RENDER PANELS ── */
-var curCat = 'club', curLeague = 'epl', clubKit = 'home', countriesKit = 'home';
-
-function renderClub() {
+/* ══════════════════════════════════════
+   RENDER: CLUB GRID
+═══════════════════════════════════════ */
+var clubKit = 'home';
+function renderClubGrid(league) {
   var grid = document.getElementById('club-grid');
   grid.innerHTML = '';
-  var clubs = CLUBS[curLeague] || [];
-  clubs.forEach(function(c) {
+  var kitLabel = clubKit === 'home' ? 'Home' : 'Away';
+  (CLUBS[league] || []).forEach(function (club) {
     grid.appendChild(buildCard({
-      name: c.name,
-      sub: LEAGUE_LABEL[curLeague] + ' · 26/27 · ' + (clubKit==='home'?'Home':'Away'),
-      img: clubImg(c.name, clubKit),
-      fallback: ph(c.name),
-      type: 'club',
-      presetKit: clubKit==='home'?'Home':'Away',
-      hot: c.hot,
-      oos: c.oos
+      team: club.name,
+      subLabel: LEAGUE_LABEL[league] + ' · 26/27 · ' + kitLabel,
+      tag: LEAGUE_LABEL[league] + ' · ' + kitLabel,
+      img: clubImg(club.name, clubKit),
+      fallback: ph(club.name, LEAGUE_COLOR[league], kitLabel),
+      presetKit: kitLabel,
+      versions: VERSIONS,
+      outOfStock: !!club.outOfStock
     }));
   });
 }
 
-function renderCountries() {
+/* ══════════════════════════════════════
+   RENDER: COUNTRIES GRID (grouped by continent)
+═══════════════════════════════════════ */
+var countriesKit = 'home';
+function renderCountriesGrid() {
   var wrap = document.getElementById('countries-grid');
   wrap.innerHTML = '';
-  var kit = countriesKit;
-  var kitLabel = kit==='home' ? 'Home' : 'Away';
-  Object.keys(COUNTRIES).forEach(function(continent) {
-    var list = COUNTRIES[continent];
-    // Add continent heading
-    var h = document.createElement('div');
-    h.className = 'cont-heading';
-    h.textContent = continent;
-    wrap.appendChild(h);
+  var kitLabel = countriesKit === 'home' ? 'Home' : 'Away';
+  CONTINENT_ORDER.forEach(function (continent) {
+    var list = COUNTRIES.filter(function (c) { return c.continent === continent; });
+    if (!list.length) return;
+    var heading = document.createElement('h3');
+    heading.className = 'continent-heading';
+    heading.textContent = continent;
+    wrap.appendChild(heading);
     var grid = document.createElement('div');
     grid.className = 'gallery-grid';
-    list.forEach(function(c) {
+    list.forEach(function (c) {
       grid.appendChild(buildCard({
-        name: c.name,
-        sub: continent + ' · ' + kitLabel,
-        img: countryImg(c.name, kit),
-        fallback: ph(c.name, c.color),
-        type: 'country',
+        team: c.name,
+        subLabel: continent + ' · ' + kitLabel,
+        tag: continent + ' · ' + kitLabel,
+        img: countryImg(c.name, countriesKit),
+        fallback: ph(c.name, c.color, kitLabel),
         presetKit: kitLabel,
-        hot: c.hot,
-        oos: c.oos
+        versions: VERSIONS,
+        outOfStock: !!c.outOfStock
       }));
     });
     wrap.appendChild(grid);
   });
 }
 
-function renderRetro() {
+function renderRetroGrid() {
   var grid = document.getElementById('retro-grid');
   grid.innerHTML = '';
-  RETRO.forEach(function(r) {
+  RETRO_ITEMS.forEach(function (r) {
     grid.appendChild(buildCard({
-      name: r.name, sub: r.tag, img: retroImg(r.name),
-      fallback: ph(r.name, r.color), type: 'retro', priceVal: PRICES.retro
+      team: r.team, subLabel: r.tag, tag: r.tag, img: retroImg(r.team), fallback: ph(r.team, r.color),
+      versions: VERSIONS, outOfStock: !!r.outOfStock
     }));
   });
 }
-
-function renderLimited() {
+function renderLimitedGrid() {
   var grid = document.getElementById('limited-grid');
   grid.innerHTML = '';
-  LIMITED.forEach(function(r) {
+  LIMITED_ITEMS.forEach(function (r) {
     grid.appendChild(buildCard({
-      name: r.name, sub: r.tag, img: limitedImg(r.name),
-      fallback: ph(r.name, r.color), type: 'limited', priceVal: PRICES.limited
+      team: r.team, subLabel: r.tag, tag: r.tag, img: limitedImg(r.team), fallback: ph(r.team, r.color),
+      versions: VERSIONS, outOfStock: !!r.outOfStock
     }));
   });
 }
 
-/* ── SWITCH ── */
-function switchCat(cat, btn) {
-  curCat = cat;
-  document.querySelectorAll('.cat-tab').forEach(function(b){ b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  document.getElementById('search-input').value = '';
-  document.getElementById('panel-search').style.display = 'none';
-  ['club','countries','retro','limited'].forEach(function(p){
-    document.getElementById('panel-'+p).style.display = (p===cat)?'':'none';
+/* ══════════════════════════════════════
+   CATEGORY / LEAGUE SWITCHING + BANNER
+═══════════════════════════════════════ */
+var currentCat = 'club';
+var currentLeague = 'epl';
+
+function switchCategory(cat) {
+  currentCat = cat;
+  document.getElementById('search-results-panel').style.display = 'none';
+  document.getElementById('prod-search-input').value = '';
+  document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === cat); });
+  ['club','countries','retro','limited'].forEach(function (p) {
+    document.getElementById('panel-' + p).style.display = (p === cat) ? '' : 'none';
   });
-  document.getElementById('league-nav-wrap').style.display = (cat==='club')?'':'none';
-  if (cat==='club')     { setBanner('bg-'+curLeague, LEAGUE_LABEL[curLeague].toUpperCase(), LEAGUE_LABEL[curLeague]+' 2026/27 pre-order is open — secure your kit now.'); renderClub(); }
-  if (cat==='countries'){ setBanner('bg-countries','NATIONAL TEAMS','World Cup 2026 nations and more — home & away kits available.'); renderCountries(); }
-  if (cat==='retro')    { setBanner('bg-retro','RETRO CLASSICS','Iconic kits from football history — timeless colours, timeless legends.'); renderRetro(); }
-  if (cat==='limited')  { setBanner('bg-limited','LIMITED EDITION','Rare collabs and special releases — while stock lasts.'); renderLimited(); }
-  if (typeof twemoji !== 'undefined') {
-    setTimeout(function(){ twemoji.parse(document.body, TW_OPT); }, 80);
-  }
+  document.getElementById('league-nav-wrap').style.display = (cat === 'club') ? '' : 'none';
+
+  if (cat === 'club') { setBanner('bg-' + currentLeague, LEAGUE_LABEL[currentLeague].toUpperCase(), LEAGUE_LABEL[currentLeague] + ' 2026/27 pre-order is open — secure your kit now.'); renderClubGrid(currentLeague); }
+  else if (cat === 'countries') { setBanner('bg-countries','NATIONAL TEAMS','World Cup 2026 nations and more, by continent. Home & away kits available.'); renderCountriesGrid(); }
+  else if (cat === 'retro') { setBanner('bg-retro','RETRO CLASSICS','Iconic kits from football history — timeless colours, timeless legends.'); renderRetroGrid(); }
+  else if (cat === 'limited') { setBanner('bg-limited','LIMITED EDITION','Rare collabs and special-release kits — while stock lasts.'); renderLimitedGrid(); }
 }
 
-function switchLeague(lg, btn) {
-  curLeague = lg;
-  document.querySelectorAll('.league-tab').forEach(function(b){ b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  setBanner('bg-'+lg, LEAGUE_LABEL[lg].toUpperCase(), LEAGUE_LABEL[lg]+' 2026/27 — pre-order is open.');
-  renderClub();
+function switchLeague(league) {
+  currentLeague = league;
+  document.querySelectorAll('.league-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.league === league); });
+  setBanner('bg-' + league, LEAGUE_LABEL[league].toUpperCase(), LEAGUE_LABEL[league] + ' 2026/27 pre-order is open — secure your kit now.');
+  renderClubGrid(league);
 }
 
 function setBanner(cls, title, sub) {
@@ -920,58 +533,73 @@ function setBanner(cls, title, sub) {
 }
 
 function switchKit(panel, kit, btn) {
-  btn.closest('.kit-toggle').querySelectorAll('.kit-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.closest('.kit-toggle').querySelectorAll('.kit-toggle-btn').forEach(function (b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  if (panel==='club')      { clubKit=kit; renderClub(); }
-  if (panel==='countries') { countriesKit=kit; renderCountries(); }
+  if (panel === 'club') { clubKit = kit; renderClubGrid(currentLeague); }
+  else if (panel === 'countries') { countriesKit = kit; renderCountriesGrid(); }
 }
 
-/* ── SEARCH ── */
-function searchAll(query) {
-  var q = query.trim().toLowerCase();
-  var panel = document.getElementById('panel-search');
-  if (!q) {
-    panel.style.display = 'none';
-    switchCat(curCat);
-    return;
-  }
-  ['club','countries','retro','limited'].forEach(function(p){ document.getElementById('panel-'+p).style.display='none'; });
-  panel.style.display = '';
+/* ══════════════════════════════════════
+   SEARCH (across all catalogs)
+═══════════════════════════════════════ */
+function buildAllCards() {
   var all = [];
-  Object.keys(CLUBS).forEach(function(lg){
-    CLUBS[lg].forEach(function(c){
-      all.push({name:c.name, sub:LEAGUE_LABEL[lg]+' · 26/27', img:clubImg(c.name,'home'), fallback:ph(c.name), type:'club', presetKit:'Home', hot:c.hot});
+  Object.keys(CLUBS).forEach(function (lg) {
+    CLUBS[lg].forEach(function (c) {
+      all.push({
+        team:c.name, subLabel:LEAGUE_LABEL[lg]+' · 26/27', tag:LEAGUE_LABEL[lg]+' · Home',
+        img:clubImg(c.name,'home'), fallback:ph(c.name,LEAGUE_COLOR[lg],'Home'),
+        presetKit:'Home', versions:VERSIONS, outOfStock: !!c.outOfStock
+      });
     });
   });
-  Object.keys(COUNTRIES).forEach(function(cont){
-    COUNTRIES[cont].forEach(function(c){
-      all.push({name:c.name, sub:cont, img:countryImg(c.name,'home'), fallback:ph(c.name,c.color), type:'country', presetKit:'Home', hot:c.hot});
+  COUNTRIES.forEach(function (c) {
+    all.push({
+      team:c.name, subLabel:c.continent, tag:c.continent+' · Home',
+      img:countryImg(c.name,'home'), fallback:ph(c.name,c.color,'Home'),
+      presetKit:'Home', versions:VERSIONS, outOfStock: !!c.outOfStock
     });
   });
-  RETRO.forEach(function(r){ all.push({name:r.name, sub:r.tag, img:retroImg(r.name), fallback:ph(r.name,r.color), type:'retro', priceVal:PRICES.retro}); });
-  LIMITED.forEach(function(r){ all.push({name:r.name, sub:r.tag, img:limitedImg(r.name), fallback:ph(r.name,r.color), type:'limited', priceVal:PRICES.limited}); });
+  RETRO_ITEMS.forEach(function (r) {
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:retroImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+  });
+  LIMITED_ITEMS.forEach(function (r) {
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:limitedImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+  });
+  return all;
+}
+var ALL_CARDS = null;
 
-  var matches = all.filter(function(c){ return c.name.toLowerCase().indexOf(q)!==-1; });
-  var grid = document.getElementById('search-grid');
+function searchCatalog(query) {
+  var panel = document.getElementById('search-results-panel');
+  var grid = document.getElementById('search-results-grid');
+  var q = query.trim().toLowerCase();
+  if (!q) { panel.style.display = 'none'; switchCategory(currentCat); return; }
+  if (!ALL_CARDS) ALL_CARDS = buildAllCards();
+
+  ['panel-club','panel-countries','panel-retro','panel-limited'].forEach(function (id) { document.getElementById(id).style.display = 'none'; });
+  panel.style.display = '';
+
+  var matches = ALL_CARDS.filter(function (c) { return c.team.toLowerCase().indexOf(q) !== -1; });
   grid.innerHTML = '';
-  matches.forEach(function(m){ grid.appendChild(buildCard(m)); });
+  matches.forEach(function (m) { grid.appendChild(buildCard(m)); });
   document.getElementById('search-count').textContent = matches.length;
 }
 
-/* ── TWEMOJI ── */
-var TW_OPT = {folder:'svg',ext:'.svg',base:'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'};
-
-/* ── INIT ── */
-loadCart();
-updateBadge();
-document.addEventListener('DOMContentLoaded', function() {
+/* ══════════════════════════════════════
+   INIT — read ?cat= from URL (links from home page)
+═══════════════════════════════════════ */
+(function init() {
   var params = new URLSearchParams(window.location.search);
-  var cat = params.get('cat') || 'club';
-  switchCat(cat);
-});
-window.addEventListener('load', function() {
-  if (typeof twemoji !== 'undefined') twemoji.parse(document.body, TW_OPT);
-});
+  var cat = params.get('cat');
+  var validCats = ['club','countries','retro','limited'];
+  if (cat && validCats.indexOf(cat) !== -1) {
+    document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.cat === cat); });
+    switchCategory(cat);
+  } else {
+    switchCategory('club');
+  }
+})();
 </script>
 </body>
 </html>
