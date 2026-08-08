@@ -301,10 +301,49 @@ function slugify(str) {
     .replace(/\s+/g, '-');
 }
 
-function clubImg(team, kit)    { return IMG_BASE + slugify(team) + '-2026-27-' + kit + '-kit.jpg'; }
-function countryImg(team, kit) { return IMG_BASE + slugify(team) + '-' + kit + '-kit.jpg'; }
-function retroImg(team)        { return IMG_BASE + slugify(team) + '-kit.jpg'; }
-function limitedImg(team)      { return IMG_BASE + slugify(team) + '-kit.jpg'; }
+/* ── IMAGE FILENAME OVERRIDES ──
+   Use this when an uploaded file doesn't match the auto-generated
+   slug (e.g. "Arsenal" auto-slugs to "arsenal" but the uploaded file
+   is "arsenal-fc-..."). Two ways to override:
+
+   1. { slug: 'custom-slug' } — just changes the team-name part,
+      still follows the normal -2026-27-home-kit.jpg / -home-kit.jpg pattern.
+        'Arsenal': { slug: 'arsenal-fc' }
+
+   2. { home: 'exact-filename.jpg', away: 'exact-filename.jpg' } —
+      full filename override for countries/retro/limited when the
+      whole pattern differs (e.g. includes an unexpected year).
+        'Cameroon': { home: 'cameroon-2025-home-kit.jpg', away: 'cameroon-2025-away-kit.jpg' }
+
+   Add more entries here any time you spot a mismatched filename in
+   your images/ folder — no need to touch anything else in the code.
+*/
+var IMAGE_OVERRIDES = {
+  'Arsenal': { slug: 'arsenal-fc' },
+  'Bayern Munich': { slug: 'bayern-munchen' },
+  'Cameroon': { home: 'cameroon-2025-home-kit.jpg', away: 'cameroon-2025-away-kit.jpg' }
+};
+
+function clubImg(team, kit) {
+  var ov = IMAGE_OVERRIDES[team];
+  var slug = (ov && ov.slug) ? ov.slug : slugify(team);
+  return IMG_BASE + slug + '-2026-27-' + kit + '-kit.jpg';
+}
+function countryImg(team, kit) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov[kit]) return IMG_BASE + ov[kit];
+  return IMG_BASE + slugify(team) + '-' + kit + '-kit.jpg';
+}
+function retroImg(team) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov.slug) return IMG_BASE + ov.slug + '-kit.jpg';
+  return IMG_BASE + slugify(team) + '-kit.jpg';
+}
+function limitedImg(team) {
+  var ov = IMAGE_OVERRIDES[team];
+  if (ov && ov.slug) return IMG_BASE + ov.slug + '-kit.jpg';
+  return IMG_BASE + slugify(team) + '-kit.jpg';
+}
 
 /* ══════════════════════════════════════
    DATA
