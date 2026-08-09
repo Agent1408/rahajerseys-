@@ -2,7 +2,7 @@
    RAHA JERSEYS — SHARED CART LOGIC
 ═══════════════════════════════════════ */
 var CART_KEY = 'raha_cart_v1';
-var VERSION_PRICES = { 'Fan Version': 1000, 'Player Version': 1500 };
+var VERSION_PRICES = { 'Fan Version': 1200, 'Player Version': 1500, 'Retro Version': 2000, 'Limited Edition': 2500 };
 var WA_ORDER_NUMBER = '254119485338'; // orders WhatsApp
 
 /* ── STORAGE ── */
