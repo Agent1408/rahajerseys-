@@ -102,6 +102,9 @@
   .contact-icon { font-size:1.8rem; width:48px; height:48px; border-radius:50%; background:var(--green-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .contact-card h4 { font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--text-muted); margin-bottom:.15rem; }
   .contact-card .contact-value { font-size:1rem; font-weight:700; color:var(--text); }
+
+  /* ── LANGUAGE SWITCH ── */
+  .lang-switch { font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; border:1px solid var(--border); border-radius:50px; padding:.35rem .7rem; background:var(--white); color:var(--text); cursor:pointer; }
 </style>
 </head>
 <body>
@@ -110,11 +113,16 @@
 <nav class="topnav">
   <a href="index.html" class="nav-logo">RAHA ⚽</a>
   <ul class="nav-links" id="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="help.html">Help</a></li>
+    <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+    <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+    <li><a href="help.html" data-i18n="nav.help">Help</a></li>
   </ul>
   <div class="nav-right">
+    <select class="lang-switch" id="lang-switch" aria-label="Language" onchange="setLang(this.value)">
+      <option value="en">🇬🇧 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="sw">🇰🇪 Kiswahili</option>
+    </select>
     <button class="cart-btn" onclick="openCart()" aria-label="Cart">🛒<span class="cart-badge" style="display:none;">0</span></button>
     <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
   </div>
@@ -122,59 +130,59 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-badge">⚡ New Season (PL, La Liga, Bundesliga, Ligue 1) 26/27 Kits Now In Stock</div>
+  <div class="hero-badge" data-i18n="hero.badge">⚡ New Season (PL, La Liga, Bundesliga, Ligue 1) 26/27 Kits Now In Stock</div>
   <h1>RAHA<br /><span>JERSEYS</span></h1>
-  <p>Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
+  <p data-i18n="hero.sub">Premium football kits at prices that make your wallet smile. Club, Retro, World Cup 2026 &amp; Limited Edition — fast delivery across Kenya.</p>
   <div class="hero-btns">
-    <a href="products.html" class="btn-primary">📲 Shop Jerseys</a>
-    <a href="#jerseys" class="btn-secondary">What We Stock</a>
+    <a href="products.html" class="btn-primary" data-i18n="hero.btn_shop">📲 Shop Jerseys</a>
+    <a href="#jerseys" class="btn-secondary" data-i18n="hero.btn_stock">What We Stock</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">5</div><div class="lbl">Jersey Types</div></div>
-    <div class="hero-stat"><div class="num">1K+</div><div class="lbl">Teams Available</div></div>
-    <div class="hero-stat"><div class="num">1,200</div><div class="lbl">From KSh</div></div>
-    <div class="hero-stat"><div class="num">🚚</div><div class="lbl">Fast Delivery</div></div>
+    <div class="hero-stat"><div class="num">5</div><div class="lbl" data-i18n="hero.stat_types">Jersey Types</div></div>
+    <div class="hero-stat"><div class="num">1K+</div><div class="lbl" data-i18n="hero.stat_teams">Teams Available</div></div>
+    <div class="hero-stat"><div class="num">1,200</div><div class="lbl" data-i18n="hero.stat_from">From KSh</div></div>
+    <div class="hero-stat"><div class="num">🚚</div><div class="lbl" data-i18n="hero.stat_delivery">Fast Delivery</div></div>
   </div>
 </header>
 
 <!-- PRICING -->
 <section id="pricing">
   <div class="container">
-    <p class="section-label">Pocket-Friendly</p>
-    <h2 class="section-title">PRICES &amp; VERSIONS</h2>
-    <p class="section-sub">All jerseys are premium quality. Choose from Fan, Player, Retro, or Limited Edition.</p>
+    <p class="section-label" data-i18n="pricing.label">Pocket-Friendly</p>
+    <h2 class="section-title" data-i18n="pricing.title">PRICES &amp; VERSIONS</h2>
+    <p class="section-sub" data-i18n="pricing.sub">All jerseys are premium quality. Choose from Fan, Player, Retro, or Limited Edition.</p>
     <div class="pricing-grid">
       <div class="price-card featured">
-        <div class="featured-badge">⭐ Best Seller</div>
-        <div class="jersey-type">Fan Version</div>
-        <div class="jersey-desc">Great everyday quality</div>
+        <div class="featured-badge" data-i18n="pricing.bestseller">⭐ Best Seller</div>
+        <div class="jersey-type" data-i18n="pricing.fan_type">Fan Version</div>
+        <div class="jersey-desc" data-i18n="pricing.fan_desc">Great everyday quality</div>
         <div class="price">1,200 <span>KSh</span></div>
       </div>
       <div class="price-card">
-        <div class="jersey-type">Player Version</div>
-        <div class="jersey-desc">Match-grade premium quality</div>
+        <div class="jersey-type" data-i18n="pricing.player_type">Player Version</div>
+        <div class="jersey-desc" data-i18n="pricing.player_desc">Match-grade premium quality</div>
         <div class="price">1,500 <span>KSh</span></div>
       </div>
       <div class="price-card">
-        <div class="jersey-type">Retro Version</div>
-        <div class="jersey-desc">Classic &amp; old season drops</div>
+        <div class="jersey-type" data-i18n="pricing.retro_type">Retro Version</div>
+        <div class="jersey-desc" data-i18n="pricing.retro_desc">Classic &amp; old season drops</div>
         <div class="price">2,000 <span>KSh</span></div>
       </div>
       <div class="price-card">
-        <div class="jersey-type">Limited Edition</div>
-        <div class="jersey-desc">Special &amp; rare releases</div>
+        <div class="jersey-type" data-i18n="pricing.limited_type">Limited Edition</div>
+        <div class="jersey-desc" data-i18n="pricing.limited_desc">Special &amp; rare releases</div>
         <div class="price">2,500 <span>KSh</span></div>
       </div>
     </div>
-    <div class="print-note"><strong>Want your name &amp; number printed?</strong> Add KSh 400 for printing. Bulk orders of 5+ pieces get a discount! 🎉</div>
+    <div class="print-note" data-i18n="pricing.print_note"><strong>Want your name &amp; number printed?</strong> Add KSh 400 for printing. Bulk orders of 5+ pieces get a discount! 🎉</div>
 
     <div class="discount-table-wrap">
       <table class="discounts">
-        <thead><tr><th>Buy</th><th style="text-align:right;">Discount</th></tr></thead>
+        <thead><tr><th data-i18n="pricing.tbl_buy">Buy</th><th style="text-align:right;" data-i18n="pricing.tbl_discount">Discount</th></tr></thead>
         <tbody>
-          <tr><td>5 jerseys</td><td>1 FREE ⭐</td></tr>
-          <tr><td>10 jerseys</td><td>2 FREE 🔥</td></tr>
-          <tr><td>15 jerseys</td><td>3 FREE</td></tr>
+          <tr><td data-i18n="pricing.tbl_5">5 jerseys</td><td data-i18n="pricing.tbl_5free">1 FREE ⭐</td></tr>
+          <tr><td data-i18n="pricing.tbl_10">10 jerseys</td><td data-i18n="pricing.tbl_10free">2 FREE 🔥</td></tr>
+          <tr><td data-i18n="pricing.tbl_15">15 jerseys</td><td data-i18n="pricing.tbl_15free">3 FREE</td></tr>
         </tbody>
       </table>
     </div>
@@ -184,36 +192,36 @@
 <!-- WHAT WE STOCK -->
 <section id="jerseys">
   <div class="container">
-    <p class="section-label">What We Stock</p>
-    <h2 class="section-title">CHOOSE YOUR KIT</h2>
-    <p class="section-sub">From the latest club kits to classic retros — we've got your team covered. Tap a category to browse.</p>
+    <p class="section-label" data-i18n="jerseys.label">What We Stock</p>
+    <h2 class="section-title" data-i18n="jerseys.title">CHOOSE YOUR KIT</h2>
+    <p class="section-sub" data-i18n="jerseys.sub">From the latest club kits to classic retros — we've got your team covered. Tap a category to browse.</p>
     <div class="cats-grid">
       <a href="products.html?cat=club" class="cat-card club" data-emoji="🏆">
-        <span class="cat-label">All Leagues</span>
-        <span class="cat-name">CLUB JERSEYS</span>
-        <span class="cat-desc">Home · Away</span>
-        <span class="coming-soon-tag">26/27 Pre-order Open</span>
+        <span class="cat-label" data-i18n="jerseys.club_label">All Leagues</span>
+        <span class="cat-name" data-i18n="jerseys.club_name">CLUB JERSEYS</span>
+        <span class="cat-desc" data-i18n="jerseys.club_desc">Home · Away</span>
+        <span class="coming-soon-tag" data-i18n="jerseys.preorder">26/27 Pre-order Open</span>
       </a>
       <a href="products.html?cat=club" class="cat-card kpl" data-emoji="🇰🇪">
-        <span class="cat-label">Local League</span>
-        <span class="cat-name">KENYAN PREMIER LEAGUE</span>
-        <span class="cat-desc">Gor Mahia, AFC Leopards, Tusker FC &amp; more</span>
-        <span class="coming-soon-tag">26/27 Pre-order Open</span>
+        <span class="cat-label" data-i18n="jerseys.kpl_label">Local League</span>
+        <span class="cat-name" data-i18n="jerseys.kpl_name">KENYAN PREMIER LEAGUE</span>
+        <span class="cat-desc" data-i18n="jerseys.kpl_desc">Gor Mahia, AFC Leopards, Tusker FC &amp; more</span>
+        <span class="coming-soon-tag" data-i18n="jerseys.preorder">26/27 Pre-order Open</span>
       </a>
       <a href="products.html?cat=countries" class="cat-card world" data-emoji="🌍">
-        <span class="cat-label">International</span>
-        <span class="cat-name">COUNTRIES</span>
-        <span class="cat-desc">Rep your nation on the biggest stage</span>
+        <span class="cat-label" data-i18n="jerseys.world_label">International</span>
+        <span class="cat-name" data-i18n="jerseys.world_name">COUNTRIES</span>
+        <span class="cat-desc" data-i18n="jerseys.world_desc">Rep your nation on the biggest stage</span>
       </a>
       <a href="products.html?cat=retro" class="cat-card retro" data-emoji="📻">
-        <span class="cat-label">Classics</span>
-        <span class="cat-name">RETRO JERSEYS</span>
-        <span class="cat-desc">Old season &amp; iconic kits — specify the year!</span>
+        <span class="cat-label" data-i18n="jerseys.retro_label">Classics</span>
+        <span class="cat-name" data-i18n="jerseys.retro_name">RETRO JERSEYS</span>
+        <span class="cat-desc" data-i18n="jerseys.retro_desc">Old season &amp; iconic kits — specify the year!</span>
       </a>
       <a href="products.html?cat=limited" class="cat-card limited" data-emoji="💎">
-        <span class="cat-label">Rare Drops</span>
-        <span class="cat-name">LIMITED EDITION</span>
-        <span class="cat-desc">Special collabs &amp; exclusive releases</span>
+        <span class="cat-label" data-i18n="jerseys.limited_label">Rare Drops</span>
+        <span class="cat-name" data-i18n="jerseys.limited_name">LIMITED EDITION</span>
+        <span class="cat-desc" data-i18n="jerseys.limited_desc">Special collabs &amp; exclusive releases</span>
       </a>
     </div>
   </div>
@@ -222,9 +230,9 @@
 <!-- POPULAR PICKS -->
 <section id="recommendations">
   <div class="container">
-    <p class="section-label">Picked For You</p>
-    <h2 class="section-title">POPULAR CHOICES</h2>
-    <p class="section-sub">What everyone's buying right now. Tap to add straight to your cart.</p>
+    <p class="section-label" data-i18n="recs.label">Picked For You</p>
+    <h2 class="section-title" data-i18n="recs.title">POPULAR CHOICES</h2>
+    <p class="section-sub" data-i18n="recs.sub">What everyone's buying right now. Tap to add straight to your cart.</p>
     <div class="gallery-grid" id="recs-grid"></div>
   </div>
 </section>
@@ -232,28 +240,28 @@
 <!-- SIZE GUIDE -->
 <section id="size-guide">
   <div class="container">
-    <p class="section-label">Get the Right Fit</p>
-    <h2 class="section-title">SIZE GUIDE</h2>
-    <p class="section-sub">Use your chest measurement to find your perfect jersey size. Sizes run true to standard football fit.</p>
+    <p class="section-label" data-i18n="size.label">Get the Right Fit</p>
+    <h2 class="section-title" data-i18n="size.title">SIZE GUIDE</h2>
+    <p class="section-sub" data-i18n="size.sub">Use your chest measurement to find your perfect jersey size. Sizes run true to standard football fit.</p>
     <div class="size-table-wrap">
       <table class="sizes">
-        <thead><tr><th>Size</th><th>Chest (cm)</th><th>Chest (inches)</th><th>Length (cm)</th><th>Best For</th></tr></thead>
+        <thead><tr><th data-i18n="size.tbl_size">Size</th><th data-i18n="size.tbl_chest_cm">Chest (cm)</th><th data-i18n="size.tbl_chest_in">Chest (inches)</th><th data-i18n="size.tbl_length">Length (cm)</th><th data-i18n="size.tbl_best">Best For</th></tr></thead>
         <tbody>
-          <tr><td>XS</td><td>84 – 88</td><td>33 – 35"</td><td>68</td><td>Slim/petite build, youth adults</td></tr>
-          <tr><td>S</td><td>88 – 94</td><td>35 – 37"</td><td>71</td><td>Slim to average build</td></tr>
-          <tr><td>M</td><td>94 – 100</td><td>37 – 39"</td><td>74</td><td>Average build — most popular size</td></tr>
-          <tr><td>L</td><td>100 – 106</td><td>39 – 42"</td><td>76</td><td>Broader chest, relaxed fit on medium build</td></tr>
-          <tr><td>XL</td><td>106 – 114</td><td>42 – 45"</td><td>79</td><td>Larger build or prefer a loose fit</td></tr>
-          <tr><td>XXL</td><td>114 – 122</td><td>45 – 48"</td><td>82</td><td>Big &amp; tall, very relaxed fit</td></tr>
+          <tr><td>XS</td><td>84 – 88</td><td>33 – 35"</td><td>68</td><td data-i18n="size.xs">Slim/petite build, youth adults</td></tr>
+          <tr><td>S</td><td>88 – 94</td><td>35 – 37"</td><td>71</td><td data-i18n="size.s">Slim to average build</td></tr>
+          <tr><td>M</td><td>94 – 100</td><td>37 – 39"</td><td>74</td><td data-i18n="size.m">Average build — most popular size</td></tr>
+          <tr><td>L</td><td>100 – 106</td><td>39 – 42"</td><td>76</td><td data-i18n="size.l">Broader chest, relaxed fit on medium build</td></tr>
+          <tr><td>XL</td><td>106 – 114</td><td>42 – 45"</td><td>79</td><td data-i18n="size.xl">Larger build or prefer a loose fit</td></tr>
+          <tr><td>XXL</td><td>114 – 122</td><td>45 – 48"</td><td>82</td><td data-i18n="size.xxl">Big &amp; tall, very relaxed fit</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="size-note">📏 <strong>How to measure your chest:</strong> Wrap a tape measure around the fullest part of your chest, just under your arms. Keep it level and add 2–4 cm for a comfortable jersey fit.</div>
+    <div class="size-note" data-i18n="size.note">📏 <strong>How to measure your chest:</strong> Wrap a tape measure around the fullest part of your chest, just under your arms. Keep it level and add 2–4 cm for a comfortable jersey fit.</div>
     <div class="size-tips">
-      <div class="size-tip"><h4>🏋️ Athletic Build</h4><p>If you have broad shoulders or a muscular chest, size up one — e.g. if your chest says M, go for L for a comfortable fit through the shoulders.</p></div>
-      <div class="size-tip"><h4>👕 Slim Fit vs Relaxed</h4><p>Our jerseys have a standard football fit. For a body-hugging look, stay true to your measurement. For a looser, casual wear feel, size up one.</p></div>
-      <div class="size-tip"><h4>👦 Buying for a Child?</h4><p>We recommend XS or S for teenagers. For younger kids, message us on WhatsApp and we'll help you find the right fit based on their age and height.</p></div>
-      <div class="size-tip"><h4>❓ Not Sure?</h4><p>Just WhatsApp us your height, weight or chest size and we'll recommend the right size. Getting it right first time saves everyone time! 😊</p></div>
+      <div class="size-tip"><h4 data-i18n="size.tip1_h">🏋️ Athletic Build</h4><p data-i18n="size.tip1_p">If you have broad shoulders or a muscular chest, size up one — e.g. if your chest says M, go for L for a comfortable fit through the shoulders.</p></div>
+      <div class="size-tip"><h4 data-i18n="size.tip2_h">👕 Slim Fit vs Relaxed</h4><p data-i18n="size.tip2_p">Our jerseys have a standard football fit. For a body-hugging look, stay true to your measurement. For a looser, casual wear feel, size up one.</p></div>
+      <div class="size-tip"><h4 data-i18n="size.tip3_h">👦 Buying for a Child?</h4><p data-i18n="size.tip3_p">We recommend XS or S for teenagers. For younger kids, message us on WhatsApp and we'll help you find the right fit based on their age and height.</p></div>
+      <div class="size-tip"><h4 data-i18n="size.tip4_h">❓ Not Sure?</h4><p data-i18n="size.tip4_p">Just WhatsApp us your height, weight or chest size and we'll recommend the right size. Getting it right first time saves everyone time! 😊</p></div>
     </div>
   </div>
 </section>
@@ -261,16 +269,16 @@
 <!-- WHY US -->
 <section id="why">
   <div class="container">
-    <p class="section-label">Why Raha</p>
-    <h2 class="section-title">HAPPY POCKET, HAPPY CUSTOMER</h2>
-    <p class="section-sub">Here's what makes us different.</p>
+    <p class="section-label" data-i18n="why.label">Why Raha</p>
+    <h2 class="section-title" data-i18n="why.title">HAPPY POCKET, HAPPY CUSTOMER</h2>
+    <p class="section-sub" data-i18n="why.sub">Here's what makes us different.</p>
     <div class="perks">
-      <div class="perk"><span class="perk-icon">✅</span><h3>Top-Tier Quality</h3><p>Premium materials that look and feel great on every version.</p></div>
-      <div class="perk"><span class="perk-icon">💰</span><h3>Unbeatable Prices</h3><p>Starting from just KSh 1,200. Buy 5 jerseys and get 1 free!</p></div>
-      <div class="perk"><span class="perk-icon">🏆</span><h3>Massive Variety</h3><p>Club, international, retro, limited edition — whatever your team, we have it.</p></div>
-      <div class="perk"><span class="perk-icon">🚚</span><h3>Fast Delivery</h3><p>Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
-      <div class="perk"><span class="perk-icon">🎨</span><h3>Custom Printing</h3><p>Add your name and number for just KSh 400. Make it yours.</p></div>
-      <div class="perk"><span class="perk-icon">📲</span><h3>Easy Ordering</h3><p>Add to cart and checkout on WhatsApp — fast, personal, friendly.</p></div>
+      <div class="perk"><span class="perk-icon">✅</span><h3 data-i18n="why.p1_h">Top-Tier Quality</h3><p data-i18n="why.p1_p">Premium materials that look and feel great on every version.</p></div>
+      <div class="perk"><span class="perk-icon">💰</span><h3 data-i18n="why.p2_h">Unbeatable Prices</h3><p data-i18n="why.p2_p">Starting from just KSh 1,200. Buy 5 jerseys and get 1 free!</p></div>
+      <div class="perk"><span class="perk-icon">🏆</span><h3 data-i18n="why.p3_h">Massive Variety</h3><p data-i18n="why.p3_p">Club, international, retro, limited edition — whatever your team, we have it.</p></div>
+      <div class="perk"><span class="perk-icon">🚚</span><h3 data-i18n="why.p4_h">Fast Delivery</h3><p data-i18n="why.p4_p">Quick and reliable delivery across Kenya. We'll keep you updated.</p></div>
+      <div class="perk"><span class="perk-icon">🎨</span><h3 data-i18n="why.p5_h">Custom Printing</h3><p data-i18n="why.p5_p">Add your name and number for just KSh 400. Make it yours.</p></div>
+      <div class="perk"><span class="perk-icon">📲</span><h3 data-i18n="why.p6_h">Easy Ordering</h3><p data-i18n="why.p6_p">Add to cart and checkout on WhatsApp — fast, personal, friendly.</p></div>
     </div>
   </div>
 </section>
@@ -278,37 +286,37 @@
 <!-- TRUST -->
 <section id="trust">
   <div class="container">
-    <p class="section-label" style="color:var(--accent);">Shop With Confidence</p>
-    <h2 class="section-title" style="color:white;">WHY TRUST RAHA JERSEYS</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;">We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.</p>
+    <p class="section-label" style="color:var(--accent);" data-i18n="trust.label">Shop With Confidence</p>
+    <h2 class="section-title" style="color:white;" data-i18n="trust.title">WHY TRUST RAHA JERSEYS</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.7);max-width:680px;" data-i18n="trust.sub">We understand that buying online can feel risky. That's why we are committed to making your shopping experience safe, transparent, and reliable.</p>
     <div class="trust-grid">
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Genuine Products Only</h4><p>Every jersey we sell is exactly as described — premium quality, no surprises.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Clear Pricing, No Hidden Charges</h4><p>The price you see is the price you pay. Printing is KSh 400 extra — that's it.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Fast &amp; Reliable Delivery Across Kenya</h4><p>We deliver quickly and keep you updated every step of the way.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Responsive Customer Support</h4><p>Our team is available before and after your purchase. We're always here to help.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">✅</span><div><h4>Real Customer Reviews</h4><p>Read genuine reviews from real customers right here on the site.</p></div></div>
-      <div class="trust-item"><span class="trust-icon">🔒</span><div><h4>Secure 30% Deposit Payment</h4><p>Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust.t1_h">Genuine Products Only</h4><p data-i18n="trust.t1_p">Every jersey we sell is exactly as described — premium quality, no surprises.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust.t2_h">Clear Pricing, No Hidden Charges</h4><p data-i18n="trust.t2_p">The price you see is the price you pay. Printing is KSh 400 extra — that's it.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust.t3_h">Fast &amp; Reliable Delivery Across Kenya</h4><p data-i18n="trust.t3_p">We deliver quickly and keep you updated every step of the way.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust.t4_h">Responsive Customer Support</h4><p data-i18n="trust.t4_p">Our team is available before and after your purchase. We're always here to help.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><h4 data-i18n="trust.t5_h">Real Customer Reviews</h4><p data-i18n="trust.t5_p">Read genuine reviews from real customers right here on the site.</p></div></div>
+      <div class="trust-item"><span class="trust-icon">🔒</span><div><h4 data-i18n="trust.t6_h">Secure 30% Deposit Payment</h4><p data-i18n="trust.t6_p">Pay a small deposit via Pochi La Biashara to confirm your order — easy and secure.</p></div></div>
     </div>
-    <div class="trust-quote">"Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."</div>
+    <div class="trust-quote" data-i18n="trust.quote">"Your trust is our most valuable asset. Shop with confidence — we deliver what we promise."</div>
   </div>
 </section>
 
 <!-- CUSTOMER REVIEWS -->
 <section id="reviews">
   <div class="container">
-    <p class="section-label">Real Customers</p>
-    <h2 class="section-title">WHAT PEOPLE SAY</h2>
-    <p class="section-sub">Trusted by football lovers across Kenya.</p>
+    <p class="section-label" data-i18n="reviews.label">Real Customers</p>
+    <h2 class="section-title" data-i18n="reviews.title">WHAT PEOPLE SAY</h2>
+    <p class="section-sub" data-i18n="reviews.sub">Trusted by football lovers across Kenya.</p>
     <div class="reviews-summary">
       <div class="big-rating" id="avg-rating-display">4.9</div>
       <div>
         <span class="rating-stars-big" id="avg-stars-display">★★★★★</span>
         <div style="font-size:.88rem;color:rgba(255,255,255,.7);" id="review-count-display">Based on 200+ happy customers</div>
-        <div class="rating-detail" style="margin-top:.3rem;">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
+        <div class="rating-detail" style="margin-top:.3rem;" data-i18n="reviews.detail">⚽ Fast delivery · ✅ Quality kits · 💰 Great prices</div>
       </div>
     </div>
     <div class="add-review-box">
-      <h3 class="add-review-title">Leave a Review</h3>
+      <h3 class="add-review-title" data-i18n="reviews.leave_title">Leave a Review</h3>
       <div class="star-picker" id="star-picker">
         <span class="star-opt" data-v="1" onclick="pickStar(1)">★</span>
         <span class="star-opt" data-v="2" onclick="pickStar(2)">★</span>
@@ -318,11 +326,11 @@
       </div>
       <input type="hidden" id="review-stars" value="0" />
       <div class="review-form-grid">
-        <input type="text" id="review-name" placeholder="Your name" maxlength="40" />
-        <input type="text" id="review-kit-bought" placeholder="What did you buy? e.g. Arsenal Home" maxlength="60" />
+        <input type="text" id="review-name" data-i18n-placeholder="reviews.ph_name" placeholder="Your name" maxlength="40" />
+        <input type="text" id="review-kit-bought" data-i18n-placeholder="reviews.ph_kit" placeholder="What did you buy? e.g. Arsenal Home" maxlength="60" />
       </div>
-      <textarea id="review-text" placeholder="Tell others about your experience..." maxlength="300" rows="3"></textarea>
-      <button class="review-submit-btn" onclick="submitReview()">Post Review</button>
+      <textarea id="review-text" data-i18n-placeholder="reviews.ph_text" placeholder="Tell others about your experience..." maxlength="300" rows="3"></textarea>
+      <button class="review-submit-btn" onclick="submitReview()" data-i18n="reviews.post_btn">Post Review</button>
       <p class="review-submit-note" id="review-msg"></p>
     </div>
     <div class="reviews-grid" id="live-reviews-grid"></div>
@@ -334,17 +342,17 @@
   <div class="container">
     <div class="about-wrap">
       <div>
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title">ABOUT RAHA JERSEYS</h2>
-        <p>Raha Jerseys started with one simple idea: every football fan in Kenya deserves a quality kit without paying import prices. "Raha" means comfort and ease in Swahili — and that's exactly what we aim to give you, from browsing to delivery.</p>
-        <p>We stock over 1,000 club, national and retro jerseys — from the Premier League to the World Cup 2026 — all at prices that keep your pocket happy. Every order is confirmed personally on WhatsApp, so you always know exactly what you're getting.</p>
-        <p>Based in Kenya, delivering across the country. Sawa kabisa. ⚽</p>
+        <p class="section-label" data-i18n="about.label">Our Story</p>
+        <h2 class="section-title" data-i18n="about.title">ABOUT RAHA JERSEYS</h2>
+        <p data-i18n="about.p1">Raha Jerseys founded by Val Mzeka &amp; Estelle Kang'ethe started with one simple idea: every football fan in Kenya deserves a quality kit without paying import prices. "Raha" means comfort and ease in Swahili — and that's exactly what we aim to give you, from browsing to delivery.</p>
+        <p data-i18n="about.p2">We stock over 1,000 club, national and retro jerseys — from the Premier League to the World Cup 2026 — all at prices that keep your pocket happy. Every order is confirmed personally on WhatsApp, so you always know exactly what you're getting.</p>
+        <p data-i18n="about.p3">Based in Kenya, delivering across the country. Sawa kabisa. ⚽</p>
       </div>
       <div class="about-stats">
-        <div class="about-stat"><div class="num">1+</div><div class="lbl">Years Running</div></div>
-        <div class="about-stat"><div class="num">1,000+</div><div class="lbl">Teams Stocked</div></div>
-        <div class="about-stat"><div class="num">200+</div><div class="lbl">Happy Customers</div></div>
-        <div class="about-stat"><div class="num">4.9★</div><div class="lbl">Average Rating</div></div>
+        <div class="about-stat"><div class="num">1+</div><div class="lbl" data-i18n="about.stat_years">Years Running</div></div>
+        <div class="about-stat"><div class="num">1,000+</div><div class="lbl" data-i18n="about.stat_teams">Teams Stocked</div></div>
+        <div class="about-stat"><div class="num">200+</div><div class="lbl" data-i18n="about.stat_customers">Happy Customers</div></div>
+        <div class="about-stat"><div class="num">4.9★</div><div class="lbl" data-i18n="about.stat_rating">Average Rating</div></div>
       </div>
     </div>
   </div>
@@ -353,25 +361,29 @@
 <!-- CONTACT US -->
 <section id="contact">
   <div class="container">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-title">CONTACT US</h2>
-    <p class="section-sub">Questions about sizing, stock, or an order? Reach us any way that suits you.</p>
+    <p class="section-label" data-i18n="contact.label">Get In Touch</p>
+    <h2 class="section-title" data-i18n="contact.title">CONTACT US</h2>
+    <p class="section-sub" data-i18n="contact.sub">Questions about sizing, stock, or an order? Reach us any way that suits you.</p>
     <div class="contact-grid">
       <a href="https://wa.me/254119485338" target="_blank" rel="noopener" class="contact-card">
         <span class="contact-icon">💬</span>
-        <div><h4>WhatsApp</h4><span class="contact-value">0119 485 338</span></div>
+        <div><h4 data-i18n="contact.whatsapp">WhatsApp</h4><span class="contact-value">0119 485 338</span></div>
       </a>
       <a href="tel:+254716932313" class="contact-card">
         <span class="contact-icon">📞</span>
-        <div><h4>Call Us</h4><span class="contact-value">0716 932 313</span></div>
+        <div><h4 data-i18n="contact.call">Call Us</h4><span class="contact-value">0716 932 313</span></div>
+      </a>
+      <a href="tel:+254710611244" class="contact-card">
+        <span class="contact-icon">📱</span>
+        <div><h4 data-i18n="contact.phone">Phone</h4><span class="contact-value">0710 611 244</span></div>
       </a>
       <a href="mailto:rahajersey@gmail.com" class="contact-card">
         <span class="contact-icon">✉️</span>
-        <div><h4>Email</h4><span class="contact-value" style="font-size:.85rem;">rahajersey@gmail.com</span></div>
+        <div><h4 data-i18n="contact.email">Email</h4><span class="contact-value" style="font-size:.85rem;">rahajersey@gmail.com</span></div>
       </a>
       <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener" class="contact-card">
         <span class="contact-icon">📸</span>
-        <div><h4>Instagram</h4><span class="contact-value">@raha_jerseys</span></div>
+        <div><h4 data-i18n="contact.instagram">Instagram</h4><span class="contact-value">@raha_jerseys</span></div>
       </a>
     </div>
   </div>
@@ -380,14 +392,15 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <span class="footer-logo">RAHA JERSEYS ⚽</span>
-  <p>Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
+  <p data-i18n="footer.tagline">Premium football kits · Pocket-friendly prices · Fast delivery across Kenya</p>
   <div class="footer-contacts">
     <a href="tel:+254716932313">📞 0716 932 313</a>
-    <a href="https://wa.me/254119485338" target="_blank" rel="noopener">💬 WhatsApp Us</a>
-    <a href="mailto:rahajersey@gmail.com">✉️ Email</a>
+    <a href="tel:+254710611244">📱 0710 611 244</a>
+    <a href="https://wa.me/254119485338" target="_blank" rel="noopener" data-i18n="footer.whatsapp">💬 WhatsApp Us</a>
+    <a href="mailto:rahajersey@gmail.com" data-i18n="footer.email">✉️ Email</a>
     <a href="https://instagram.com/raha_jerseys" target="_blank" rel="noopener">📸 @raha_jerseys</a>
   </div>
-  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
+  <p style="margin-top:.75rem;font-size:.72rem;opacity:.5;" data-i18n="footer.copyright">© 2026 Raha Jerseys. All rights reserved. Kenya 🇰🇪</p>
 </footer>
 
 <a href="https://wa.me/254119485338" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
@@ -395,15 +408,15 @@
 <!-- CART DRAWER -->
 <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cart-drawer">
-  <div class="cart-header"><h3>YOUR CART</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+  <div class="cart-header"><h3 data-i18n="cart.title">YOUR CART</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
   <div class="cart-items" id="cart-items"></div>
   <div class="cart-footer" id="cart-footer" style="display:none;">
-    <div class="mfield" style="margin-bottom:.6rem;"><label>Your Name</label><input type="text" id="checkout-name" placeholder="e.g. Brian Mutua" /></div>
-    <div class="mfield" style="margin-bottom:.6rem;"><label>Phone / WhatsApp</label><input type="tel" id="checkout-phone" placeholder="07XX XXX XXX" /></div>
-    <div class="cart-summary-row total"><span>Total</span><span id="cart-total">KSh 0</span></div>
-    <div class="cart-deposit-box">30% Deposit now: <span id="cart-deposit">KSh 0</span></div>
-    <div class="cart-summary-row"><span>Balance on delivery</span><span id="cart-balance">KSh 0</span></div>
-    <button class="btn-whatsapp" onclick="checkoutCart()">💬 Checkout on WhatsApp</button>
+    <div class="mfield" style="margin-bottom:.6rem;"><label data-i18n="cart.name_label">Your Name</label><input type="text" id="checkout-name" data-i18n-placeholder="cart.name_ph" placeholder="e.g. Brian Mutua" /></div>
+    <div class="mfield" style="margin-bottom:.6rem;"><label data-i18n="cart.phone_label">Phone / WhatsApp</label><input type="tel" id="checkout-phone" placeholder="07XX XXX XXX" /></div>
+    <div class="cart-summary-row total"><span data-i18n="cart.total">Total</span><span id="cart-total">KSh 0</span></div>
+    <div class="cart-deposit-box"><span data-i18n="cart.deposit">30% Deposit now:</span> <span id="cart-deposit">KSh 0</span></div>
+    <div class="cart-summary-row"><span data-i18n="cart.balance">Balance on delivery</span><span id="cart-balance">KSh 0</span></div>
+    <button class="btn-whatsapp" onclick="checkoutCart()" data-i18n="cart.checkout_btn">💬 Checkout on WhatsApp</button>
   </div>
 </div>
 
@@ -416,33 +429,190 @@
       <div><h4 id="qa-team"></h4><div class="modal-sub" id="qa-sub"></div></div>
     </div>
     <div class="modal-body">
-      <div class="mfield" id="qa-kit-wrap"><label>Kit</label><select id="qa-kit"></select></div>
-      <div class="mfield"><label>Version</label><select id="qa-version"></select></div>
+      <div class="mfield" id="qa-kit-wrap"><label data-i18n="modal.kit">Kit</label><select id="qa-kit"></select></div>
+      <div class="mfield"><label data-i18n="modal.version">Version</label><select id="qa-version"></select></div>
       <div class="mrow2">
-        <div class="mfield"><label>Size</label>
+        <div class="mfield"><label data-i18n="modal.size">Size</label>
           <select id="qa-size">
-            <option value="" disabled selected>Pick size</option>
+            <option value="" disabled selected data-i18n="modal.pick_size">Pick size</option>
             <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
           </select>
         </div>
-        <div class="mfield"><label>Pieces</label>
+        <div class="mfield"><label data-i18n="modal.pieces">Pieces</label>
           <select id="qa-pieces">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5+ (Buy 5 get 1 free)</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" data-i18n="modal.pieces_5">5+ (Buy 5 get 1 free)</option>
           </select>
         </div>
       </div>
-      <div class="mfield"><label>Add Printing? (+KSh 400/piece)</label>
-        <select id="qa-print" onchange="onQaPrintChange()"><option value="no">No thanks</option><option value="yes">Yes please</option></select>
+      <div class="mfield"><label data-i18n="modal.printing">Add Printing? (+KSh 400/piece)</label>
+        <select id="qa-print" onchange="onQaPrintChange()"><option value="no" data-i18n="modal.no_thanks">No thanks</option><option value="yes" data-i18n="modal.yes_please">Yes please</option></select>
       </div>
       <div class="mrow2" id="qa-print-details" style="display:none;">
-        <div class="mfield"><label>Name</label><input type="text" id="qa-print-name" placeholder="e.g. SAKA" /></div>
-        <div class="mfield"><label>Number</label><input type="text" id="qa-print-number" placeholder="e.g. 7" /></div>
+        <div class="mfield"><label data-i18n="modal.name">Name</label><input type="text" id="qa-print-name" placeholder="e.g. SAKA" /></div>
+        <div class="mfield"><label data-i18n="modal.number">Number</label><input type="text" id="qa-print-number" placeholder="e.g. 7" /></div>
       </div>
       <div class="modal-price-preview" id="qa-price-preview">KSh 0</div>
-      <button class="modal-add-btn" onclick="submitQuickAdd()">🛒 Add to Cart</button>
+      <button class="modal-add-btn" onclick="submitQuickAdd()" data-i18n="modal.add_btn">🛒 Add to Cart</button>
     </div>
   </div>
 </div>
+
+<script>
+  /* ── LANGUAGE SWITCHER ── */
+  var LANG_KEY = 'raha_lang_v1';
+  var TRANSLATIONS = {
+    fr: {
+      'nav.home':'Accueil','nav.products':'Produits','nav.help':'Aide',
+      'hero.badge':'⚡ Nouvelle saison (PL, La Liga, Bundesliga, Ligue 1) — Maillots 26/27 disponibles',
+      'hero.sub':'Des maillots de football premium à des prix qui font sourire votre portefeuille. Club, Rétro, Coupe du Monde 2026 et Édition Limitée — livraison rapide partout au Kenya.',
+      'hero.btn_shop':'📲 Acheter des maillots','hero.btn_stock':'Voir le stock',
+      'hero.stat_types':'Types de maillots','hero.stat_teams':'Équipes disponibles','hero.stat_from':'À partir de KSh','hero.stat_delivery':'Livraison rapide',
+      'pricing.label':'Prix Abordables','pricing.title':'PRIX & VERSIONS','pricing.sub':'Tous nos maillots sont de qualité premium. Choisissez entre Fan, Player, Rétro ou Édition Limitée.',
+      'pricing.bestseller':'⭐ Meilleure vente','pricing.fan_type':'Version Fan','pricing.fan_desc':'Bonne qualité au quotidien',
+      'pricing.player_type':'Version Player','pricing.player_desc':'Qualité premium, niveau match',
+      'pricing.retro_type':'Version Rétro','pricing.retro_desc':'Modèles classiques et anciennes saisons',
+      'pricing.limited_type':'Édition Limitée','pricing.limited_desc':'Sorties spéciales et rares',
+      'pricing.print_note':'<strong>Envie de votre nom & numéro imprimé ?</strong> Ajoutez KSh 400 pour l\'impression. Réduction pour les commandes de 5 pièces ou plus ! 🎉',
+      'pricing.tbl_buy':'Achat','pricing.tbl_discount':'Réduction','pricing.tbl_5':'5 maillots','pricing.tbl_5free':'1 GRATUIT ⭐','pricing.tbl_10':'10 maillots','pricing.tbl_10free':'2 GRATUITS 🔥','pricing.tbl_15':'15 maillots','pricing.tbl_15free':'3 GRATUITS',
+      'jerseys.label':'Notre Stock','jerseys.title':'CHOISISSEZ VOTRE MAILLOT','jerseys.sub':'Des derniers maillots de club aux classiques rétro — nous avons votre équipe. Touchez une catégorie pour parcourir.',
+      'jerseys.club_label':'Toutes les ligues','jerseys.club_name':'MAILLOTS DE CLUB','jerseys.club_desc':'Domicile · Extérieur','jerseys.preorder':'Précommande 26/27 ouverte',
+      'jerseys.kpl_label':'Ligue locale','jerseys.kpl_name':'PREMIER LEAGUE KÉNYANE','jerseys.kpl_desc':'Gor Mahia, AFC Leopards, Tusker FC et plus',
+      'jerseys.world_label':'International','jerseys.world_name':'PAYS','jerseys.world_desc':'Représentez votre nation sur la plus grande scène',
+      'jerseys.retro_label':'Classiques','jerseys.retro_name':'MAILLOTS RÉTRO','jerseys.retro_desc':'Anciennes saisons et maillots iconiques — précisez l\'année !',
+      'jerseys.limited_label':'Sorties rares','jerseys.limited_name':'ÉDITION LIMITÉE','jerseys.limited_desc':'Collaborations spéciales et sorties exclusives',
+      'recs.label':'Sélectionné pour vous','recs.title':'CHOIX POPULAIRES','recs.sub':'Ce que tout le monde achète en ce moment. Touchez pour ajouter directement au panier.',
+      'size.label':'Trouvez la bonne taille','size.title':'GUIDE DES TAILLES','size.sub':'Utilisez votre tour de poitrine pour trouver votre taille parfaite. Les tailles suivent la coupe standard du football.',
+      'size.tbl_size':'Taille','size.tbl_chest_cm':'Poitrine (cm)','size.tbl_chest_in':'Poitrine (pouces)','size.tbl_length':'Longueur (cm)','size.tbl_best':'Idéal pour',
+      'size.xs':'Silhouette fine/petite, jeunes adultes','size.s':'Silhouette fine à moyenne','size.m':'Silhouette moyenne — taille la plus populaire',
+      'size.l':'Poitrine plus large, coupe décontractée sur silhouette moyenne','size.xl':'Silhouette plus large ou coupe ample préférée','size.xxl':'Grande taille, coupe très décontractée',
+      'size.note':'📏 <strong>Comment mesurer votre poitrine :</strong> Enroulez un mètre ruban autour de la partie la plus large de votre poitrine, juste sous les bras. Gardez-le horizontal et ajoutez 2 à 4 cm pour un confort optimal.',
+      'size.tip1_h':'🏋️ Silhouette athlétique','size.tip1_p':'Si vous avez des épaules larges ou une poitrine musclée, prenez une taille au-dessus — par ex. si votre poitrine indique M, prenez L pour plus de confort aux épaules.',
+      'size.tip2_h':'👕 Coupe ajustée vs décontractée','size.tip2_p':'Nos maillots ont une coupe football standard. Pour un look ajusté, restez fidèle à votre mesure. Pour un style plus décontracté, prenez une taille au-dessus.',
+      'size.tip3_h':'👦 Vous achetez pour un enfant ?','size.tip3_p':'Nous recommandons XS ou S pour les adolescents. Pour les plus jeunes, écrivez-nous sur WhatsApp et nous vous aiderons selon leur âge et leur taille.',
+      'size.tip4_h':'❓ Pas sûr ?','size.tip4_p':'Envoyez-nous simplement votre taille, poids ou tour de poitrine sur WhatsApp et nous vous recommanderons la bonne taille. Bien choisir du premier coup fait gagner du temps à tout le monde ! 😊',
+      'why.label':'Pourquoi Raha','why.title':'PORTEFEUILLE HEUREUX, CLIENT HEUREUX','why.sub':'Voici ce qui nous distingue.',
+      'why.p1_h':'Qualité supérieure','why.p1_p':'Des matériaux premium, superbes sur chaque version.',
+      'why.p2_h':'Prix imbattables','why.p2_p':'À partir de seulement KSh 1 200. Achetez 5 maillots et obtenez-en 1 gratuit !',
+      'why.p3_h':'Immense variété','why.p3_p':'Club, international, rétro, édition limitée — quelle que soit votre équipe, nous l\'avons.',
+      'why.p4_h':'Livraison rapide','why.p4_p':'Livraison rapide et fiable partout au Kenya. Nous vous tenons informé.',
+      'why.p5_h':'Impression personnalisée','why.p5_p':'Ajoutez votre nom et numéro pour seulement KSh 400. Faites-le vôtre.',
+      'why.p6_h':'Commande facile','why.p6_p':'Ajoutez au panier et payez via WhatsApp — rapide, personnel, convivial.',
+      'trust.label':'Achetez en toute confiance','trust.title':'POURQUOI FAIRE CONFIANCE À RAHA JERSEYS','trust.sub':'Nous comprenons que l\'achat en ligne peut sembler risqué. C\'est pourquoi nous nous engageons à rendre votre expérience d\'achat sûre, transparente et fiable.',
+      'trust.t1_h':'Produits authentiques uniquement','trust.t1_p':'Chaque maillot que nous vendons est exactement comme décrit — qualité premium, aucune surprise.',
+      'trust.t2_h':'Prix clairs, sans frais cachés','trust.t2_p':'Le prix affiché est le prix payé. L\'impression coûte KSh 400 de plus — c\'est tout.',
+      'trust.t3_h':'Livraison rapide et fiable partout au Kenya','trust.t3_p':'Nous livrons rapidement et vous tenons informé à chaque étape.',
+      'trust.t4_h':'Support client réactif','trust.t4_p':'Notre équipe est disponible avant et après votre achat. Nous sommes toujours là pour vous aider.',
+      'trust.t5_h':'Vrais avis clients','trust.t5_p':'Lisez de véritables avis de vrais clients directement sur le site.',
+      'trust.t6_h':'Paiement sécurisé d\'un acompte de 30%','trust.t6_p':'Payez un petit acompte via Pochi La Biashara pour confirmer votre commande — simple et sécurisé.',
+      'trust.quote':'« Votre confiance est notre bien le plus précieux. Achetez en toute confiance — nous livrons ce que nous promettons. »',
+      'reviews.label':'Vrais clients','reviews.title':'CE QUE DISENT LES GENS','reviews.sub':'Approuvé par les passionnés de football à travers le Kenya.',
+      'reviews.detail':'⚽ Livraison rapide · ✅ Maillots de qualité · 💰 Excellents prix',
+      'reviews.leave_title':'Laisser un avis','reviews.ph_name':'Votre nom','reviews.ph_kit':'Qu\'avez-vous acheté ? ex. Arsenal Domicile','reviews.ph_text':'Parlez de votre expérience...','reviews.post_btn':'Publier l\'avis',
+      'about.label':'Notre histoire','about.title':'À PROPOS DE RAHA JERSEYS',
+      'about.p1':'Raha Jerseys, fondé par Val Mzeka et Estelle Kang\'ethe, est né d\'une idée simple : chaque passionné de football au Kenya mérite un maillot de qualité sans payer des prix d\'importation. « Raha » signifie confort et facilité en swahili — et c\'est exactement ce que nous voulons vous offrir, de la navigation à la livraison.',
+      'about.p2':'Nous stockons plus de 1 000 maillots de club, nationaux et rétro — de la Premier League à la Coupe du Monde 2026 — tous à des prix qui préservent votre portefeuille. Chaque commande est confirmée personnellement sur WhatsApp, afin que vous sachiez toujours exactement ce que vous obtenez.',
+      'about.p3':'Basé au Kenya, livraison dans tout le pays. Sawa kabisa. ⚽',
+      'about.stat_years':'Années d\'activité','about.stat_teams':'Équipes en stock','about.stat_customers':'Clients satisfaits','about.stat_rating':'Note moyenne',
+      'contact.label':'Contactez-nous','contact.title':'CONTACT','contact.sub':'Des questions sur les tailles, le stock ou une commande ? Contactez-nous comme vous le souhaitez.',
+      'contact.whatsapp':'WhatsApp','contact.call':'Appelez-nous','contact.phone':'Téléphone','contact.email':'E-mail','contact.instagram':'Instagram',
+      'footer.tagline':'Maillots de football premium · Prix abordables · Livraison rapide partout au Kenya',
+      'footer.whatsapp':'💬 Contactez-nous sur WhatsApp','footer.email':'✉️ E-mail','footer.copyright':'© 2026 Raha Jerseys. Tous droits réservés. Kenya 🇰🇪',
+      'cart.title':'VOTRE PANIER','cart.name_label':'Votre nom','cart.name_ph':'ex. Brian Mutua','cart.phone_label':'Téléphone / WhatsApp',
+      'cart.total':'Total','cart.deposit':'Acompte de 30% maintenant :','cart.balance':'Solde à la livraison','cart.checkout_btn':'💬 Payer via WhatsApp',
+      'modal.kit':'Kit','modal.version':'Version','modal.size':'Taille','modal.pick_size':'Choisir la taille','modal.pieces':'Pièces','modal.pieces_5':'5+ (achetez 5, 1 gratuit)',
+      'modal.printing':'Ajouter l\'impression ? (+KSh 400/pièce)','modal.no_thanks':'Non merci','modal.yes_please':'Oui s\'il vous plaît',
+      'modal.name':'Nom','modal.number':'Numéro','modal.add_btn':'🛒 Ajouter au panier'
+    },
+    sw: {
+      'nav.home':'Nyumbani','nav.products':'Bidhaa','nav.help':'Msaada',
+      'hero.badge':'⚡ Msimu Mpya (PL, La Liga, Bundesliga, Ligue 1) — Jezi za 26/27 Sasa Zipo',
+      'hero.sub':'Jezi bora za mpira wa miguu kwa bei zinazofurahisha mfuko wako. Klabu, Retro, Kombe la Dunia 2026 na Toleo Maalum — usafirishaji wa haraka kote Kenya.',
+      'hero.btn_shop':'📲 Nunua Jezi','hero.btn_stock':'Tunachouza',
+      'hero.stat_types':'Aina za Jezi','hero.stat_teams':'Timu Zilizopo','hero.stat_from':'Kuanzia KSh','hero.stat_delivery':'Usafirishaji wa Haraka',
+      'pricing.label':'Bei Nafuu','pricing.title':'BEI NA VERSIONI','pricing.sub':'Jezi zote ni za ubora wa hali ya juu. Chagua kati ya Fan, Player, Retro, au Toleo Maalum.',
+      'pricing.bestseller':'⭐ Inayouzwa Zaidi','pricing.fan_type':'Toleo la Fan','pricing.fan_desc':'Ubora mzuri wa kila siku',
+      'pricing.player_type':'Toleo la Player','pricing.player_desc':'Ubora wa hali ya juu kama wa mchezoni',
+      'pricing.retro_type':'Toleo la Retro','pricing.retro_desc':'Miundo ya kawaida na misimu ya zamani',
+      'pricing.limited_type':'Toleo Maalum','pricing.limited_desc':'Matoleo maalum na adimu',
+      'pricing.print_note':'<strong>Unataka jina & namba yako iandikwe?</strong> Ongeza KSh 400 kwa uchapishaji. Maagizo ya vipande 5+ hupata punguzo! 🎉',
+      'pricing.tbl_buy':'Nunua','pricing.tbl_discount':'Punguzo','pricing.tbl_5':'Jezi 5','pricing.tbl_5free':'1 BURE ⭐','pricing.tbl_10':'Jezi 10','pricing.tbl_10free':'2 BURE 🔥','pricing.tbl_15':'Jezi 15','pricing.tbl_15free':'3 BURE',
+      'jerseys.label':'Tunachouza','jerseys.title':'CHAGUA JEZI YAKO','jerseys.sub':'Kutoka jezi mpya za klabu hadi za kawaida za zamani — tumeikamilisha timu yako. Gusa jamii ili kuvinjari.',
+      'jerseys.club_label':'Ligi Zote','jerseys.club_name':'JEZI ZA KLABU','jerseys.club_desc':'Nyumbani · Ugenini','jerseys.preorder':'Uagizaji wa 26/27 Umefunguliwa',
+      'jerseys.kpl_label':'Ligi ya Ndani','jerseys.kpl_name':'LIGI KUU YA KENYA','jerseys.kpl_desc':'Gor Mahia, AFC Leopards, Tusker FC na zaidi',
+      'jerseys.world_label':'Kimataifa','jerseys.world_name':'NCHI','jerseys.world_desc':'Wakilisha taifa lako kwenye jukwaa kubwa zaidi',
+      'jerseys.retro_label':'Za Kawaida','jerseys.retro_name':'JEZI ZA RETRO','jerseys.retro_desc':'Misimu ya zamani na jezi maarufu — taja mwaka!',
+      'jerseys.limited_label':'Matoleo Adimu','jerseys.limited_name':'TOLEO MAALUM','jerseys.limited_desc':'Ushirikiano maalum na matoleo ya kipekee',
+      'recs.label':'Zilizochaguliwa Kwako','recs.title':'CHAGUO MAARUFU','recs.sub':'Kile ambacho kila mtu ananunua sasa hivi. Gusa ili kuongeza moja kwa moja kwenye kikapu.',
+      'size.label':'Pata Kipimo Sahihi','size.title':'MWONGOZO WA VIPIMO','size.sub':'Tumia kipimo cha kifua chako kupata jezi inayokufaa. Vipimo hufuata mtindo wa kawaida wa mpira wa miguu.',
+      'size.tbl_size':'Kipimo','size.tbl_chest_cm':'Kifua (cm)','size.tbl_chest_in':'Kifua (inchi)','size.tbl_length':'Urefu (cm)','size.tbl_best':'Inafaa Kwa',
+      'size.xs':'Umbo dogo/nyembamba, vijana','size.s':'Umbo dogo hadi la wastani','size.m':'Umbo la wastani — kipimo maarufu zaidi',
+      'size.l':'Kifua kikubwa zaidi, mtindo mzuri kwa umbo la wastani','size.xl':'Umbo kubwa zaidi au unapendelea mtindo mpana','size.xxl':'Umbo kubwa sana, mtindo mpana zaidi',
+      'size.note':'📏 <strong>Jinsi ya kupima kifua chako:</strong> Zungusha kipimo cha mkanda kuzunguka sehemu pana zaidi ya kifua chako, chini kidogo ya mikono. Kishike sawa na ongeza sentimita 2–4 kwa starehe zaidi.',
+      'size.tip1_h':'🏋️ Umbo la Michezo','size.tip1_p':'Kama una mabega mapana au kifua chenye misuli, chukua kipimo kikubwa zaidi kimoja — mfano, kama kifua chako ni M, chukua L kwa starehe zaidi mabegani.',
+      'size.tip2_h':'👕 Mtindo Mbana dhidi ya Mpana','size.tip2_p':'Jezi zetu zina mtindo wa kawaida wa mpira wa miguu. Kwa mwonekano mbana, fuata kipimo chako halisi. Kwa mtindo mpana zaidi, chukua kipimo kikubwa kimoja.',
+      'size.tip3_h':'👦 Unanunua kwa Mtoto?','size.tip3_p':'Tunapendekeza XS au S kwa vijana. Kwa watoto wadogo, tutumie ujumbe WhatsApp na tutakusaidia kupata kipimo sahihi kulingana na umri na urefu wao.',
+      'size.tip4_h':'❓ Huna Uhakika?','size.tip4_p':'Tumia WhatsApp kutupa urefu, uzito au kipimo cha kifua chako na tutakupendekezea kipimo sahihi. Kupata sahihi mara ya kwanza huokoa muda wa kila mtu! 😊',
+      'why.label':'Kwa Nini Raha','why.title':'MFUKO WENYE FURAHA, MTEJA MWENYE FURAHA','why.sub':'Hivi ndivyo tunavyotofautiana.',
+      'why.p1_h':'Ubora wa Hali ya Juu','why.p1_p':'Vifaa vya hali ya juu vinavyoonekana na kuhisi vizuri kwenye kila toleo.',
+      'why.p2_h':'Bei Zisizoshindika','why.p2_p':'Kuanzia KSh 1,200 tu. Nunua jezi 5 na upate 1 bure!',
+      'why.p3_h':'Aina Nyingi','why.p3_p':'Klabu, kimataifa, retro, toleo maalum — timu yoyote, tunayo.',
+      'why.p4_h':'Usafirishaji wa Haraka','why.p4_p':'Usafirishaji wa haraka na wa kuaminika kote Kenya. Tutakuweka na taarifa.',
+      'why.p5_h':'Uchapishaji Maalum','why.p5_p':'Ongeza jina na namba yako kwa KSh 400 tu. Ifanye iwe yako.',
+      'why.p6_h':'Uagizaji Rahisi','why.p6_p':'Ongeza kwenye kikapu na ulipe kupitia WhatsApp — haraka, binafsi, na rafiki.',
+      'trust.label':'Nunua kwa Ujasiri','trust.title':'KWA NINI UAMINI RAHA JERSEYS','trust.sub':'Tunaelewa kununua mtandaoni kunaweza kuhisi hatari. Ndiyo maana tumejitolea kufanya ununuzi wako uwe salama, wazi, na wa kuaminika.',
+      'trust.t1_h':'Bidhaa Halisi Pekee','trust.t1_p':'Kila jezi tunayouza ni kama ilivyoelezwa hasa — ubora wa hali ya juu, bila mshangao.',
+      'trust.t2_h':'Bei Wazi, Hakuna Gharama Zilizofichwa','trust.t2_p':'Bei unayoiona ndiyo unayolipa. Uchapishaji ni KSh 400 ziada — hiyo tu.',
+      'trust.t3_h':'Usafirishaji wa Haraka na wa Kuaminika Kote Kenya','trust.t3_p':'Tunasafirisha haraka na kukuweka na taarifa kila hatua.',
+      'trust.t4_h':'Msaada wa Mteja Unaoitikia','trust.t4_p':'Timu yetu ipo tayari kabla na baada ya ununuzi wako. Tuko hapa kusaidia kila wakati.',
+      'trust.t5_h':'Maoni Halisi ya Wateja','trust.t5_p':'Soma maoni halisi kutoka kwa wateja halisi hapa hapa kwenye tovuti.',
+      'trust.t6_h':'Malipo Salama ya Amana ya 30%','trust.t6_p':'Lipa amana ndogo kupitia Pochi La Biashara kuthibitisha agizo lako — rahisi na salama.',
+      'trust.quote':'"Uaminifu wako ndio mali yetu ya thamani zaidi. Nunua kwa ujasiri — tunatoa tunachoahidi."',
+      'reviews.label':'Wateja Halisi','reviews.title':'WATU WANASEMA NINI','reviews.sub':'Tunaaminika na wapenzi wa mpira wa miguu kote Kenya.',
+      'reviews.detail':'⚽ Usafirishaji wa haraka · ✅ Jezi bora · 💰 Bei nzuri',
+      'reviews.leave_title':'Acha Maoni','reviews.ph_name':'Jina lako','reviews.ph_kit':'Ulinunua nini? mfano Arsenal Nyumbani','reviews.ph_text':'Waambie wengine kuhusu uzoefu wako...','reviews.post_btn':'Chapisha Maoni',
+      'about.label':'Historia Yetu','about.title':'KUHUSU RAHA JERSEYS',
+      'about.p1':'Raha Jerseys ilianzishwa na Val Mzeka na Estelle Kang\'ethe kwa wazo moja rahisi: kila mpenzi wa mpira wa miguu Kenya anastahili jezi bora bila kulipa bei za uagizaji. "Raha" inamaanisha starehe na wepesi kwa Kiswahili — na hilo ndilo tunalolenga kukupa, kutoka kuvinjari hadi kufikisha bidhaa.',
+      'about.p2':'Tunahifadhi zaidi ya jezi 1,000 za klabu, kitaifa na retro — kutoka Premier League hadi Kombe la Dunia 2026 — zote kwa bei zinazokufurahisha mfukoni. Kila agizo linathibitishwa binafsi kupitia WhatsApp, ili ujue hasa unachopata.',
+      'about.p3':'Tuko Kenya, tunasafirisha nchi nzima. Sawa kabisa. ⚽',
+      'about.stat_years':'Miaka ya Uendeshaji','about.stat_teams':'Timu Zilizohifadhiwa','about.stat_customers':'Wateja Wenye Furaha','about.stat_rating':'Wastani wa Ukadiriaji',
+      'contact.label':'Wasiliana Nasi','contact.title':'WASILIANA NASI','contact.sub':'Maswali kuhusu vipimo, bidhaa, au agizo? Wasiliana nasi kwa njia inayokufaa.',
+      'contact.whatsapp':'WhatsApp','contact.call':'Tupigie','contact.phone':'Simu','contact.email':'Barua Pepe','contact.instagram':'Instagram',
+      'footer.tagline':'Jezi bora za mpira wa miguu · Bei nafuu · Usafirishaji wa haraka kote Kenya',
+      'footer.whatsapp':'💬 Tuandikie WhatsApp','footer.email':'✉️ Barua Pepe','footer.copyright':'© 2026 Raha Jerseys. Haki zote zimehifadhiwa. Kenya 🇰🇪',
+      'cart.title':'KIKAPU CHAKO','cart.name_label':'Jina Lako','cart.name_ph':'mfano Brian Mutua','cart.phone_label':'Simu / WhatsApp',
+      'cart.total':'Jumla','cart.deposit':'Amana ya 30% sasa:','cart.balance':'Salio la kulipa ukifikishiwa','cart.checkout_btn':'💬 Lipia kupitia WhatsApp',
+      'modal.kit':'Kit','modal.version':'Toleo','modal.size':'Kipimo','modal.pick_size':'Chagua kipimo','modal.pieces':'Vipande','modal.pieces_5':'5+ (Nunua 5 upate 1 bure)',
+      'modal.printing':'Ongeza Uchapishaji? (+KSh 400/kipande)','modal.no_thanks':'Hapana asante','modal.yes_please':'Ndiyo tafadhali',
+      'modal.name':'Jina','modal.number':'Namba','modal.add_btn':'🛒 Ongeza kwenye Kikapu'
+    }
+  };
+  var originalText = {};
+  function applyLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (!originalText[key]) originalText[key] = el.innerHTML;
+      el.innerHTML = (lang !== 'en' && TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) ? TRANSLATIONS[lang][key] : originalText[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      var origKey = 'ph:' + key;
+      if (!originalText[origKey]) originalText[origKey] = el.getAttribute('placeholder');
+      el.setAttribute('placeholder', (lang !== 'en' && TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) ? TRANSLATIONS[lang][key] : originalText[origKey]);
+    });
+    document.documentElement.lang = lang;
+    var sel = document.getElementById('lang-switch');
+    if (sel) sel.value = lang;
+  }
+  function setLang(lang) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+    applyLang(lang);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var saved = 'en';
+    try { saved = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) {}
+    applyLang(saved);
+  });
+</script>
 
 <script src="cart.js"></script>
 <script src="quickadd.js"></script>
