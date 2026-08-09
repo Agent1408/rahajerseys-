@@ -230,10 +230,15 @@
 <script src="quickadd.js"></script>
 <script>
 /* ══════════════════════════════════════
-   PRICING — two tiers across the whole catalog
+   PRICING
+   ────────────────────────────────────
+   Club & Countries jerseys come in Fan / Player versions.
+   Retro and Limited Edition each have their own single version.
    (actual KSh values live in VERSION_PRICES in cart.js)
 ═══════════════════════════════════════ */
 var VERSIONS = ['Player Version', 'Fan Version'];
+var VERSIONS_RETRO = ['Retro Version'];
+var VERSIONS_LIMITED = ['Limited Edition'];
 
 /* ══════════════════════════════════════
    IMAGES
@@ -488,7 +493,7 @@ function renderRetroGrid() {
   RETRO_ITEMS.forEach(function (r) {
     grid.appendChild(buildCard({
       team: r.team, subLabel: r.tag, tag: r.tag, img: retroImg(r.team), fallback: ph(r.team, r.color),
-      versions: VERSIONS, outOfStock: !!r.outOfStock
+      versions: VERSIONS_RETRO, outOfStock: !!r.outOfStock
     }));
   });
 }
@@ -498,7 +503,7 @@ function renderLimitedGrid() {
   LIMITED_ITEMS.forEach(function (r) {
     grid.appendChild(buildCard({
       team: r.team, subLabel: r.tag, tag: r.tag, img: limitedImg(r.team), fallback: ph(r.team, r.color),
-      versions: VERSIONS, outOfStock: !!r.outOfStock
+      versions: VERSIONS_LIMITED, outOfStock: !!r.outOfStock
     }));
   });
 }
@@ -571,10 +576,10 @@ function buildAllCards() {
     });
   });
   RETRO_ITEMS.forEach(function (r) {
-    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:retroImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:retroImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS_RETRO, outOfStock: !!r.outOfStock });
   });
   LIMITED_ITEMS.forEach(function (r) {
-    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:limitedImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS, outOfStock: !!r.outOfStock });
+    all.push({ team:r.team, subLabel:r.tag, tag:r.tag, img:limitedImg(r.team), fallback:ph(r.team,r.color), versions:VERSIONS_LIMITED, outOfStock: !!r.outOfStock });
   });
   return all;
 }
